@@ -27,4 +27,22 @@ public class LeagueDAOImpl implements LeagueDAO {
 		}
 	}
 
+	@Override
+	public void updateLeague(League league) {
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;		
+		try {
+			tx = session.beginTransaction();
+			session.update(league);
+			tx.commit();
+		} catch (HibernateException e) {
+			if(tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+	}
+
 }

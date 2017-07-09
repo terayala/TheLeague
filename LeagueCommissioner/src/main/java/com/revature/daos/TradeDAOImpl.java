@@ -27,4 +27,22 @@ public class TradeDAOImpl implements TradeDAO {
 		}
 	}
 
+	@Override
+	public void updateTrade(Trade trade) {
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;		
+		try {
+			tx = session.beginTransaction();
+			session.update(trade);
+			tx.commit();
+		} catch (HibernateException e) {
+			if(tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+	}
+
 }
