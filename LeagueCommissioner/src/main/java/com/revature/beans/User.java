@@ -28,7 +28,7 @@ public class User {
 	
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "TEAM_ID")
-	private int teamID;
+	private Team teamID;
 	
 	@Column(name = "FIRST_NAME")
 	private String firstName;
@@ -58,7 +58,7 @@ public class User {
 		
 	}
 
-	public User(int teamID, String firstName, String lastName, int role, String email, String username, String password,
+	public User(Team teamID, String firstName, String lastName, int role, String email, String username, String password,
 			int uniform, int active) {
 		this.teamID = teamID;
 		this.firstName = firstName;
@@ -80,10 +80,10 @@ public class User {
 	}
 
 	public int getTeamID() {
-		return teamID;
+		return teamID.getTeamID();
 	}
 
-	public void setTeamID(int teamID) {
+	public void setTeamID(Team teamID) {
 		this.teamID = teamID;
 	}
 

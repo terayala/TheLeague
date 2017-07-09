@@ -28,11 +28,11 @@ public class Game {
 	
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "TEAM_ID")
-	private int homeTeam;
+	private Team homeTeam;
 	
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "TEAM_ID")
-	private int awayTeam;
+	private Team awayTeam;
 	
 	@Column(name = "GAME_DATE")
 	private String gameDate;
@@ -59,7 +59,7 @@ public class Game {
 		
 	}
 
-	public Game(int homeTeam, int awayTeam, String gameDate) {
+	public Game(Team homeTeam, Team awayTeam, String gameDate) {
 		this.homeTeam = homeTeam;
 		this.awayTeam = awayTeam;
 		this.gameDate = gameDate;
@@ -74,18 +74,18 @@ public class Game {
 	}
 
 	public int getHomeTeam() {
-		return homeTeam;
+		return homeTeam.getTeamID();
 	}
 
-	public void setHomeTeam(int homeTeam) {
+	public void setHomeTeam(Team homeTeam) {
 		this.homeTeam = homeTeam;
 	}
 
 	public int getAwayTeam() {
-		return awayTeam;
+		return awayTeam.getTeamID();
 	}
 
-	public void setAwayTeam(int awayTeam) {
+	public void setAwayTeam(Team awayTeam) {
 		this.awayTeam = awayTeam;
 	}
 

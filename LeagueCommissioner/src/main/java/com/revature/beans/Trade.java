@@ -28,11 +28,11 @@ public class Trade {
 	
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "USER_ID")
-	private int player;
+	private User player;
 	
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "TEAM_ID")
-	private int toTeam;
+	private Team toTeam;
 	
 	@Column(name = "FROM_TEAM_APPROVAL")
 	private int fromTeamApproval;
@@ -47,7 +47,7 @@ public class Trade {
 		
 	}
 
-	public Trade(int player, int toTeam, int fromTeamApproval, int toTeamApproval, int commissionerApproval) {
+	public Trade(User player, Team toTeam, int fromTeamApproval, int toTeamApproval, int commissionerApproval) {
 		this.player = player;
 		this.toTeam = toTeam;
 		this.fromTeamApproval = fromTeamApproval;
@@ -64,18 +64,18 @@ public class Trade {
 	}
 
 	public int getPlayer() {
-		return player;
+		return player.getUserID();
 	}
 
-	public void setPlayer(int player) {
+	public void setPlayer(User player) {
 		this.player = player;
 	}
 
 	public int getToTeam() {
-		return toTeam;
+		return toTeam.getTeamID();
 	}
 
-	public void setToTeam(int toTeam) {
+	public void setToTeam(Team toTeam) {
 		this.toTeam = toTeam;
 	}
 
