@@ -17,15 +17,12 @@ public class GameDAOImpl implements GameDAO {
 
 
 	public List<Game> getScheduleByDate(Timestamp date) {
-		
 		List<Game> games = null;
 		Session session= HibernateUtil.getSession();
 		Transaction tx = null;
-		Criterion crit1 = Restrictions.ilike("GAME_DATE", date);
-		
 		try {
 			tx = session.beginTransaction();
-			games = ((Criteria) session.createQuery("FROM GAMES")).add(Restrictions.eq("gameDate", crit1)).list();
+			games = ((Criteria) session.createQuery("FROM GAMES")).add(Restrictions.ilike("GAME_DATE", date)).list();
 		} catch (Exception e) {
 			if(tx != null){
 				tx.rollback();
@@ -34,7 +31,6 @@ public class GameDAOImpl implements GameDAO {
 		} finally {
 			session.close();
 		}
-		
 		return games;
 	}
 

@@ -10,12 +10,12 @@ import com.revature.util.HibernateUtil;
 public class TeamDAOImpl implements TeamDAO {
 
 	@Override
-	public void createTeam(Team t) {
+	public void createTeam(Team team) {
 		Session session= HibernateUtil.getSession();
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			session.save(t);
+			session.save(team);
 			tx.commit();
 		} catch (HibernateException e) {
 			if(tx != null){
@@ -27,4 +27,40 @@ public class TeamDAOImpl implements TeamDAO {
 		}
 	}
 
+	@Override
+	public void updateTeam(Team team) {
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;		
+		try {
+			tx = session.beginTransaction();
+			session.update(team);
+			tx.commit();
+		} catch (HibernateException e) {
+			if(tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public Team selectTeamById(Integer id) {
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;
+		Team team = null;
+		try {
+			tx = session.beginTransaction();
+			team = (Team) session.get(Team.class, id);
+		} catch(HibernateException e) {
+			if(tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return team;
+	}
 }
