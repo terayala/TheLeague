@@ -12,10 +12,19 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public void createUser(User user) {
 		Session session = HibernateUtil.getSession();
-		Transaction tx = session.beginTransaction();
-		session.save(user);
-		tx.commit();
-		session.close();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			session.save(user);
+			tx.commit();
+		} catch (HibernateException e) {
+			if(tx != null){
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override

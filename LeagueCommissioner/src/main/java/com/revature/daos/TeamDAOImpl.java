@@ -1,5 +1,6 @@
 package com.revature.daos;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -12,12 +13,11 @@ public class TeamDAOImpl implements TeamDAO {
 	public void createTeam(Team t) {
 		Session session= HibernateUtil.getSession();
 		Transaction tx = null;
-		
 		try {
 			tx = session.beginTransaction();
-			session.save(t); //This method persists the object
+			session.save(t);
 			tx.commit();
-		} catch (Exception e) {
+		} catch (HibernateException e) {
 			if(tx != null){
 				tx.rollback();
 			}
@@ -25,7 +25,6 @@ public class TeamDAOImpl implements TeamDAO {
 		} finally {
 			session.close();
 		}
-		
 	}
 
 }
