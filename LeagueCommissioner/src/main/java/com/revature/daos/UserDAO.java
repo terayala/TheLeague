@@ -4,5 +4,5 @@ import com.revature.beans.User;
 
 public interface UserDAO {
 
-	public void createCoach(User user);
+	public void createUser(User user);
 }
