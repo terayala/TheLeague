@@ -61,7 +61,6 @@ public class User {
 
 	public User(Team teamID, String firstName, String lastName, int role, String email, String username, String password,
 			int uniform, int active) {
-		this.teamID = teamID;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.role = role;
@@ -78,14 +77,6 @@ public class User {
 
 	public void setUserID(int userID) {
 		this.userID = userID;
-	}
-
-	public int getTeamID() {
-		return teamID.getTeamID();
-	}
-
-	public void setTeamID(Team teamID) {
-		this.teamID = teamID;
 	}
 
 	public String getFirstName() {
