@@ -15,7 +15,7 @@ public class TeamDAOImpl implements TeamDAO {
 		
 		try {
 			tx = session.beginTransaction();
-			session.persist(t); //This method persists the object
+			session.save(t); //This method persists the object
 			tx.commit();
 		} catch (Exception e) {
 			if(tx != null){
