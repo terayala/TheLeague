@@ -105,8 +105,12 @@ public class League {
 		this.ptsOrPct = ptsOrPct;
 	}
 
-	public int getTiesAllowed() {
-		return tiesAllowed;
+	public boolean getTiesAllowed() {
+		if (tiesAllowed == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	public void setTiesAllowed(int tiesAllowed) {

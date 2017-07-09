@@ -1,5 +1,9 @@
 package com.revature.beans;
 
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,7 +39,7 @@ public class Game {
 	private Team awayTeam;
 	
 	@Column(name = "GAME_DATE")
-	private String gameDate;
+	private Timestamp gameDate;
 	
 	@Column(name = "HOME_SCORE")
 	private int homeScore;
@@ -59,7 +63,7 @@ public class Game {
 		
 	}
 
-	public Game(Team homeTeam, Team awayTeam, String gameDate) {
+	public Game(Team homeTeam, Team awayTeam, Timestamp gameDate) {
 		this.homeTeam = homeTeam;
 		this.awayTeam = awayTeam;
 		this.gameDate = gameDate;
@@ -90,10 +94,11 @@ public class Game {
 	}
 
 	public String getGameDate() {
-		return gameDate;
+		DateFormat dateFormat = new SimpleDateFormat("MMM-dd-yyyy HH:mm:ss");
+		return dateFormat.format(gameDate);
 	}
 
-	public void setGameDate(String gameDate) {
+	public void setGameDate(Timestamp gameDate) {
 		this.gameDate = gameDate;
 	}
 
@@ -113,32 +118,48 @@ public class Game {
 		this.awayScore = awayScore;
 	}
 
-	public int getIsOvertime() {
-		return isOvertime;
+	public boolean getIsOvertime() {
+		if (isOvertime == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	public void setIsOvertime(int isOvertime) {
 		this.isOvertime = isOvertime;
 	}
 
-	public int getHomeApproved() {
-		return homeApproved;
+	public boolean getHomeApproved() {
+		if (homeApproved == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	public void setHomeApproved(int homeApproved) {
 		this.homeApproved = homeApproved;
 	}
 
-	public int getAwayApproved() {
-		return awayApproved;
+	public boolean getAwayApproved() {
+		if (awayApproved == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	public void setAwayApproved(int awayApproved) {
 		this.awayApproved = awayApproved;
 	}
 
-	public int getCommissionerApproved() {
-		return commissionerApproved;
+	public boolean getCommissionerApproved() {
+		if (commissionerApproved == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	public void setCommissionerApproved(int commissionerApproved) {

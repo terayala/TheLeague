@@ -79,24 +79,36 @@ public class Trade {
 		this.toTeam = toTeam;
 	}
 
-	public int getFromTeamApproval() {
-		return fromTeamApproval;
+	public boolean getFromTeamApproval() {
+		if (fromTeamApproval == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	public void setFromTeamApproval(int fromTeamApproval) {
 		this.fromTeamApproval = fromTeamApproval;
 	}
 
-	public int getToTeamApproval() {
-		return toTeamApproval;
+	public boolean getToTeamApproval() {
+		if (toTeamApproval == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	public void setToTeamApproval(int toTeamApproval) {
 		this.toTeamApproval = toTeamApproval;
 	}
 
-	public int getCommissionerApproval() {
-		return commissionerApproval;
+	public boolean getCommissionerApproval() {
+		if (commissionerApproval == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	public void setCommissionerApproval(int commissionerApproval) {

@@ -143,8 +143,12 @@ public class User {
 		this.uniform = uniform;
 	}
 
-	public int getActive() {
-		return active;
+	public boolean getActive() {
+		if (active == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	public void setActive(int active) {
