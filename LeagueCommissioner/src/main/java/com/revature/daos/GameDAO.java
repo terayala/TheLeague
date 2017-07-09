@@ -6,6 +6,9 @@ import com.revature.beans.Game;
 
 public interface GameDAO {
 	
-	public List<Game> getSchedule();
+	public List<Game> getScheduleByDate(String date);
 
+	public List<Game> viewScheduleByTeam(Integer teamID);
+	public void updateGame(Game game);
+	public void createGame(Game game);
 }
