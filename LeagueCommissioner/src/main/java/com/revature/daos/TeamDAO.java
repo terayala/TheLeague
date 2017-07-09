@@ -1,5 +1,7 @@
 package com.revature.daos;
 
-public interface TeamDAO {
+import com.revature.beans.Team;
 
+public interface TeamDAO {
+	public void createTeam(Team t);
 }
