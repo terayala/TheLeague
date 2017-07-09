@@ -1,6 +1,7 @@
 package com.revature.beans;
 
 import java.sql.Blob;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -56,6 +58,9 @@ public class League {
 	@JoinColumn(name = "SPORT_ID")
 	private Sport sportID;
 	
+	@OneToMany(mappedBy = "league")
+	private List<Team> teams;
+
 	public League() {
 		
 	}
@@ -155,5 +160,13 @@ public class League {
 
 	public void setSportID(Sport sportID) {
 		this.sportID = sportID;
+	}
+	
+	public List<Team> getTeams() {
+		return teams;
+	}
+
+	public void setTeams(List<Team> teams) {
+		this.teams = teams;
 	}
 }

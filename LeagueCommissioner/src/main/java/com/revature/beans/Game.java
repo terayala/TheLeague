@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -58,6 +59,10 @@ public class Game {
 	
 	@Column(name = "COMMISSIONER_APPROVED")
 	private int commissionerApproved;
+	
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "GAME_ID")
+	private Team team;
 	
 	public Game() {
 		
@@ -165,5 +170,12 @@ public class Game {
 	public void setCommissionerApproved(int commissionerApproved) {
 		this.commissionerApproved = commissionerApproved;
 	}
-	
+
+	public Team getTeam() {
+		return team;
+	}
+
+	public void setTeam(Team team) {
+		this.team = team;
+	}	
 }
