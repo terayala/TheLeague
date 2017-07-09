@@ -9,9 +9,11 @@ import com.revature.util.HibernateUtil;
 public class UserDAOImpl implements UserDAO {
 
 	@Override
-	public void createCoach(User user) {
+	public void createUser(User user) {
 		Session session = HibernateUtil.getSession();
 		Transaction tx = session.beginTransaction();
-		
+		session.save(user);
+		tx.commit();
+		session.close();
 	}
 }
