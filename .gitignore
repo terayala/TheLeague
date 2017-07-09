@@ -23,3 +23,5 @@ pom.properties
 hs_err_pid*
 
 MANIFEST.MF
+
+*.classpath
