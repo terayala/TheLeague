@@ -27,9 +27,9 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERID_SEQ")
 	private int userID;
 	
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "TEAM_ID")
-	private Team teamID;
+	private Team team;
 	
 	@Column(name = "FIRST_NAME")
 	private String firstName;
@@ -55,17 +55,12 @@ public class User {
 	@Column(name = "ACTIVE")
 	private int active;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "TEAM_ID")
-	private Team team;
-	
 	public User() {
 		
 	}
 
 	public User(Team teamID, String firstName, String lastName, int role, String email, String username, String password,
 			int uniform, int active) {
-		this.teamID = teamID;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.role = role;
@@ -82,14 +77,6 @@ public class User {
 
 	public void setUserID(int userID) {
 		this.userID = userID;
-	}
-
-	public int getTeamID() {
-		return teamID.getTeamID();
-	}
-
-	public void setTeamID(Team teamID) {
-		this.teamID = teamID;
 	}
 
 	public String getFirstName() {

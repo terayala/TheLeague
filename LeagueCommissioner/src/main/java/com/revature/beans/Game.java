@@ -61,7 +61,7 @@ public class Game {
 	private int commissionerApproved;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "GAME_ID")
+	@JoinColumn(name = "TEAM_ID")
 	private Team team;
 	
 	public Game() {
