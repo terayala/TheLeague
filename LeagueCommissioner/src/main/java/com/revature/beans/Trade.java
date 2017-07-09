@@ -1,12 +1,46 @@
 package com.revature.beans;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+@Entity
+@Table(name = "TRADES")
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "myAwesomeCache")
 public class Trade {
 
+	@Id
+	@Column(name = "TRADE_ID")
+	@SequenceGenerator(name = "TRADEID_SEQ", sequenceName = "TRADEID_SEQ")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TRADEID_SEQ")
 	private int tradeID;
+	
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "USER_ID")
 	private int player;
+	
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "TEAM_ID")
 	private int toTeam;
+	
+	@Column(name = "FROM_TEAM_APPROVAL")
 	private int fromTeamApproval;
+	
+	@Column(name = "TO_TEAM_APPROVAL")
 	private int toTeamApproval;
+	
+	@Column(name = "COMMISSIONER_APPROVAL")
 	private int commissionerApproval;
 	
 	public Trade() {

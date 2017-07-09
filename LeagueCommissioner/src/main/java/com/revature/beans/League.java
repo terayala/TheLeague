@@ -2,17 +2,58 @@ package com.revature.beans;
 
 import java.sql.Blob;
 
-public class League {
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+@Entity
+@Table(name = "LEAGUES")
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "myAwesomeCache")
+public class League {
+	
+	@Id
+	@Column(name = "LEAGUE_ID")
+	@SequenceGenerator(name = "LEAGUEID_SEQ", sequenceName = "LEAGUEID_SEQ")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "LEAGUEID_SEQ")
 	private int leagueID;
+	
+	@Column(name = "NAME")
 	private String name;
+	
+	@Column(name = "LOGO")
 	private Blob logo;
+	
+	@Column(name = "PTS_OR_PCT")
 	private int ptsOrPct;
+	
+	@Column(name = "TIES_ALLOWED")
 	private int tiesAllowed;
+	
+	@Column(name = "PTS_PER_WIN")
 	private int winPts;
+	
+	@Column(name = "PTS_PER_TIE")
 	private int tiePts;
+	
+	@Column(name = "PTS_PER_OT_WIN")
 	private int winOTPts;
+	
+	@Column(name = "PTS_PER_OT_LOSS")
 	private int lossOTPts;
+	
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "SPORT_ID")
 	private String sportID;
 	
 	public League() {
