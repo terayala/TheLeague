@@ -1,19 +1,22 @@
 package com.revature.daos;
 
+import java.sql.Timestamp;
 import java.util.List;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
+
 import com.revature.beans.Game;
 import com.revature.util.HibernateUtil;
 
 public class GameDAOImpl implements GameDAO {
 
 
-	public List<Game> getScheduleByDate(String date) {
+	public List<Game> getScheduleByDate(Timestamp date) {
 		
 		List<Game> games = null;
 		Session session= HibernateUtil.getSession();
