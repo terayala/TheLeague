@@ -42,7 +42,7 @@ public class Team {
 	
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "LEAGUE_ID")
-	private League leagueID;
+	private int leagueID;
 	
 	@Column(name = "COLOR_PRIMARY")
 	private int primaryColor;
