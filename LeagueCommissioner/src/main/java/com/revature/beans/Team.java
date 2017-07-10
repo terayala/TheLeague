@@ -64,7 +64,7 @@ public class Team {
 		
 	}
 
-	public Team(String name, String nickname, Blob logo, League leagueID, int primaryColor, int secondaryColor) {
+	public Team(String name, String nickname, Blob logo, int leagueID, int primaryColor, int secondaryColor) {
 		this.name = name;
 		this.nickname = nickname;
 		this.logo = logo;
@@ -106,10 +106,10 @@ public class Team {
 	}
 
 	public int getLeagueID() {
-		return leagueID.getLeagueID();
+		return leagueID;
 	}
 
-	public void setLeagueID(League leagueID) {
+	public void setLeagueID(int leagueID) {
 		this.leagueID = leagueID;
 	}
 
