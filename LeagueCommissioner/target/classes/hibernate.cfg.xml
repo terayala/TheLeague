@@ -16,13 +16,13 @@
 		
 		<!-- CACHE CONFIGURATION -->
 		<property name="net.sf.ehcache.configurationResourceName">/ehcache.xml</property>
-		<property name="hibernate.cache.region.factory_class">net.sf.ehcache.hibernate.EhCacheRegionFactory</property>
+		<property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
 		<property name="hibernate.cache.use_second_level_cache">true</property>
 		<property name="hibernate.cache.use_query_cache">true</property>
 		
 		<!-- ANNOTATED MAPPING CLASSES -->
 		<mapping class="com.revature.beans.Game"/>
-		<mapping class="com.reavture.beans.League"/>
+		<mapping class="com.revature.beans.League"/>
 		<mapping class="com.revature.beans.Sport"/>
 		<mapping class="com.revature.beans.Stats"/>
 		<mapping class="com.revature.beans.Team"/>

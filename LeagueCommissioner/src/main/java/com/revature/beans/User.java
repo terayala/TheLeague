@@ -27,7 +27,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERID_SEQ")
 	private int userID;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "TEAM_ID")
 	private Team team;
 	
@@ -153,5 +153,12 @@ public class User {
 
 	public void setTeam(Team team) {
 		this.team = team;
+	}
+
+	@Override
+	public String toString() {
+		return "User [userID=" + userID + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", role=" + role + ", email=" + email + ", username=" + username + ", password=" + password
+				+ ", uniform=" + uniform + ", active=" + active + "]";
 	}
 }

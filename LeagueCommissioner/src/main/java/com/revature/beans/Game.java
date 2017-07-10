@@ -24,7 +24,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Table(name = "GAMES")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "myAwesomeCache")
 public class Game {
-
+	
 	@Id
 	@Column(name = "GAME_ID")
 	@SequenceGenerator(name = "GAMEID_SEQ", sequenceName = "GAMEID_SEQ")
@@ -32,12 +32,12 @@ public class Game {
 	private int gameID;
 	
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "TEAM_ID")
-	private Team homeTeam;
+	@JoinColumn(name = "HOME_TEAM")
+	private Team home_team;
 	
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "TEAM_ID")
-	private Team awayTeam;
+	@JoinColumn(name = "AWAY_TEAM")
+	private Team away_team;
 	
 	@Column(name = "GAME_DATE")
 	private Timestamp gameDate;
@@ -69,8 +69,8 @@ public class Game {
 	}
 
 	public Game(Team homeTeam, Team awayTeam, Timestamp gameDate) {
-		this.homeTeam = homeTeam;
-		this.awayTeam = awayTeam;
+		this.home_team = homeTeam;
+		this.away_team = awayTeam;
 		this.gameDate = gameDate;
 	}
 
@@ -83,19 +83,19 @@ public class Game {
 	}
 
 	public int getHomeTeam() {
-		return homeTeam.getTeamID();
+		return home_team.getTeamID();
 	}
 
 	public void setHomeTeam(Team homeTeam) {
-		this.homeTeam = homeTeam;
+		this.home_team = homeTeam;
 	}
 
 	public int getAwayTeam() {
-		return awayTeam.getTeamID();
+		return away_team.getTeamID();
 	}
 
 	public void setAwayTeam(Team awayTeam) {
-		this.awayTeam = awayTeam;
+		this.away_team = awayTeam;
 	}
 
 	public String getGameDate() {
@@ -178,4 +178,10 @@ public class Game {
 	public void setTeam(Team team) {
 		this.team = team;
 	}	
+	
+	@Override
+	public String toString() {
+		return "Game [gameID=" + gameID + ", homeTeam=" + home_team + ", awayTeam=" + away_team + ", gameDate=" + gameDate
+				+ "]";
+	}
 }
