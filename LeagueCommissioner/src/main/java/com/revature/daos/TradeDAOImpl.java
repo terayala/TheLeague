@@ -45,4 +45,23 @@ public class TradeDAOImpl implements TradeDAO {
 		}
 	}
 
+	@Override
+	public Trade selectTradeById(Integer id) {
+		Trade trade = null;
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			trade = (Trade) session.get(Trade.class, id);
+		} catch(HibernateException e) {
+			if(tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return trade;
+	}
+
 }

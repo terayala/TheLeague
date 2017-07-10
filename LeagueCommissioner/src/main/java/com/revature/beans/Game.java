@@ -32,12 +32,12 @@ public class Game {
 	private int gameID;
 	
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(referencedColumnName = "TEAM_ID")
-	private Team home_team;
+	@JoinColumn(name="HOME_TEAM", referencedColumnName = "TEAM_ID")
+	private Team homeTeam;
 	
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(referencedColumnName = "TEAM_ID")
-	private Team away_team;
+	@JoinColumn(name="AWAY_TEAM", referencedColumnName = "TEAM_ID")
+	private Team awayTeam;
 	
 	@Column(name = "GAME_DATE")
 	private Timestamp gameDate;
@@ -60,17 +60,13 @@ public class Game {
 	@Column(name = "COMMISSIONER_APPROVED")
 	private int commissionerApproved;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "TEAM_ID")
-	private Team team;
-	
 	public Game() {
 		
 	}
 
 	public Game(Team homeTeam, Team awayTeam, Timestamp gameDate) {
-		this.home_team = homeTeam;
-		this.away_team = awayTeam;
+		this.homeTeam = homeTeam;
+		this.awayTeam = awayTeam;
 		this.gameDate = gameDate;
 	}
 
@@ -83,19 +79,19 @@ public class Game {
 	}
 
 	public int getHomeTeam() {
-		return home_team.getTeamID();
+		return homeTeam.getTeamID();
 	}
 
 	public void setHomeTeam(Team homeTeam) {
-		this.home_team = homeTeam;
+		this.homeTeam = homeTeam;
 	}
 
 	public int getAwayTeam() {
-		return away_team.getTeamID();
+		return awayTeam.getTeamID();
 	}
 
 	public void setAwayTeam(Team awayTeam) {
-		this.away_team = awayTeam;
+		this.awayTeam = awayTeam;
 	}
 
 	public String getGameDate() {
@@ -171,17 +167,11 @@ public class Game {
 		this.commissionerApproved = commissionerApproved;
 	}
 
-	public Team getTeam() {
-		return team;
-	}
-
-	public void setTeam(Team team) {
-		this.team = team;
-	}	
-	
 	@Override
 	public String toString() {
-		return "Game [gameID=" + gameID + ", homeTeam=" + home_team + ", awayTeam=" + away_team + ", gameDate=" + gameDate
-				+ "]";
-	}
+		return "Game [gameID=" + gameID + ", home_team=" + homeTeam + ", away_team=" + awayTeam + ", gameDate="
+				+ gameDate + ", homeScore=" + homeScore + ", awayScore=" + awayScore + ", isOvertime=" + isOvertime
+				+ ", homeApproved=" + homeApproved + ", awayApproved=" + awayApproved + ", commissionerApproved="
+				+ commissionerApproved + "]";
+	}	
 }

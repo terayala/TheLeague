@@ -1,8 +1,5 @@
 package com.revature.beans;
 
-import java.sql.Blob;
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,8 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -38,7 +33,7 @@ public class Team {
 	private String nickname;
 	
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "LEAGUE_ID")
+	@JoinColumn(name="LEAGUE_ID", referencedColumnName = "LEAGUE_ID")
 	private League leagueID;
 	
 	@Column(name = "COLOR_PRIMARY")
@@ -46,16 +41,6 @@ public class Team {
 	
 	@Column(name = "COLOR_SECONDARY")
 	private int secondaryColor;
-	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "TEAMID")
-	private League league;
-	
-	@OneToMany(mappedBy = "team")
-	private List<User> players;
-	
-	@OneToMany(mappedBy = "team")
-	private List<Game> games;
 	
 	public Team() {
 		
@@ -117,35 +102,9 @@ public class Team {
 		this.secondaryColor = secondaryColor;
 	}
 
-	public League getLeagueTeam() {
-		return league;
-	}
-
-	public void setLeagueTeam(League leagueTeam) {
-		this.league = leagueTeam;
-	}
-
-	public League getLeague() {
-		return league;
-	}
-
-	public void setLeague(League league) {
-		this.league = league;
-	}
-
-	public List<User> getPlayers() {
-		return players;
-	}
-
-	public void setPlayers(List<User> players) {
-		this.players = players;
-	}
-
-	public List<Game> getGames() {
-		return games;
-	}
-
-	public void setGames(List<Game> games) {
-		this.games = games;
+	@Override
+	public String toString() {
+		return "Team [teamID=" + teamID + ", name=" + name + ", nickname=" + nickname + ", leagueID=" + leagueID
+				+ ", primaryColor=" + primaryColor + ", secondaryColor=" + secondaryColor + "]";
 	}
 }

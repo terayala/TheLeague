@@ -6,4 +6,5 @@ public interface SportDAO {
 
 	public void createSport(Sport sport);
 	public void updateSport(Sport sport);
+	public Sport selectSportById(Integer id);
 }

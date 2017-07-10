@@ -15,7 +15,6 @@ import com.revature.util.HibernateUtil;
 
 public class GameDAOImpl implements GameDAO {
 
-
 	public List<Game> getScheduleByDate(Timestamp date) {
 		List<Game> games = null;
 		Session session= HibernateUtil.getSession();
@@ -89,5 +88,24 @@ public class GameDAOImpl implements GameDAO {
 		} finally {
 			session.close();
 		}		
+	}
+
+	@Override
+	public Game selectGameById(Integer id) {
+		Game game = null;
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			game = (Game) session.get(Game.class, id);
+		} catch(HibernateException e) {
+			if(tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return game;
 	}
 }

@@ -26,12 +26,12 @@ public class Trade {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TRADEID_SEQ")
 	private int tradeID;
 	
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "USER_ID")
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name="TRADED_PLAYER",referencedColumnName = "USER_ID")
 	private User player;
 	
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "TEAM_ID")
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name="TRADED_TO",referencedColumnName = "TEAM_ID")
 	private Team toTeam;
 	
 	@Column(name = "FROM_TEAM_APPROVAL")
@@ -113,5 +113,12 @@ public class Trade {
 
 	public void setCommissionerApproval(int commissionerApproval) {
 		this.commissionerApproval = commissionerApproval;
+	}
+
+	@Override
+	public String toString() {
+		return "Trade [tradeID=" + tradeID + ", player=" + player + ", toTeam=" + toTeam + ", fromTeamApproval="
+				+ fromTeamApproval + ", toTeamApproval=" + toTeamApproval + ", commissionerApproval="
+				+ commissionerApproval + "]";
 	}
 }
