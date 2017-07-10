@@ -16,11 +16,11 @@ public class StatsID implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "USER_ID")
+	@JoinColumn(referencedColumnName = "USER_ID")
 	protected User player;
 	
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "GAME_ID")
+	@JoinColumn(referencedColumnName = "GAME_ID")
 	protected Game game;
 	
 	public StatsID() {

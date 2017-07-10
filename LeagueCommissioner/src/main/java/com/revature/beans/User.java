@@ -26,8 +26,8 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERID_SEQ")
 	private int userID;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "TEAM_ID")
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(referencedColumnName = "TEAM_ID")
 	private Team team;
 	
 	@Column(name = "FIRST_NAME")
@@ -156,7 +156,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [userID=" + userID + ", firstName=" + firstName + ", lastName=" + lastName
+		return "User [userID=" + userID + ", team=" + team + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", role=" + role + ", email=" + email + ", username=" + username + ", password=" + password
 				+ ", uniform=" + uniform + ", active=" + active + "]";
 	}

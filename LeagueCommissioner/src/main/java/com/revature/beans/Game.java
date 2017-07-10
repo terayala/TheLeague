@@ -61,7 +61,7 @@ public class Game {
 	private int commissionerApproved;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "TEAM_ID")
+	@JoinColumn(referencedColumnName = "TEAM_ID")
 	private Team team;
 	
 	public Game() {
@@ -177,11 +177,13 @@ public class Game {
 
 	public void setTeam(Team team) {
 		this.team = team;
-	}	
-	
+	}
+
 	@Override
 	public String toString() {
-		return "Game [gameID=" + gameID + ", homeTeam=" + home_team + ", awayTeam=" + away_team + ", gameDate=" + gameDate
-				+ "]";
-	}
+		return "Game [gameID=" + gameID + ", home_team=" + home_team + ", away_team=" + away_team + ", gameDate="
+				+ gameDate + ", homeScore=" + homeScore + ", awayScore=" + awayScore + ", isOvertime=" + isOvertime
+				+ ", homeApproved=" + homeApproved + ", awayApproved=" + awayApproved + ", commissionerApproved="
+				+ commissionerApproved + ", team=" + team + "]";
+	}	
 }

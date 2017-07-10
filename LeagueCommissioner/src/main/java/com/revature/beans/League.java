@@ -51,7 +51,7 @@ public class League {
 	private int lossOTPts;
 	
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "SPORT_ID")
+	@JoinColumn(referencedColumnName = "SPORT_ID")
 	private Sport sportID;
 	
 	@OneToMany(mappedBy = "league")
@@ -155,5 +155,12 @@ public class League {
 
 	public void setTeams(List<Team> teams) {
 		this.teams = teams;
+	}
+
+	@Override
+	public String toString() {
+		return "League [leagueID=" + leagueID + ", name=" + name + ", ptsOrPct=" + ptsOrPct + ", tiesAllowed="
+				+ tiesAllowed + ", winPts=" + winPts + ", tiePts=" + tiePts + ", winOTPts=" + winOTPts + ", lossOTPts="
+				+ lossOTPts + ", sportID=" + sportID + ", teams=" + teams + "]";
 	}
 }

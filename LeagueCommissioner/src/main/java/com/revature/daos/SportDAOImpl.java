@@ -45,4 +45,23 @@ public class SportDAOImpl implements SportDAO {
 		}
 	}
 
+	@Override
+	public Sport selectSportById(Integer id) {
+		Sport sport = null;
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			sport = (Sport) session.get(Sport.class, id);
+		} catch(HibernateException e) {
+			if(tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return sport;
+	}
+
 }

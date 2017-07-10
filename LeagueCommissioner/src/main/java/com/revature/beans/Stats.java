@@ -17,14 +17,15 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "myAwesomeCache")
 @AssociationOverrides({
 		@AssociationOverride(name = "pk.gameID",
-			joinColumns = @JoinColumn(name = "GAME_ID")),
+			joinColumns = @JoinColumn(referencedColumnName = "GAME_ID")),
 		@AssociationOverride(name = "pk.playerID",
-			joinColumns = @JoinColumn(name = "PLAYER_ID")) })
+			joinColumns = @JoinColumn(referencedColumnName = "PLAYER_ID")) })
 public class Stats {
 	
 	private StatsID pk = new StatsID();
+	
 	@Column(name = "POINTS_SCORED")
-	private int pointsScored;
+	private int POINTS_SCORED;
 	
 	public Stats() {
 		
@@ -58,11 +59,17 @@ public class Stats {
 	}
 	
 	public int getPointsScored() {
-		return pointsScored;
+		return POINTS_SCORED;
 	}
 
 	public void setPointsScored(int pointsScored) {
-		this.pointsScored = pointsScored;
+		this.POINTS_SCORED = pointsScored;
 	}
+
+	@Override
+	public String toString() {
+		return "Stats [game_id=" + pk.getGame() + ", player_id=" + pk.getPlayer() + ", pointsScored=" + POINTS_SCORED + "]";
+	}
+	
 	
 }

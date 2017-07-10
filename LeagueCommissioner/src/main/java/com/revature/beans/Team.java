@@ -1,6 +1,5 @@
 package com.revature.beans;
 
-import java.sql.Blob;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -38,7 +37,7 @@ public class Team {
 	private String nickname;
 	
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "LEAGUE_ID")
+	@JoinColumn(referencedColumnName = "LEAGUE_ID")
 	private League leagueID;
 	
 	@Column(name = "COLOR_PRIMARY")
@@ -48,7 +47,7 @@ public class Team {
 	private int secondaryColor;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "TEAMID")
+	@JoinColumn(referencedColumnName = "TEAM_ID")
 	private League league;
 	
 	@OneToMany(mappedBy = "team")
@@ -147,5 +146,12 @@ public class Team {
 
 	public void setGames(List<Game> games) {
 		this.games = games;
+	}
+
+	@Override
+	public String toString() {
+		return "Team [teamID=" + teamID + ", name=" + name + ", nickname=" + nickname + ", leagueID=" + leagueID
+				+ ", primaryColor=" + primaryColor + ", secondaryColor=" + secondaryColor + ", league=" + league
+				+ ", players=" + players + ", games=" + games + "]";
 	}
 }
