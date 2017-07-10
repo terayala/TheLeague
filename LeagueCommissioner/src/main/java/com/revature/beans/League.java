@@ -51,8 +51,8 @@ public class League {
 	private int lossOTPts;
 	
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(referencedColumnName = "SPORT_ID")
-	private Sport sportID;
+	@JoinColumn(name="SPORT_ID", referencedColumnName = "SPORT_ID")
+	private Sport sport_id;
 	
 	@OneToMany(mappedBy = "league")
 	private List<Team> teams;
@@ -70,7 +70,7 @@ public class League {
 		this.tiePts = tiePts;
 		this.winOTPts = winOTPts;
 		this.lossOTPts = lossOTPts;
-		this.sportID = sportID;
+		this.sport_id = sportID;
 	}
 
 	public int getLeagueID() {
@@ -142,11 +142,11 @@ public class League {
 	}
 
 	public String getSportID() {
-		return sportID.getName();
+		return sport_id.getName();
 	}
 
 	public void setSportID(Sport sportID) {
-		this.sportID = sportID;
+		this.sport_id = sportID;
 	}
 	
 	public List<Team> getTeams() {
@@ -161,6 +161,6 @@ public class League {
 	public String toString() {
 		return "League [leagueID=" + leagueID + ", name=" + name + ", ptsOrPct=" + ptsOrPct + ", tiesAllowed="
 				+ tiesAllowed + ", winPts=" + winPts + ", tiePts=" + tiePts + ", winOTPts=" + winOTPts + ", lossOTPts="
-				+ lossOTPts + ", sportID=" + sportID + ", teams=" + teams + "]";
+				+ lossOTPts + ", sportID=" + sport_id + ", teams=" + teams + "]";
 	}
 }

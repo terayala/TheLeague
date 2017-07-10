@@ -47,14 +47,11 @@ public class Team {
 	private int secondaryColor;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(referencedColumnName = "TEAM_ID")
+	@JoinColumn(referencedColumnName = "LEAGUE_ID")
 	private League league;
 	
 	@OneToMany(mappedBy = "team")
 	private List<User> players;
-	
-	@OneToMany(mappedBy = "team")
-	private List<Game> games;
 	
 	public Team() {
 		
@@ -140,18 +137,10 @@ public class Team {
 		this.players = players;
 	}
 
-	public List<Game> getGames() {
-		return games;
-	}
-
-	public void setGames(List<Game> games) {
-		this.games = games;
-	}
-
 	@Override
 	public String toString() {
 		return "Team [teamID=" + teamID + ", name=" + name + ", nickname=" + nickname + ", leagueID=" + leagueID
 				+ ", primaryColor=" + primaryColor + ", secondaryColor=" + secondaryColor + ", league=" + league
-				+ ", players=" + players + ", games=" + games + "]";
+				+ ", players=" + players + "]";
 	}
 }

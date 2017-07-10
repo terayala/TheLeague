@@ -27,11 +27,11 @@ public class Trade {
 	private int tradeID;
 	
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(referencedColumnName = "USER_ID")
+	@JoinColumn(name="TRADED_PLAYER",referencedColumnName = "USER_ID")
 	private User player;
 	
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(referencedColumnName = "TEAM_ID")
+	@JoinColumn(name="TRADED_TO",referencedColumnName = "TEAM_ID")
 	private Team toTeam;
 	
 	@Column(name = "FROM_TEAM_APPROVAL")

@@ -27,7 +27,7 @@ public class User {
 	private int userID;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(referencedColumnName = "TEAM_ID")
+	@JoinColumn(name="TEAM_ID",referencedColumnName = "TEAM_ID")
 	private Team team;
 	
 	@Column(name = "FIRST_NAME")
