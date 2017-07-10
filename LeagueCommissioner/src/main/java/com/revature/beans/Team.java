@@ -37,9 +37,6 @@ public class Team {
 	@Column(name = "TEAM_NICKNAME")
 	private String nickname;
 	
-	@Column(name = "LOGO")
-	private Blob logo;
-	
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "LEAGUE_ID")
 	private League leagueID;
@@ -64,10 +61,9 @@ public class Team {
 		
 	}
 
-	public Team(String name, String nickname, Blob logo, League leagueID, int primaryColor, int secondaryColor) {
+	public Team(String name, String nickname, League leagueID, int primaryColor, int secondaryColor) {
 		this.name = name;
 		this.nickname = nickname;
-		this.logo = logo;
 		this.leagueID = leagueID;
 		this.primaryColor = primaryColor;
 		this.secondaryColor = secondaryColor;
@@ -95,14 +91,6 @@ public class Team {
 
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
-	}
-
-	public Blob getLogo() {
-		return logo;
-	}
-
-	public void setLogo(Blob logo) {
-		this.logo = logo;
 	}
 
 	public int getLeagueID() {
