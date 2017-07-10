@@ -44,4 +44,23 @@ public class StatsDAOImpl implements StatsDAO {
 		}
 	}
 
+	@Override
+	public Stats selectStatById(Integer id) {
+		Stats stat = null;
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			stat = (Stats) session.get(Stats.class, id);
+		} catch(HibernateException e) {
+			if(tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return stat;
+	}
+
 }
