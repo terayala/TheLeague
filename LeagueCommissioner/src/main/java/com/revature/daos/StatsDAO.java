@@ -6,4 +6,5 @@ public interface StatsDAO {
 
 	public void createStat(Stats stats);
 	public void updateStat(Stats stats);
+	public Stats selectStatById(Integer id);
 }

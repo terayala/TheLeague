@@ -60,10 +60,6 @@ public class Game {
 	@Column(name = "COMMISSIONER_APPROVED")
 	private int commissionerApproved;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name="TEAM_ID",referencedColumnName = "TEAM_ID")
-	private Team team_id;
-	
 	public Game() {
 		
 	}
@@ -171,19 +167,11 @@ public class Game {
 		this.commissionerApproved = commissionerApproved;
 	}
 
-	public Team getTeam() {
-		return team_id;
-	}
-
-	public void setTeam(Team team) {
-		this.team_id = team;
-	}
-
 	@Override
 	public String toString() {
 		return "Game [gameID=" + gameID + ", home_team=" + homeTeam + ", away_team=" + awayTeam + ", gameDate="
 				+ gameDate + ", homeScore=" + homeScore + ", awayScore=" + awayScore + ", isOvertime=" + isOvertime
 				+ ", homeApproved=" + homeApproved + ", awayApproved=" + awayApproved + ", commissionerApproved="
-				+ commissionerApproved + ", team=" + team_id + "]";
+				+ commissionerApproved + "]";
 	}	
 }

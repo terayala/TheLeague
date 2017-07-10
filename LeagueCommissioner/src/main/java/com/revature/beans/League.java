@@ -1,7 +1,5 @@
 package com.revature.beans;
 
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -53,9 +50,6 @@ public class League {
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="SPORT_ID", referencedColumnName = "SPORT_ID")
 	private Sport sport_id;
-	
-	@OneToMany(mappedBy = "league")
-	private List<Team> teams;
 
 	public League() {
 		
@@ -148,19 +142,11 @@ public class League {
 	public void setSportID(Sport sportID) {
 		this.sport_id = sportID;
 	}
-	
-	public List<Team> getTeams() {
-		return teams;
-	}
-
-	public void setTeams(List<Team> teams) {
-		this.teams = teams;
-	}
 
 	@Override
 	public String toString() {
 		return "League [leagueID=" + leagueID + ", name=" + name + ", ptsOrPct=" + ptsOrPct + ", tiesAllowed="
 				+ tiesAllowed + ", winPts=" + winPts + ", tiePts=" + tiePts + ", winOTPts=" + winOTPts + ", lossOTPts="
-				+ lossOTPts + ", sportID=" + sport_id + ", teams=" + teams + "]";
+				+ lossOTPts + ", sportID=" + sport_id + "]";
 	}
 }

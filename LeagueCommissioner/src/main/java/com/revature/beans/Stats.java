@@ -1,75 +1,61 @@
 package com.revature.beans;
 
-import javax.persistence.AssociationOverride;
-import javax.persistence.AssociationOverrides;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Entity
 @Table(name = "PLAYER_STATS")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "myAwesomeCache")
-@AssociationOverrides({
-		@AssociationOverride(name = "pk.gameID",
-			joinColumns = @JoinColumn(referencedColumnName = "GAME_ID")),
-		@AssociationOverride(name = "pk.playerID",
-			joinColumns = @JoinColumn(referencedColumnName = "PLAYER_ID")) })
 public class Stats {
 	
-	private StatsID pk = new StatsID();
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name="PLAYER_ID",referencedColumnName = "USER_ID")
+	private User player;
+	
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name="GAME_ID",referencedColumnName = "GAME_ID")
+	private Game game;
 	
 	@Column(name = "POINTS_SCORED")
-	private int POINTS_SCORED;
+	private int pointsScored;
 	
 	public Stats() {
 		
 	}
-	
-	@EmbeddedId
-	public StatsID getPk() {
-		return pk;
-	}
-	
-	public void setPk(StatsID pk) {
-		this.pk = pk;
+
+	public User getPlayer() {
+		return player;
 	}
 
-	@Transient
-	public int getGame() {
-		return getPk().getGame();
+	public void setPlayer(User player) {
+		this.player = player;
+	}
+
+	public Game getGame() {
+		return game;
 	}
 
 	public void setGame(Game game) {
-		getPk().setGame(game);
+		this.game = game;
 	}
 
-	@Transient
-	public int getUser() {
-		return getPk().getPlayer();
-	}
-
-	public void setUser(User player) {
-		getPk().setPlayer(player);;
-	}
-	
 	public int getPointsScored() {
-		return POINTS_SCORED;
+		return pointsScored;
 	}
 
 	public void setPointsScored(int pointsScored) {
-		this.POINTS_SCORED = pointsScored;
+		this.pointsScored = pointsScored;
 	}
 
 	@Override
 	public String toString() {
-		return "Stats [game_id=" + pk.getGame() + ", player_id=" + pk.getPlayer() + ", pointsScored=" + POINTS_SCORED + "]";
+		return "Stats [player=" + player + ", game=" + game + ", pointsScored=" + pointsScored + "]";
 	}
-	
-	
 }
