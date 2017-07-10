@@ -1,9 +1,8 @@
 package com.revature.main;
 
-import org.hibernate.Session;
-
-import com.revature.beans.User;
-import com.revature.util.HibernateUtil;
+import com.revature.beans.League;
+import com.revature.daos.LeagueDAO;
+import com.revature.daos.LeagueDAOImpl;
 
 public class DriverTeresa {
 
@@ -13,10 +12,8 @@ public class DriverTeresa {
 		for (Game g : games) {
 			System.out.println(g.toString());
 		}*/
-		
-		Session session = HibernateUtil.getSession();
-		User user = (User) session.get(User.class, new Integer(5));
-		System.out.println(user.toString());
+		LeagueDAO dao = new LeagueDAOImpl();
+		League league = dao.selectLeagueById(new Integer(2));
+		System.out.println(league.getName() + " " + league.getSportID());
 	}
-
 }

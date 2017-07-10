@@ -1,6 +1,5 @@
 package com.revature.beans;
 
-import java.sql.Blob;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -33,9 +32,6 @@ public class League {
 	@Column(name = "NAME")
 	private String name;
 	
-	@Column(name = "LOGO")
-	private Blob logo;
-	
 	@Column(name = "PTS_OR_PCT")
 	private int ptsOrPct;
 	
@@ -65,10 +61,9 @@ public class League {
 		
 	}
 
-	public League(String name, Blob logo, int ptsOrPct, int tiesAllowed, int winPts, int tiePts, int winOTPts,
+	public League(String name, int ptsOrPct, int tiesAllowed, int winPts, int tiePts, int winOTPts,
 			int lossOTPts, Sport sportID) {
 		this.name = name;
-		this.logo = logo;
 		this.ptsOrPct = ptsOrPct;
 		this.tiesAllowed = tiesAllowed;
 		this.winPts = winPts;
@@ -92,14 +87,6 @@ public class League {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public Blob getLogo() {
-		return logo;
-	}
-
-	public void setLogo(Blob logo) {
-		this.logo = logo;
 	}
 
 	public int getPtsOrPct() {
