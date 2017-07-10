@@ -51,7 +51,7 @@ public class Team {
 	private int secondaryColor;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "TEAM_ID")
+	@JoinColumn(name = "TEAMID")
 	private League league;
 	
 	@OneToMany(mappedBy = "team")
