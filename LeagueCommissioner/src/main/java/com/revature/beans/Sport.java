@@ -20,7 +20,7 @@ public class Sport {
 
 	@Id
 	@Column(name = "SPORT_ID")
-	@SequenceGenerator(name = "SPORTID_SEQ", sequenceName = "SPORTID_SEQ")
+	@SequenceGenerator(name = "SPORTID_SEQ", sequenceName = "SPORTID_SEQ", initialValue=14)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SPORTID_SEQ")
 	private int sport_id;
 	

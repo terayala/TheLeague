@@ -15,7 +15,7 @@ public class SportDAOImpl implements SportDAO {
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			session.save(sport);
+			System.out.println(session.save(sport));
 			tx.commit();
 		} catch (HibernateException e) {
 			if(tx != null){
