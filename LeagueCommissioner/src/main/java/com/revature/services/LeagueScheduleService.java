@@ -1,15 +1,19 @@
 package com.revature.services;
 
 import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 
 import com.revature.beans.Game;
 import com.revature.beans.Team;
+import com.revature.daos.TeamDAO;
+import com.revature.daos.TeamDAOImpl;
 
 public class LeagueScheduleService {
+	
+	public LeagueScheduleService() {
+		
+	}
 
 	public ArrayList<Game> MakeSchedule(ArrayList<Integer> teams, ArrayList<Timestamp> dates) {
 		
@@ -19,11 +23,17 @@ public class LeagueScheduleService {
 		 */
 		ArrayList<Game> games = new ArrayList<Game>();
 		
-		// Declare an object that will hold one game at a time
-		Game gameEntry = new Game();
+		// Declare an object that will hold the home and away teams for one match
+		Team homeTeam = new Team();
+		Team awayTeam = new Team();
 		
 		// Declare a variable that will be the number of teams to schedule
 		int numberOfTeams = teams.size();
+		
+		// Declare an integer that will hold one of the values when looping
+		int freeze;
+		int loopRows;
+		int rounds;
 		
 		// Declare a team array that will store each team that will be scheduled.
 		ArrayList<Team> teamAssignment = new ArrayList<Team>();
@@ -44,8 +54,11 @@ public class LeagueScheduleService {
             teamShuffle.add(new Integer(teams.get(i)));
         }
         Collections.shuffle(teamShuffle);
-        
-        //
+
+        TeamDAO getTeam = new TeamDAOImpl();
+        for (int i = 0; i < numberOfTeams; i++) {
+        	teamAssignment.add(getTeam.selectTeamById(teamShuffle.get(i)));
+        }
         
         /*
          * The following loop will fetch the team objects from the database and
@@ -59,7 +72,8 @@ public class LeagueScheduleService {
 			
 			// This will create the number of rows for the looper that will
 			// hold all of the team numbers
-			int loopRows = (numberOfTeams + 1) / 2;
+			loopRows = (numberOfTeams + 1) / 2;
+			rounds = numberOfTeams;
 			
 			// This will create the loop with numbers 1..n where n is the number of teams
 			int schedLoop[][] = new int[2][loopRows];
@@ -75,7 +89,47 @@ public class LeagueScheduleService {
 			for (int round = 0; round < numberOfTeams; round++) {
 				
 				// The following loop will create one round of games
-				for (int looper = 0; looper < loopRows; looper++) {
+				for (int looper = 0; looper < loopRows - 1; looper++) {
+					
+					// Declare an object that will hold one game at a time
+					Game gameEntry = new Game();
+					Game gameEntryReturn = new Game();
+					
+					if (round % 2 == 0) {
+						homeTeam = teamAssignment.get(schedLoop[0][looper]);
+						awayTeam = teamAssignment.get(schedLoop[1][looper]);
+					} else {
+						homeTeam = teamAssignment.get(schedLoop[1][looper]);
+						awayTeam = teamAssignment.get(schedLoop[0][looper]);
+					}
+					
+					// This will add the match
+					gameEntry.setHomeTeam(homeTeam);
+					gameEntry.setAwayTeam(awayTeam);
+					gameEntry.setGameDate(dates.get(round));
+					
+					games.add(gameEntry);
+					
+					// This will add the return match
+					gameEntryReturn.setHomeTeam(awayTeam);
+					gameEntryReturn.setAwayTeam(homeTeam);
+					gameEntryReturn.setGameDate(dates.get(round + (numberOfTeams - 1)));
+					
+					games.add(gameEntryReturn);
+					
+					// The following will rotate the teams in the loop
+					freeze = schedLoop[0][0];
+					for (int i = 0; i < numberOfTeams - 1; i++) {
+						int xCoord = Math.floorDiv(i, loopRows);
+						int yCoord = i - xCoord * loopRows;
+						
+						int xCoord2 = Math.floorDiv(i + 1, loopRows);
+						int yCoord2 = (i + 1) - xCoord2 * loopRows;
+						
+						schedLoop[xCoord][yCoord] = schedLoop[xCoord2][yCoord2];
+						
+					}
+					schedLoop[1][loopRows - 2] = freeze;
 					
 				}
 			}
@@ -88,7 +142,8 @@ public class LeagueScheduleService {
 			
 			// This will create the number of rows for the looper that will
 			// hold all of the team numbers
-			int loopRows = numberOfTeams / 2;
+			loopRows = numberOfTeams / 2;
+			rounds = numberOfTeams - 1;
 			
 			// This will create the loop with numbers 1..n where n is the number of teams
 			int schedLoop[][] = new int[2][loopRows];
@@ -101,12 +156,52 @@ public class LeagueScheduleService {
 			// by looping one less than the number of times 
 			for (int round = 1; round < numberOfTeams; round++) {
 				
+				System.out.println("Round " + round);
 				// The following loop will create one round of games
 				for (int looper = 0; looper < loopRows; looper++) {
-					System.out.println("Round:" + round + "  Game:" + looper + "  Date:" + dates.get(round - 1));
 					
+					// Declare an object that will hold one game at a time
+					Game gameEntry = new Game();
+					Game gameEntryReturn = new Game();
+					
+					if (round % 2 == 0) {
+						homeTeam = teamAssignment.get(schedLoop[0][looper]);
+						awayTeam = teamAssignment.get(schedLoop[1][looper]);
+					} else {
+						homeTeam = teamAssignment.get(schedLoop[1][looper]);
+						awayTeam = teamAssignment.get(schedLoop[0][looper]);
+					}
+					
+					// This will add the match
+					gameEntry.setHomeTeam(homeTeam);
+					gameEntry.setAwayTeam(awayTeam);
+					gameEntry.setGameDate(dates.get(round - 1));
+					
+					games.add(gameEntry);
+					
+					// This will add the return match
+					gameEntryReturn.setHomeTeam(awayTeam);
+					gameEntryReturn.setAwayTeam(homeTeam);
+					gameEntryReturn.setGameDate(dates.get(round + (numberOfTeams - 2)));
+					
+					games.add(gameEntryReturn);
 					
 				}
+				
+				// The following will rotate the teams in the loop
+				freeze = schedLoop[0][1];
+				for (int i = 1; i < numberOfTeams - 1; i++) {
+					int xCoord = Math.floorDiv(i, loopRows);
+					int yCoord = i - xCoord * loopRows;
+					
+					int xCoord2 = Math.floorDiv(i + 1, loopRows);
+					int yCoord2 = (i + 1) - xCoord2 * loopRows;
+					
+					schedLoop[xCoord][yCoord] = schedLoop[xCoord2][yCoord2];
+					
+				}
+				schedLoop[1][loopRows - 1] = freeze;
+				
 			}
 			
 			// This is the end of the code used if the number of teams is even
@@ -114,58 +209,6 @@ public class LeagueScheduleService {
 		}
 		
 		return games;
-	}
-	
-	
-	// The code below is for testing only
-	public static void main(String[] args) {
-		ArrayList<Integer> teams = new ArrayList<Integer>();
-		ArrayList<Timestamp> dates = new ArrayList<Timestamp>();
-		ArrayList<Game> games = new ArrayList<Game>();
-		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-		
-		for (int i = 1; i < 17; i++) {
-			teams.add(i);
-		}
-		
-		try {
-			dates.add(new Timestamp(dateFormat.parse("08/01/2017").getTime()));
-			dates.add(new Timestamp(dateFormat.parse("08/02/2017").getTime()));
-			dates.add(new Timestamp(dateFormat.parse("08/03/2017").getTime()));
-			dates.add(new Timestamp(dateFormat.parse("08/04/2017").getTime()));
-			dates.add(new Timestamp(dateFormat.parse("08/05/2017").getTime()));
-			dates.add(new Timestamp(dateFormat.parse("08/06/2017").getTime()));
-			dates.add(new Timestamp(dateFormat.parse("08/07/2017").getTime()));
-			dates.add(new Timestamp(dateFormat.parse("08/08/2017").getTime()));
-			dates.add(new Timestamp(dateFormat.parse("08/09/2017").getTime()));
-			dates.add(new Timestamp(dateFormat.parse("08/10/2017").getTime()));
-			dates.add(new Timestamp(dateFormat.parse("08/11/2017").getTime()));
-			dates.add(new Timestamp(dateFormat.parse("08/12/2017").getTime()));
-			dates.add(new Timestamp(dateFormat.parse("08/13/2017").getTime()));
-			dates.add(new Timestamp(dateFormat.parse("08/14/2017").getTime()));
-			dates.add(new Timestamp(dateFormat.parse("08/15/2017").getTime()));
-			dates.add(new Timestamp(dateFormat.parse("08/16/2017").getTime()));
-			dates.add(new Timestamp(dateFormat.parse("08/17/2017").getTime()));
-			dates.add(new Timestamp(dateFormat.parse("08/18/2017").getTime()));
-			dates.add(new Timestamp(dateFormat.parse("08/19/2017").getTime()));
-			dates.add(new Timestamp(dateFormat.parse("08/20/2017").getTime()));
-			dates.add(new Timestamp(dateFormat.parse("08/21/2017").getTime()));
-			dates.add(new Timestamp(dateFormat.parse("08/22/2017").getTime()));
-			dates.add(new Timestamp(dateFormat.parse("08/23/2017").getTime()));
-			dates.add(new Timestamp(dateFormat.parse("08/24/2017").getTime()));
-			dates.add(new Timestamp(dateFormat.parse("08/25/2017").getTime()));
-			dates.add(new Timestamp(dateFormat.parse("08/26/2017").getTime()));
-			dates.add(new Timestamp(dateFormat.parse("08/27/2017").getTime()));
-			dates.add(new Timestamp(dateFormat.parse("08/28/2017").getTime()));
-			dates.add(new Timestamp(dateFormat.parse("08/29/2017").getTime()));
-			dates.add(new Timestamp(dateFormat.parse("08/30/2017").getTime()));
-		} catch (Exception e) {
-			
-		}
-		
-		LeagueScheduleService mls = new LeagueScheduleService();
-		games = mls.MakeSchedule(teams, dates);
-		
 	}
 	
 }
