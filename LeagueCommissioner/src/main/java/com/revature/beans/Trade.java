@@ -14,6 +14,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Entity
@@ -30,10 +31,12 @@ public class Trade {
 	
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name="TRADED_PLAYER",referencedColumnName = "USER_ID")
+	@Autowired
 	private User player;
 	
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name="TRADED_TO",referencedColumnName = "TEAM_ID")
+	@Autowired
 	private Team toTeam;
 	
 	@Column(name = "FROM_TEAM_APPROVAL")
