@@ -1,0 +1,130 @@
+/*
+	Stylesheet: League Commissioner Stylesheet
+	Version: 1.0
+*/
+
+/*
+	TABLE OF CONTENTS
+	-----------------
+	1.0		HEADERS
+	2.0		FONTS
+	3.0		NAVIGATION BAR
+	4.0		BODY CONTAINERS
+	5.0		PARAGRAPHS
+	6.0		TABLES
+	7.0		BUTTONS
+*/
+
+/* ********************
+***** 1.0 HEADERS *****
+*********************** */
+
+html {
+	padding: 0;
+	background-color: #ccc;
+	min-height: 100%;
+}
+
+body {
+	padding: 0;
+	min-height: 100%;
+}
+
+/* ******************
+***** 2.0 FONTS *****
+********************* */
+
+@font-face {
+    font-family: 'HighSchool';
+    src: url('../fonts/highschool.ttf');
+}
+
+/* ***************************
+***** 3.0 NAVIGATION BAR *****
+****************************** */
+.header {
+	background-color: #b00a0a;
+	width: 100%;
+	height: 40px;
+}
+
+.header-container {
+	width: 80%;
+	margin: auto;
+}
+
+.header-title {
+	float: left;
+	padding: 0;
+	margin: 2px;
+	font-size: 26px;
+	color: white;
+	font-family: "HighSchool";
+	text-shadow: 1px 1px black,
+				 -1px -1px black,
+				 1px -1px black,
+				 -1px 1px black;
+}
+
+.header-container ul {
+	list-style: none;
+	font-family: "Arial";
+	padding: 6px;
+}
+
+.header-container ul li {
+	display: inline;
+	font-size: 20px;
+	padding-left: 10px;
+}
+
+.header-container ul li a {
+	color: #ccc;
+	font-weight: bold;
+	text-shadow: 2px 2px #560404;
+	text-decoration: none;
+}
+
+.header-container ul li a:hover {
+	color: white;
+	text-decoration: none;
+}
+
+.header-container ul li a:active {
+	position: relative;
+	top: 2px;
+	color: #ffa;
+}
+
+.dropdown-name {
+	font-family: "HighSchool";
+}
+
+.navbar-clear {
+	clear: both;
+}
+
+/* ****************************
+***** 4.0 BODY CONTAINERS *****
+******************************* */
+
+.main-screen {
+	padding-top: 20px;
+	background-color: #ccc;
+}
+
+.main-screen p {
+	padding-left: 30px;
+	padding-right: 30px;
+	color: #222;
+}
+
+.sidebar {
+	background-color: #b00a0a;
+	color: white;
+	padding-top: 20px;
+}
+
+.sidebar-container {
+	padding-right: 30px;
+}
