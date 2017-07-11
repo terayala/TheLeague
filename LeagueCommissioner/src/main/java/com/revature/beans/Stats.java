@@ -17,10 +17,10 @@ import org.springframework.stereotype.Component;
 @Table(name = "PLAYER_STATS")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "myAwesomeCache")
 @AssociationOverrides({
-	@AssociationOverride(name = "pk.gameID",
-		joinColumns = @JoinColumn(name = "GAME_ID")),
-	@AssociationOverride(name = "pk.playerID",
-		joinColumns = @JoinColumn(name = "USER_ID")) })
+	@AssociationOverride(name = "gameID",
+		joinColumns = @JoinColumn(name="GAME_ID")),
+	@AssociationOverride(name = "userID",
+		joinColumns = @JoinColumn(name="PLAYER_ID")) })
 @Component
 public class Stats {
 	
