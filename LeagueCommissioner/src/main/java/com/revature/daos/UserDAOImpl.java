@@ -15,8 +15,7 @@ public class UserDAOImpl implements UserDAO {
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			//session.save(user);
-			System.out.println(session.save(user));
+			session.save(user);
 			tx.commit();
 		} catch (HibernateException e) {
 			if(tx != null){
