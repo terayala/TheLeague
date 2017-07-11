@@ -1,11 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
-</body>
-</html>
+<div class="createPlayer">
+	<h1>Register A Player</h1>
+	<hr>
+	<form:form action="createPlayer" method="POST" commandName="user">
+		First Name: <form:input path="firstName"/>
+		<br>
+		Last Name: <form:input path="lastName"/>
+		<br>
+		Email: <form:input path="email"/>
+		<br>
+		Username: <form:input path="username"/>
+		<br>
+		Temporary Password: <form:input path="password"/> 
+		<br>
+		Uniform Number: <form:input path="uniform"/>
+		<br>
+	</form:form>
+</div>

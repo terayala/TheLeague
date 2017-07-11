@@ -14,6 +14,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -32,24 +33,30 @@ public class User {
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name="TEAM_ID",referencedColumnName = "TEAM_ID")
 	@Autowired
+	@NotEmpty(message="Team cannot be empty")
 	private Team team;
 	
 	@Column(name = "FIRST_NAME")
+	@NotEmpty(message="first name cannot be empty")
 	private String firstName;
 	
 	@Column(name = "LAST_NAME")
+	@NotEmpty(message="last name cannot be empty")
 	private String lastName;
 	
 	@Column(name = "ROLE")
 	private int role;
 	
 	@Column(name = "EMAIL")
+	@NotEmpty(message="email cannot be empty")
 	private String email;
 	
 	@Column(name = "USERNAME")
+	@NotEmpty(message="Username cannot be empty")
 	private String username;
 	
 	@Column(name = "PASSWORD")
+	@NotEmpty(message="Password cannot be empty")
 	private String password;
 	
 	@Column(name = "UNIFORM_NUMBER")
