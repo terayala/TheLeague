@@ -93,7 +93,7 @@ public class LeagueScheduleService {
 				for (int looper = 0; looper < loopRows; looper++) {
 					System.out.println("Round:" + round + "  Game:" + looper + "  Date:" + dates.get(round - 1));
 					
-					gameEntry.
+					
 				}
 			}
 			
@@ -151,7 +151,7 @@ public class LeagueScheduleService {
 			
 		}
 		
-		MakeLeagueSchedule mls = new MakeLeagueSchedule();
+		LeagueScheduleService mls = new LeagueScheduleService();
 		games = mls.MakeSchedule(teams, dates);
 		
 	}
