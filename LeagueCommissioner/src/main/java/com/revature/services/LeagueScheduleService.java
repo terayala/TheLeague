@@ -45,7 +45,7 @@ public class LeagueScheduleService {
         }
         Collections.shuffle(teamShuffle);
         
-        
+        //
         
         /*
          * The following loop will fetch the team objects from the database and
