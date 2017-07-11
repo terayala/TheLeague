@@ -1,31 +1,37 @@
 package com.revature.beans;
 
-import javax.persistence.AssociationOverride;
-import javax.persistence.AssociationOverrides;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table(name = "PLAYER_STATS")
+@Table(name = "PLAYER_STATS", indexes = {
+        @Index(name = "STATS_PK", columnList = "STATS_PK")})
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "myAwesomeCache")
-@AssociationOverrides({
-	@AssociationOverride(name = "pk.gameID",
-		joinColumns = @JoinColumn(name = "GAME_ID")),
-	@AssociationOverride(name = "pk.playerID",
-		joinColumns = @JoinColumn(name = "USER_ID")) })
 @Component
 public class Stats {
+	@Id
+	@Column(name="STATS_PK")
+	private int STATS_PK;
 	
-	private StatsID pk = new StatsID();
-	
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+ 	@JoinColumn(name="PLAYER_ID", referencedColumnName="USER_ID")
+ 	protected User player;
+ 	
+ 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+ 	@JoinColumn(name="GAME_ID", referencedColumnName="GAME_ID")
+ 	protected Game game;
+ 	
 	@Column(name = "POINTS_SCORED")
 	private int pointsScored;
 	
@@ -33,31 +39,28 @@ public class Stats {
 		
 	}
 
-	@EmbeddedId
-	public StatsID getPk() {
-		return pk;
+	public int getSTATS_PK() {
+		return STATS_PK;
 	}
-	
-	public void setPk(StatsID pk) {
-		this.pk = pk;
+
+	public void setSTATS_PK(int sTATS_PK) {
+		STATS_PK = sTATS_PK;
 	}
-	
-	@Transient
-	 public Game getGame() {
-	 	return getPk().getGame();
+
+	public User getPlayer() {
+		return player;
 	}
-	
+
+	public void setPlayer(User player) {
+		this.player = player;
+	}
+
+	public Game getGame() {
+		return game;
+	}
+
 	public void setGame(Game game) {
-		 getPk().setGame(game);
-	}
-	
-	@Transient
-	 public User getUser() {
-	 	return getPk().getPlayer();
-	}
-	
-	public void setUser(User player) {
-		 getPk().setPlayer(player);
+		this.game = game;
 	}
 
 	public int getPointsScored() {
@@ -66,5 +69,11 @@ public class Stats {
 
 	public void setPointsScored(int pointsScored) {
 		this.pointsScored = pointsScored;
+	}
+
+	@Override
+	public String toString() {
+		return "Stats [STATS_PK=" + STATS_PK + ", player=" + player + ", game=" + game + ", pointsScored="
+				+ pointsScored + "]";
 	}
 }
