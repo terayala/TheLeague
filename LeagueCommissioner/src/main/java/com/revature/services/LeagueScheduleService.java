@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import com.revature.beans.Game;
+import com.revature.beans.Team;
 
 public class LeagueScheduleService {
 
@@ -24,6 +25,9 @@ public class LeagueScheduleService {
 		// Declare a variable that will be the number of teams to schedule
 		int numberOfTeams = teams.size();
 		
+		// Declare a team array that will store each team that will be scheduled.
+		ArrayList<Team> teamAssignment = new ArrayList<Team>();
+		
 		// Create a variable that will store the number of rows in the table
 		// NOTE: The actual number of rows in the final table will be twice
 		// 		this number.  This number only stores half of the schedule.
@@ -32,13 +36,21 @@ public class LeagueScheduleService {
 		int numberOfRows = (numberOfTeams * numberOfTeams - numberOfTeams) / 2;
 		
 		/*
-		 * The following will shuffle the list of teams that will be used
+		 * The following will shuffle the list of teams that will be used,
+		 * then query the database to assign Team objects to the teamAssignment ArrayList
 		 */
 		ArrayList<Integer> teamShuffle = new ArrayList<Integer>();
         for (int i = 0; i < numberOfTeams; i++) {
             teamShuffle.add(new Integer(teams.get(i)));
         }
         Collections.shuffle(teamShuffle);
+        
+        
+        
+        /*
+         * The following loop will fetch the team objects from the database and
+         * assign them to team objects.
+         */
         
         // The following if statement will determine which scheduling method will be used
 		if (numberOfTeams % 2 == 1) {
@@ -49,12 +61,12 @@ public class LeagueScheduleService {
 			// hold all of the team numbers
 			int loopRows = (numberOfTeams + 1) / 2;
 			
-			// This will create the loop with teams randomly assigned to the loop
+			// This will create the loop with numbers 1..n where n is the number of teams
 			int schedLoop[][] = new int[2][loopRows];
 			for (int i = 0; i < loopRows; i++) {
-				schedLoop[0][i] = teamShuffle.get(i * 2);
+				schedLoop[0][i] = i * 2;
 				if(i < (loopRows - 1)) {
-					schedLoop[1][i] = teamShuffle.get(i * 2 + 1);
+					schedLoop[1][i] = i * 2 + 1;
 				}
 			}
 			
@@ -78,11 +90,11 @@ public class LeagueScheduleService {
 			// hold all of the team numbers
 			int loopRows = numberOfTeams / 2;
 			
-			// This will create the loop with teams randomly assigned to the loop
+			// This will create the loop with numbers 1..n where n is the number of teams
 			int schedLoop[][] = new int[2][loopRows];
 			for (int i = 0; i < loopRows; i++) {
-				schedLoop[0][i] = teamShuffle.get(i * 2);
-				schedLoop[1][i] = teamShuffle.get(i * 2 + 1);
+				schedLoop[0][i] = i * 2;
+				schedLoop[1][i] = i * 2 + 1;
 			}
 			
 			// The following loop will create the first half of the season
@@ -93,7 +105,7 @@ public class LeagueScheduleService {
 				for (int looper = 0; looper < loopRows; looper++) {
 					System.out.println("Round:" + round + "  Game:" + looper + "  Date:" + dates.get(round - 1));
 					
-					gameEntry.
+					
 				}
 			}
 			
@@ -151,7 +163,7 @@ public class LeagueScheduleService {
 			
 		}
 		
-		MakeLeagueSchedule mls = new MakeLeagueSchedule();
+		LeagueScheduleService mls = new LeagueScheduleService();
 		games = mls.MakeSchedule(teams, dates);
 		
 	}
