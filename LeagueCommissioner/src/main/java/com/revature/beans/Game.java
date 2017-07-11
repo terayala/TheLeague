@@ -34,12 +34,12 @@ public class Game {
 	private int gameID;
 	
 	@Autowired
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name="HOME_TEAM", referencedColumnName = "TEAM_ID")
 	private Team homeTeam;
 	
 	@Autowired
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name="AWAY_TEAM", referencedColumnName = "TEAM_ID")
 	private Team awayTeam;
 	

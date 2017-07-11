@@ -50,7 +50,7 @@ public class League {
 	@Column(name = "PTS_PER_OT_LOSS")
 	private int lossOTPts;
 	
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name="SPORT_ID", referencedColumnName = "SPORT_ID")
 	@Autowired
 	private Sport sport_id;
