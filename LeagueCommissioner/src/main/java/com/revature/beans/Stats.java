@@ -24,11 +24,11 @@ public class Stats {
 	@Column(name="STATS_PK")
 	private int STATS_PK;
 	
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
  	@JoinColumn(name="PLAYER_ID", referencedColumnName="USER_ID")
  	protected User player;
  	
- 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+ 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
  	@JoinColumn(name="GAME_ID", referencedColumnName="GAME_ID")
  	protected Game game;
  	

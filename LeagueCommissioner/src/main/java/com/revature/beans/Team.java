@@ -35,7 +35,7 @@ public class Team {
 	@Column(name = "TEAM_NICKNAME")
 	private String nickname;
 	
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name="LEAGUE_ID", referencedColumnName = "LEAGUE_ID")
 	@Autowired
 	private League leagueID;

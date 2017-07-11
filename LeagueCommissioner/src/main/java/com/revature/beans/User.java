@@ -29,7 +29,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERID_SEQ")
 	private int userID;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name="TEAM_ID",referencedColumnName = "TEAM_ID")
 	@Autowired
 	private Team team;
