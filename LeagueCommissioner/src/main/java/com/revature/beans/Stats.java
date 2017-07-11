@@ -11,6 +11,7 @@ import javax.persistence.Transient;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.stereotype.Component;
 
 @Entity
 @Table(name = "PLAYER_STATS")
@@ -20,6 +21,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 		joinColumns = @JoinColumn(name = "GAME_ID")),
 	@AssociationOverride(name = "pk.playerID",
 		joinColumns = @JoinColumn(name = "USER_ID")) })
+@Component
 public class Stats {
 	
 	private StatsID pk = new StatsID();
