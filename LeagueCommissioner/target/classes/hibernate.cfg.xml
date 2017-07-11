@@ -24,8 +24,8 @@
 		<mapping class="com.revature.beans.Game"/>
 		<mapping class="com.revature.beans.League"/>
 		<mapping class="com.revature.beans.Sport"/>
-		<mapping class="com.revature.beans.Stats"/>
-		<mapping class="com.revature.beans.StatsID"/>
+		<!-- <mapping class="com.revature.beans.Stats"/>
+		<mapping class="com.revature.beans.StatsID"/> -->
 		<mapping class="com.revature.beans.Team"/>
 		<mapping class="com.revature.beans.Trade"/>
 		<mapping class="com.revature.beans.User"/>

@@ -14,6 +14,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Entity
@@ -36,6 +37,7 @@ public class Team {
 	
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="LEAGUE_ID", referencedColumnName = "LEAGUE_ID")
+	@Autowired
 	private League leagueID;
 	
 	@Column(name = "COLOR_PRIMARY")

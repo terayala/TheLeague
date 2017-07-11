@@ -1,14 +1,14 @@
 package com.revature.main;
 
-import com.revature.beans.Stats;
-import com.revature.daos.StatsDAO;
-import com.revature.daos.StatsDAOImpl;
+import com.revature.beans.League;
+import com.revature.daos.LeagueDAO;
+import com.revature.daos.LeagueDAOImpl;
 
 public class DriverTeresa {
 
-	public static void main(String[] args) {		
-		StatsDAO dao = new StatsDAOImpl();
-		Stats stat = dao.selectStatById(new Integer(1));
-		System.out.println(stat.toString());
+	public static void main(String[] args) {			
+		LeagueDAO dao = new LeagueDAOImpl();
+		League league = dao.selectLeagueById(new Integer(1));
+		System.out.println(league.toString());
 	}
 }
