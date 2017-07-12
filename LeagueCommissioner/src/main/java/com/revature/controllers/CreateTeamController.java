@@ -3,7 +3,6 @@ package com.revature.controllers;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -16,14 +15,8 @@ import com.revature.daos.TeamDAO;
 import com.revature.daos.TeamDAOImpl;
 
 @Controller
-@RequestMapping(value = "/createuser")
+@RequestMapping(value = "/createteam")
 public class CreateTeamController {
-
-	@Autowired
-	League league;
-
-	@Autowired
-	Team team;
 
 	@RequestMapping(method = RequestMethod.POST)
 	public String doCreateTeam(@Valid Team team, BindingResult bindingResult, ModelMap modelMap, HttpSession session) {
@@ -32,10 +25,9 @@ public class CreateTeamController {
 			return "createteam";
 		}
 
-		TeamDAO ld = new TeamDAOImpl();
-		league = (League) session.getAttribute("league");
-		team.setLeague(league);
-		ld.createTeam(team);
+		TeamDAO dao = new TeamDAOImpl();
+		team.setLeague((League) session.getAttribute("league"));
+		dao.createTeam(team);
 		
 		return "home";
 	}
