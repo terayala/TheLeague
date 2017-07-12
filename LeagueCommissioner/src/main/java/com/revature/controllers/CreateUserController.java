@@ -35,7 +35,15 @@ public class CreateUserController {
 		
 		UserDAO ud =  new UserDAOImpl();
 		user.setActive(1);
-		user.setRole(user.getRole());
+		if(((User)session.getAttribute("user")).getRole()==2){
+			user.setRole(1);
+			user.setTeam( ((User)session.getAttribute("user")).getTeam());
+		}
+		else {
+			user.setRole(2);
+		}
+		
+		user.setActive(1);
 		ud.createUser(user);
 		
 		return "home";
