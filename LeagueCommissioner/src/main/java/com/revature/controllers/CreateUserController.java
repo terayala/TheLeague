@@ -16,8 +16,8 @@ import com.revature.daos.UserDAO;
 import com.revature.daos.UserDAOImpl;
 
 @Controller
-@RequestMapping(value = "/createcoach")
-public class CreateCoachController {
+@RequestMapping(value = "/createuser")
+public class CreateUserController {
 
 	@Autowired
 	User user;
@@ -27,19 +27,18 @@ public class CreateCoachController {
 	
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String doCreateCoach(@Valid User user, BindingResult bindingResult, ModelMap modelMap, HttpSession session) {
+	public String doCreateUser(@Valid User user, BindingResult bindingResult, ModelMap modelMap, HttpSession session) {
 
 		if (bindingResult.hasErrors()) {
-			return "createcoach";
+			return "createuser";
 		}
 		
 		UserDAO ud =  new UserDAOImpl();
 		user.setActive(1);
-		user.setRole(2);
-		
+		user.setRole(user.getRole());
 		ud.createUser(user);
 		
-		return "createcoach";
+		return "createuser";
 	}
 
 }

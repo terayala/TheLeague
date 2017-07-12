@@ -18,5 +18,7 @@
 		<br>
 		Uniform Number: <form:input path="uniform"/>
 		<br>
+		Role Id: <form:input path="role"/>
+		<br>
 	</form:form>
 </div>
