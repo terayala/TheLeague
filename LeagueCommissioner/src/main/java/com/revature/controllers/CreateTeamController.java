@@ -16,7 +16,7 @@ import com.revature.daos.TeamDAO;
 import com.revature.daos.TeamDAOImpl;
 
 @Controller
-@RequestMapping(value = "/createuser")
+@RequestMapping(value = "/createteam")
 public class CreateTeamController {
 
 	@Autowired
