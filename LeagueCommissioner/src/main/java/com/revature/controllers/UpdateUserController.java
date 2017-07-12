@@ -23,7 +23,6 @@ public class UpdateUserController {
 		if (bindingResult.hasErrors()) {
 			return "updateuser";
 		}
-		
 		UserDAO dao =  new UserDAOImpl();
 		dao.updateUser(user);
 		
