@@ -18,27 +18,26 @@ import com.revature.daos.TeamDAOImpl;
 @Controller
 @RequestMapping(value = "/createuser")
 public class CreateTeamController {
-	
+
 	@Autowired
 	League league;
-	
+
 	@Autowired
 	Team team;
-	
-	
+
 	@RequestMapping(method = RequestMethod.POST)
 	public String doCreateTeam(@Valid Team team, BindingResult bindingResult, ModelMap modelMap, HttpSession session) {
 
 		if (bindingResult.hasErrors()) {
 			return "createteam";
 		}
-		
-		TeamDAO ld =  new TeamDAOImpl();
-		league.setLeagueID(league.getLeagueID());
+
+		TeamDAO ld = new TeamDAOImpl();
+		league = (League) session.getAttribute("league");
+		team.setLeague(league);
 		ld.createTeam(team);
 		
 		return "home";
 	}
-	
 
 }
