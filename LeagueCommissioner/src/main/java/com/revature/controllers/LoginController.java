@@ -14,7 +14,7 @@ import com.revature.beans.User;
 import com.revature.services.UserService;
 
 @Controller
-@RequestMapping(value = "/login", method = RequestMethod.GET)
+@RequestMapping(value = "/login")
 public class LoginController {
 	@Autowired
 	User emptyUser;
@@ -24,6 +24,7 @@ public class LoginController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String getLoginPage(ModelMap modelMap) {
+		System.out.println("login GET");
 		modelMap.addAttribute("user", emptyUser);
 		return "login";
 	}
@@ -33,6 +34,8 @@ public class LoginController {
 								BindingResult bindingResult, 
 								ModelMap modelMap, 
 								HttpSession session) {
+		
+		System.out.println("login POST");
 		
 		// If user's username and/or password is empty.
 		if(bindingResult.hasErrors()) {
