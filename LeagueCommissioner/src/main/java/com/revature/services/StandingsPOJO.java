@@ -1,17 +1,33 @@
 package com.revature.services;
 
+import javax.persistence.Column;
+
+import org.hibernate.annotations.Entity;
+
+@Entity
 public class StandingsPOJO {
 
+	@Column(name="teamId")
 	private int teamId;
+	@Column(name="teamName")
 	private String teamName;
+	@Column(name="wins")
 	private int wins;
+	@Column(name="draws")
 	private int draws;
+	@Column(name="losses")
 	private int losses;
+	@Column(name="otWins")
 	private int otWins;
+	@Column(name="otLosses")
 	private int otLosses;
+	@Column(name="goalsFor")
 	private int goalsFor;
+	@Column(name="goalsAllowed")
 	private int goalsAllowed;
+	@Column(name="goalDiff")
 	private int goalDiff;
+	@Column(name="ptsPct")
 	private int ptsPct;
 	
 	// No-args constructor
@@ -30,21 +46,6 @@ public class StandingsPOJO {
 		this.losses = losses;
 		this.otWins = otWins;
 		this.otLosses = otLosses;
-		this.goalsFor = goalsFor;
-		this.goalsAllowed = goalsAllowed;
-		this.goalDiff = goalDiff;
-		this.ptsPct = ptsPct;
-	}
-
-	// This constructor will pass in all of the fields except for OT Wins and Losses
-	public StandingsPOJO(int teamId, String teamName, int wins, int draws, int losses, int goalsFor, int goalsAllowed,
-			int goalDiff, int ptsPct) {
-		super();
-		this.teamId = teamId;
-		this.teamName = teamName;
-		this.wins = wins;
-		this.draws = draws;
-		this.losses = losses;
 		this.goalsFor = goalsFor;
 		this.goalsAllowed = goalsAllowed;
 		this.goalDiff = goalDiff;
