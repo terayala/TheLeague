@@ -10,41 +10,32 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.revature.beans.League;
 import com.revature.beans.Team;
-import com.revature.beans.User;
-import com.revature.daos.UserDAO;
-import com.revature.daos.UserDAOImpl;
+import com.revature.daos.TeamDAO;
+import com.revature.daos.TeamDAOImpl;
 
 @Controller
 @RequestMapping(value = "/createuser")
-public class CreateUserController {
+public class CreateTeamController {
 
 	@Autowired
-	User user;
+	League league;
 
 	@Autowired
 	Team team;
-	
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String doCreateUser(@Valid User user, BindingResult bindingResult, ModelMap modelMap, HttpSession session) {
+	public String doCreateTeam(@Valid Team team, BindingResult bindingResult, ModelMap modelMap, HttpSession session) {
 
 		if (bindingResult.hasErrors()) {
-			return "createuser";
+			return "createteam";
 		}
-		
-		UserDAO ud =  new UserDAOImpl();
-		user.setActive(1);
-		if(((User)session.getAttribute("user")).getRole()==2){
-			user.setRole(1);
-			user.setTeam( ((User)session.getAttribute("user")).getTeam());
-		}
-		else {
-			user.setRole(2);
-		}
-		
-		user.setActive(1);
-		ud.createUser(user);
+
+		TeamDAO ld = new TeamDAOImpl();
+		league = (League) session.getAttribute("league");
+		team.setLeague(league);
+		ld.createTeam(team);
 		
 		return "home";
 	}

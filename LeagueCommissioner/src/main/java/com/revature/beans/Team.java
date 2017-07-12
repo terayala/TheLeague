@@ -38,7 +38,7 @@ public class Team {
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name="LEAGUE_ID", referencedColumnName = "LEAGUE_ID")
 	@Autowired
-	private League leagueID;
+	private League league;
 	
 	@Column(name = "COLOR_PRIMARY")
 	private int primaryColor;
@@ -53,7 +53,7 @@ public class Team {
 	public Team(String name, String nickname, League leagueID, int primaryColor, int secondaryColor) {
 		this.name = name;
 		this.nickname = nickname;
-		this.leagueID = leagueID;
+		this.league = leagueID;
 		this.primaryColor = primaryColor;
 		this.secondaryColor = secondaryColor;
 	}
@@ -82,12 +82,12 @@ public class Team {
 		this.nickname = nickname;
 	}
 
-	public int getLeagueID() {
-		return leagueID.getLeagueID();
+	public League getLeague() {
+		return league;
 	}
 
-	public void setLeagueID(League leagueID) {
-		this.leagueID = leagueID;
+	public void setLeague(League leagueID) {
+		this.league = leagueID;
 	}
 
 	public int getPrimaryColor() {
@@ -108,7 +108,7 @@ public class Team {
 
 	@Override
 	public String toString() {
-		return "Team [teamID=" + teamID + ", name=" + name + ", nickname=" + nickname + ", leagueID=" + leagueID
+		return "Team [teamID=" + teamID + ", name=" + name + ", nickname=" + nickname + ", leagueID=" + league
 				+ ", primaryColor=" + primaryColor + ", secondaryColor=" + secondaryColor + "]";
 	}
 }
