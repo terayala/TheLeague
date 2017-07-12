@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
-<div class="createPlayer">
+<div class="createUser">
 	<h1>Register A Player</h1>
 	<hr>
 	<form:form action="createPlayer" method="POST" commandName="user">
@@ -18,7 +18,6 @@
 		<br>
 		Uniform Number: <form:input path="uniform"/>
 		<br>
-		Role Id: <form:input path="role"/>
-		<br>
+		<input type="submit" value="createuser">
 	</form:form>
 </div>
