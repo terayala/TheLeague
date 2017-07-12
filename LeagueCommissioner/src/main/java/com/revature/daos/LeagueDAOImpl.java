@@ -1,5 +1,7 @@
 package com.revature.daos;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -62,6 +64,25 @@ public class LeagueDAOImpl implements LeagueDAO {
 			session.close();
 		}
 		return league;
+	}
+
+	@Override
+	public List<League> selectAllLeagues() {
+		List<League> list = null;
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			list = session.createQuery("FROM LEAGUES").list();
+		} catch(HibernateException e) {
+			if(tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}		
+		return list;
 	}
 
 }
