@@ -69,8 +69,9 @@ public class User {
 		
 	}
 
-	public User(Team teamID, String firstName, String lastName, int role, String email, String username, String password,
+	public User(Team team, String firstName, String lastName, int role, String email, String username, String password,
 			int uniform, int active) {
+		this.team = team;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.role = role;
