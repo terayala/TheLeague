@@ -14,7 +14,7 @@ public class DriverJohn {
 
 	// The code below is for testing only
 	public static void main(String[] args) {
-		/*ArrayList<Integer> teams = new ArrayList<Integer>();
+		ArrayList<Integer> teams = new ArrayList<Integer>();
 		ArrayList<Timestamp> dates = new ArrayList<Timestamp>();
 		ArrayList<Game> games = new ArrayList<Game>();
 		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
@@ -68,7 +68,7 @@ public class DriverJohn {
 		
 		for (int i = 0; i < numGames; i++) {
 			makeGame.createGame(games.get(i));
-		}*/
+		}
 		
 	}
 
