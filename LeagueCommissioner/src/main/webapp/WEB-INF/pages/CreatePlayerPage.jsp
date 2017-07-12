@@ -18,5 +18,6 @@
 		<br>
 		Uniform Number: <form:input path="uniform"/>
 		<br>
+		<input type="submit" value="createplayer">
 	</form:form>
 </div>
