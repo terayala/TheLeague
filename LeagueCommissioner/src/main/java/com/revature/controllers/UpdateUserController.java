@@ -14,29 +14,17 @@ import com.revature.daos.UserDAO;
 import com.revature.daos.UserDAOImpl;
 
 @Controller
-@RequestMapping(value = "/createuser")
-public class CreateUserController {
-
+@RequestMapping(value = "/updateuser")
+public class UpdateUserController {
+	
 	@RequestMapping(method = RequestMethod.POST)
 	public String doCreateUser(@Valid User user, BindingResult bindingResult, ModelMap modelMap, HttpSession session) {
 
 		if (bindingResult.hasErrors()) {
-			return "createuser";
+			return "updateuser";
 		}
-		
 		UserDAO dao =  new UserDAOImpl();
-		user.setActive(1);
-
-		if(((User)session.getAttribute("user")).getRole()==2){
-			user.setRole(1);
-			user.setTeam(((User)session.getAttribute("user")).getTeam());
-		}
-		else {
-			user.setRole(2);
-		}
-		
-		user.setActive(1);
-		dao.createUser(user);
+		dao.updateUser(user);
 		
 		return "home";
 	}
