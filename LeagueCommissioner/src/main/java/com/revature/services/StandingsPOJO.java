@@ -1,17 +1,38 @@
 package com.revature.services;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Standings")
 public class StandingsPOJO {
 
+	@Id
+	@Column(name="teamId")
 	private int teamId;
+	@Column(name="teamName")
 	private String teamName;
+	@Column(name="played")
+	private int played;
+	@Column(name="wins")
 	private int wins;
+	@Column(name="draws")
 	private int draws;
+	@Column(name="losses")
 	private int losses;
+	@Column(name="otWins")
 	private int otWins;
+	@Column(name="otLosses")
 	private int otLosses;
+	@Column(name="goalsFor")
 	private int goalsFor;
+	@Column(name="goalsAllowed")
 	private int goalsAllowed;
+	@Column(name="goalDiff")
 	private int goalDiff;
+	@Column(name="ptsPct")
 	private int ptsPct;
 	
 	// No-args constructor
@@ -62,6 +83,12 @@ public class StandingsPOJO {
 	}
 	public void setTeamName(String teamName) {
 		this.teamName = teamName;
+	}
+	public int getPlayed() {
+		return played;
+	}
+	public void setPlayed(int played) {
+		this.played = played;
 	}
 	public int getWins() {
 		return wins;
@@ -120,7 +147,7 @@ public class StandingsPOJO {
 
 	@Override
 	public String toString() {
-		return teamName + "  W:" + wins + " D:" + draws
+		return teamName + "  GP:" + played + "  W:" + wins + " D:" + draws
 				+ " L:" + losses + "  OTW:" + otWins + "  OTL:" + otLosses + "  GF:" + goalsFor
 				+ "  GA:" + goalsAllowed + "  GD:" + goalDiff + "  Pts:" + ptsPct;
 	}
