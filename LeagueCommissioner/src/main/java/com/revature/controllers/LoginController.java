@@ -17,7 +17,7 @@ import com.revature.services.UserService;
 @RequestMapping(value = "/login")
 public class LoginController {
 	@Autowired
-	User emptyUser;
+	User userTemplate;
 	
 	@Autowired
 	UserService userService;
@@ -25,7 +25,10 @@ public class LoginController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String getLoginPage(ModelMap modelMap) {
 		System.out.println("login GET");
-		modelMap.addAttribute("user", emptyUser);
+		userTemplate.setFirstName("firstname");
+		userTemplate.setLastName("lastname");
+		userTemplate.setEmail("email@email.com");
+		modelMap.addAttribute("user", userTemplate);
 		return "login";
 	}
 	
@@ -36,9 +39,15 @@ public class LoginController {
 								HttpSession session) {
 		
 		System.out.println("login POST");
+		System.out.println("username: " + user.getUsername());
+		System.out.println("password: " + user.getPassword());
+		System.out.println("firstname: " + user.getFirstName());
+		System.out.println("lastname: " + user.getLastName());
+		System.out.println("email: " + user.getEmail());
 		
 		// If user's username and/or password is empty.
 		if(bindingResult.hasErrors()) {
+			System.out.println("BindingResult.HasErrors Triggered (return login)");
 			return "login";
 		}
 		
@@ -50,6 +59,7 @@ public class LoginController {
 			System.out.println(user.getUsername());
 			return "home";
 		} else {
+			System.out.println("authUser: null " + authUser);
 			modelMap.addAttribute("errorMessage", "Username and/or password is incorrect");
 			return "login";
 		}

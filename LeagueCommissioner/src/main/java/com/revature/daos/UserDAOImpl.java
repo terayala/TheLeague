@@ -1,6 +1,7 @@
 package com.revature.daos;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -62,5 +63,20 @@ public class UserDAOImpl implements UserDAO {
 		} finally {
 			session.close();
 		}
+	}
+
+	@Override
+	public User selectUserByUsername(String username) {
+		Session session = HibernateUtil.getSession();
+		User user = null;
+		
+		String hql = "FROM User WHERE username = :username";
+		Query query = session.createQuery(hql);
+		query.setString("username", username);
+		user = (User) query.uniqueResult();
+			
+		session.close();
+
+		return user;
 	}
 }
