@@ -56,10 +56,9 @@ public class LoginController {
 		
 		// If credentials pass, go to home page.
 		if(authUser != null) {
-			System.out.println(user.getUsername());
+			session.setAttribute("user", authUser);
 			return "home";
 		} else {
-			System.out.println("authUser: null " + authUser);
 			modelMap.addAttribute("errorMessage", "Username and/or password is incorrect");
 			return "login";
 		}
