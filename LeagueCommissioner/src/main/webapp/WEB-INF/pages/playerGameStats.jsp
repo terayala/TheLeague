@@ -10,6 +10,23 @@
 <title>Player's Game Stats</title>
 </head>
 <body>
-
+	<c:if test="${not empty stats}">
+	    <table>
+	    	<thead>
+	    		<tr>
+	    			<th>First Name</th>
+	    			<th>Last Name</th>
+	    		</tr>
+	    	</thead>
+	    	<tbody>
+		        <c:forEach var="s" items="${stats}">
+		            <tr>
+		                <td>${s.firstname}</td>
+		                <td>${s.lastname}</td> 
+		            </tr>
+		        </c:forEach>
+			</tbody>
+	    </table>
+	</c:if>
 </body>
 </html>
