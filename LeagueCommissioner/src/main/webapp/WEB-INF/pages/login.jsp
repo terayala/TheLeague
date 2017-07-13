@@ -22,6 +22,10 @@
 		Password: <form:password path="password"/>
 		<form:errors path="password" cssClass="alert alert-danger" element="div"/>
 		<br/>
+		<form:hidden path="firstName"/>
+		<form:hidden path="lastName"/>
+		<form:hidden path="email"/>
+		<br/>
 		<input type="submit" value="login">
 	</form:form>
 </body>
