@@ -22,7 +22,6 @@ public class HomeController {
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public String chooseLeague(@Valid User user, BindingResult bindingResult, ModelMap modelMap, HttpSession session) {
-		
 		return "home";
 	}
 }
