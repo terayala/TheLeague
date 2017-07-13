@@ -17,7 +17,7 @@
 </head>
 <body>
 	<c:choose>
-		<c:when test="${ league == null }">
+		<c:when test="${ sessionScope.league == null }">
 			<!--  commissioner selects league (List of available leagues in modelMap) -->
 			<table class="table table-hover">
 			  <thead>
@@ -42,13 +42,13 @@
 		</c:when>
 		<c:otherwise>
 			<!-- regular home page with descriptions depending on user's role -->
-			<p>WELCOME, ${ user.getFirstName() } ${ user.getLastName() }</p>
+			<p>WELCOME, ${ sessionScope.user.getFirstName() } ${ sessionScope.user.getLastName() }</p>
 			<c:choose>
-				<c:when test="${ user.getRole() == 1 }">
+				<c:when test="${ sessionScope.user.getRole() == 1}">
 				<!-- player home page view -->
 					<p>PLAYER PAGE</p>
 				</c:when>
-				<c:when test="${ user.getRole() == 2 }">
+				<c:when test="${ sessionScope.user.getRole() }== 2">
 				<!-- coach home page view -->
 					<p>COACH PAGE</p>
 				</c:when>
