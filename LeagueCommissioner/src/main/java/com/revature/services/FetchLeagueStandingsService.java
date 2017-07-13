@@ -12,6 +12,8 @@ public class FetchLeagueStandingsService {
 		ArrayList<StandingsPOJO> standings = new ArrayList<StandingsPOJO>();
 		StandingsDAO getStandings = new StandingsDAOImpl();
 		
+		// Dispatch request based on whether points or win pct. is used for the league standings
+		// 1 = points, 2 = percent
 		if (ptsOrPct == 1) {
 			standings = getStandings.fetchStandingsByPoints(leagueId, standings);
 		} else {
