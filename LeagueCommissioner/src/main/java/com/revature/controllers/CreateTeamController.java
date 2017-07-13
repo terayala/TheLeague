@@ -29,7 +29,7 @@ public class CreateTeamController {
 		team.setLeague((League) session.getAttribute("league"));
 		dao.createTeam(team);
 		
-		return "home";
+		return "createteam";
 	}
 
 }

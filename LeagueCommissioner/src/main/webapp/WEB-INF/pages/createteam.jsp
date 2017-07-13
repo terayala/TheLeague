@@ -10,12 +10,21 @@
 </head>
 <body>
 
+<!--Create team  -->
+<!-- Add another team button submits form and resets for next -->
+<!--  Finish teams button -->
+
 <form:form action="createteam" method="POST" commandName="team">
 
 	Team Name: <form:input path="name"/>
 	Nickname: <form:input path="nickname"/>
 	Primary Color: <input class="jscolor" value="ab2567">
+	<input type="submit" value="Add Team">
+</form:form>
 
+<!-- clicking submit button should generate a form for teams to input dates for each set of games -->
+<form:form action="enterdates.jsp">
+    <input type="submit" value="Enter Dates" />
 </form:form>
 </body>
 </html>

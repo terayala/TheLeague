@@ -69,7 +69,5 @@ public class DriverJohn {
 		for (int i = 0; i < numGames; i++) {
 			makeGame.createGame(games.get(i));
 		}
-		
 	}
-
 }
