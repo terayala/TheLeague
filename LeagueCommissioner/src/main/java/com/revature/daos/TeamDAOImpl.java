@@ -2,11 +2,10 @@ package com.revature.daos;
 
 import java.util.List;
 
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
-import com.revature.bean.Employee;
 import com.revature.beans.Team;
 import com.revature.util.HibernateUtil;
 
