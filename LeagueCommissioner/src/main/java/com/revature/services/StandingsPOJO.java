@@ -117,6 +117,12 @@ public class StandingsPOJO {
 	public void setPtsPct(int ptsPct) {
 		this.ptsPct = ptsPct;
 	}
-	
+
+	@Override
+	public String toString() {
+		return teamName + "  W:" + wins + " D:" + draws
+				+ " L:" + losses + "  OTW:" + otWins + "  OTL:" + otLosses + "  GF:" + goalsFor
+				+ "  GA:" + goalsAllowed + "  GD:" + goalDiff + "  Pts:" + ptsPct;
+	}
 	
 }

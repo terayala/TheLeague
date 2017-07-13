@@ -73,7 +73,7 @@ public class LeagueDAOImpl implements LeagueDAO {
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			list = session.createQuery("FROM LEAGUES").list();
+			list = session.createCriteria(League.class).list();
 		} catch(HibernateException e) {
 			if(tx != null) {
 				tx.rollback();
