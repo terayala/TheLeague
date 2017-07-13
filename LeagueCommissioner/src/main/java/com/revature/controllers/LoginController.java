@@ -61,7 +61,6 @@ public class LoginController {
 		 */
 		if(authUser != null) {
 			session.setAttribute("user", authUser);
-			
 			if(authUser.getRole() == 3) {
 				session.setAttribute("league", null);
 				modelMap.addAttribute("allLeagues", getAllLeagues());
