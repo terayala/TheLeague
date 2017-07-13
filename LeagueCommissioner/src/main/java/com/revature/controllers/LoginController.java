@@ -1,5 +1,7 @@
 package com.revature.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -10,7 +12,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.revature.beans.League;
 import com.revature.beans.User;
+import com.revature.daos.LeagueDAO;
+import com.revature.daos.LeagueDAOImpl;
 import com.revature.services.UserService;
 
 @Controller
@@ -57,11 +62,18 @@ public class LoginController {
 		// If credentials pass, go to home page.
 		if(authUser != null) {
 			session.setAttribute("user", authUser);
+			session.setAttribute("league", null);
+			modelMap.addAttribute("allLeagues", getAllLeagues());
 			return "home";
 		} else {
 			modelMap.addAttribute("errorMessage", "Username and/or password is incorrect");
 			return "login";
 		}
+	}
+	
+	private List<League> getAllLeagues() {
+		LeagueDAO leagueDao = new LeagueDAOImpl();
 		
+		return leagueDao.selectAllLeagues();
 	}
 }
