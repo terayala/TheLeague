@@ -29,7 +29,6 @@ public class LoginController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String getLoginPage(ModelMap modelMap) {
-		System.out.println("login GET");
 		userTemplate.setFirstName("firstname");
 		userTemplate.setLastName("lastname");
 		userTemplate.setEmail("email@email.com");
@@ -43,13 +42,6 @@ public class LoginController {
 								ModelMap modelMap, 
 								HttpSession session) {
 		
-		System.out.println("login POST");
-		System.out.println("username: " + user.getUsername());
-		System.out.println("password: " + user.getPassword());
-		System.out.println("firstname: " + user.getFirstName());
-		System.out.println("lastname: " + user.getLastName());
-		System.out.println("email: " + user.getEmail());
-		
 		// If user's username and/or password is empty.
 		if(bindingResult.hasErrors()) {
 			System.out.println("BindingResult.HasErrors Triggered (return login)");
@@ -59,11 +51,23 @@ public class LoginController {
 		// Check user's username and password with the database.
 		User authUser = userService.auth(user);
 		
-		// If credentials pass, go to home page.
+		/*
+		 * If credentials pass:
+		 * 	If role is commissioner:
+		 * 		Preset league to null and grab all leagues.
+		 * 	Otherwise:
+		 * 		Grab player or coach's league.
+		 * 	Go to home page.
+		 */
 		if(authUser != null) {
 			session.setAttribute("user", authUser);
-			session.setAttribute("league", null);
-			modelMap.addAttribute("allLeagues", getAllLeagues());
+			
+			if(authUser.getRole() == 3) {
+				session.setAttribute("league", null);
+				modelMap.addAttribute("allLeagues", getAllLeagues());
+			} else {
+				session.setAttribute("league", authUser.getTeam().getLeague());
+			}
 			return "home";
 		} else {
 			modelMap.addAttribute("errorMessage", "Username and/or password is incorrect");

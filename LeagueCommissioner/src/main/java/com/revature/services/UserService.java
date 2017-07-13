@@ -12,10 +12,6 @@ public class UserService {
 		User authUser = null;
 		UserDAO userDao = new UserDAOImpl();
 		
-		System.out.println("UserService invoked.");
-		System.out.println("user name: " + user.getUsername());
-		System.out.println("user password: " + user.getPassword());
-		
 		authUser = userDao.selectUserByUsername(user.getUsername());
 		
 		if(user.getUsername().equals(authUser.getUsername()) && user.getPassword().equals(authUser.getPassword())) {
