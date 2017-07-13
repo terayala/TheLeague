@@ -16,6 +16,10 @@ public class DriverJohn {
 		
 		standings = f.currentStandings(1, 1);
 		
+		for(int i=0; i < standings.size(); i++) {
+			System.out.println(standings.get(i));
+		}
+		
 		/*ArrayList<Integer> teams = new ArrayList<Integer>();
 		ArrayList<Timestamp> dates = new ArrayList<Timestamp>();
 		ArrayList<Game> games = new ArrayList<Game>();
