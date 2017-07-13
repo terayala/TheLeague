@@ -33,7 +33,6 @@ public class User {
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name="TEAM_ID",referencedColumnName = "TEAM_ID")
 	@Autowired
-	@NotEmpty(message="Team cannot be empty")
 	private Team team;
 	
 	@Column(name = "FIRST_NAME")
