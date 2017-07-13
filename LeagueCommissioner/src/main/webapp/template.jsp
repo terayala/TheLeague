@@ -24,24 +24,12 @@
 		
 		<div class="row">
 			<div class="col-md-12 col-lg-9 main-screen">
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-				Maecenas ultricies euismod eros, id imperdiet est congue non.
-				Suspendisse bibendum enim tortor, quis gravida quam malesuada et.
-				Aliquam erat volutpat. Mauris tincidunt ornare nunc. Maecenas ut suscipit
-				nulla. Quisque vitae interdum lorem. Suspendisse gravida eros quis enim
-				semper, ac viverra erat lacinia. Integer ac diam facilisis, tincidunt neque
-				ac, aliquet dui. Nam semper, ligula eu blandit semper, lacus urna vulputate
-				justo, ut fermentum tortor magna id quam. Proin dictum vitae tellus dapibus
-				ullamcorper. Etiam vitae nibh eu dui volutpat sagittis. Nulla quis neque sed
-				ex semper rhoncus. Aliquam eget libero malesuada, luctus odio sit amet,
-				ultricies arcu. Aenean nec molestie justo, ac interdum nibh.</p>
+				<!-- insert specific view items here -->
 			</div>
 			
 			<div class="col-md-3 hidden-md-down sidebar">
 				<div class="sidebar-container">
-					<p>Here we will include another JSP file that calls a shortened
-					version of the league standings with only the team names and
-					either points or W-L, depending on the league setup.</p>
+					<%@ include file="/sidebar.jsp" %>
 				</div>
 			</div>
 		</div>

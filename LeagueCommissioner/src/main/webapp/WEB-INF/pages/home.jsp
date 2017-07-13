@@ -16,6 +16,7 @@
 <title>League Commissioner</title>
 </head>
 <body>
+	<div class="navSpace"></div>
 	<c:choose>
 		<c:when test="${ sessionScope.league == null }">
 			<!--  commissioner selects league (List of available leagues in modelMap) -->
