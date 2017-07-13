@@ -13,6 +13,9 @@ import com.revature.util.HibernateUtil;
 
 public class StandingsDAOImpl implements StandingsDAO {
 	
+	/*
+	 * Access the stored SQL function that sorts the table by points
+	 */
 	public ArrayList<StandingsPOJO> fetchStandingsByPoints (int leagueId, ArrayList<StandingsPOJO> standings) {
 		
 		Session session = HibernateUtil.getSession();
@@ -40,6 +43,9 @@ public class StandingsDAOImpl implements StandingsDAO {
 		
 	};
 	
+	/*
+	 * Access the stored SQL function that sorts the table by win percentage
+	 */
 	public ArrayList<StandingsPOJO> fetchStandingsByPct (int leagueId, ArrayList<StandingsPOJO> standings) {
 		
 		Session session = HibernateUtil.getSession();
