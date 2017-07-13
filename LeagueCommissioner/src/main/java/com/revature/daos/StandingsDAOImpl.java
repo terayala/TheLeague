@@ -26,16 +26,6 @@ public class StandingsDAOImpl implements StandingsDAO {
 					.setParameter("lid", leagueId);
 				rs = query.list();
 			
-			/*Query q = session.getNamedQuery("CALL GET_LEAGUE_STANDINGS_PTS(?, :lid)");
-			q.setParameter("lid", leagueId);
-			rs = q.list();
-			
-			String functionCall = "{call Get_League_Standings_Pts (?, ?, ?)}"; 
-			callstm = aConnection.prepareCall( functionCall ); 
-			callstm.setString( 1, "MYOWNER" ); 
-			callstm.setString( 2, "USER_TABLE" ); 
-			callstm.registerOutParameter( 3, OracleTypes.CURSOR );*/
-			
 			System.out.println(rs);
 			
 			standings = new ArrayList<StandingsPOJO>(rs);
