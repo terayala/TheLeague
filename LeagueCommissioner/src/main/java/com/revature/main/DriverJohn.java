@@ -1,20 +1,22 @@
 package com.revature.main;
 
-import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-import com.revature.beans.Game;
-import com.revature.daos.GameDAO;
-import com.revature.daos.GameDAOImpl;
-import com.revature.services.LeagueScheduleService;
+import com.revature.services.FetchLeagueStandingsService;
+import com.revature.services.StandingsPOJO;
 
 public class DriverJohn {
 
 	// The code below is for testing only
 	public static void main(String[] args) {
-		ArrayList<Integer> teams = new ArrayList<Integer>();
+		
+		FetchLeagueStandingsService f = new FetchLeagueStandingsService();
+		
+		ArrayList<StandingsPOJO> standings = new ArrayList<StandingsPOJO>();
+		
+		standings = f.currentStandings(1, 1);
+		
+		/*ArrayList<Integer> teams = new ArrayList<Integer>();
 		ArrayList<Timestamp> dates = new ArrayList<Timestamp>();
 		ArrayList<Game> games = new ArrayList<Game>();
 		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
@@ -68,7 +70,7 @@ public class DriverJohn {
 		
 		for (int i = 0; i < numGames; i++) {
 			makeGame.createGame(games.get(i));
-		}
+		}*/
 		
 	}
 
