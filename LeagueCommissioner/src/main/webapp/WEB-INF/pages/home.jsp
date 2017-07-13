@@ -10,6 +10,7 @@
 <title>League Commissioner</title>
 </head>
 <body>
-	<p>Home page</p>
+	
+	<h1>HOME PAGE</h1>
 </body>
 </html>
