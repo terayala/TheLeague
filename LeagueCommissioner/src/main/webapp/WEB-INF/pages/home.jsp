@@ -44,8 +44,7 @@
 						  			<td>${ league.getLeagueID() }</td>
 						  			<td>${ league.getName() }</td>
 						  			<td>${ league.getSport().getName() }</td>
-						  			<td><button type="button" class="btn btn-info" value="Select League" onclick="submitLeague(${league})">
-						  			</button></td>
+						  			<td><a class="btn btn-default" href="http://localhost:8085/LeagueCommissioner/home?leagueId=${ league.getLeagueID() }">Select League</a></td>
 						  		</tr>
 						  	</c:forEach>
 						  </tbody>
