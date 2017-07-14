@@ -10,19 +10,24 @@
 <title>Player's Game Stats</title>
 </head>
 <body>
+
+	<h3>${ sessionScope.user.getFirstName() }&nbsp;${ sessionScope.user.getLastName() }'s Game Stats</h3>
+
 	<c:if test="${not empty stats}">
 	    <table>
 	    	<thead>
 	    		<tr>
-	    			<th>First Name</th>
-	    			<th>Last Name</th>
+	    			<th>Home Team</th>
+	    			<th>Away Team</th>
+	    			<th>Points Scored</th>
 	    		</tr>
 	    	</thead>
 	    	<tbody>
 		        <c:forEach var="s" items="${stats}">
 		            <tr>
-		                <td>${s.firstname}</td>
-		                <td>${s.lastname}</td> 
+		                <td>${s.getGame().getHomeTeam()}</td>
+		                <td>${s.getGame().getAwayTeam()}</td>
+		                <td>${s.getPointsScored()}</td> 
 		            </tr>
 		        </c:forEach>
 			</tbody>
