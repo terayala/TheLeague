@@ -1,8 +1,11 @@
 package com.revature.daos;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 import com.revature.beans.Stats;
 import com.revature.util.HibernateUtil;
@@ -45,13 +48,15 @@ public class StatsDAOImpl implements StatsDAO {
 	}
 
 	@Override
-	public Stats selectStatById(Integer id) {
-		Stats stat = null;
+	public List<Stats> selectStatsByPlayerId(int playerId) {
+		List<Stats> stats = null;
 		Session session = HibernateUtil.getSession();
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			stat = (Stats) session.get(Stats.class, id);
+			stats = session.createCriteria(Stats.class)
+											.add(Restrictions.ilike("player", playerId))
+											.list();
 		} catch(HibernateException e) {
 			if(tx != null) {
 				tx.rollback();
@@ -60,7 +65,7 @@ public class StatsDAOImpl implements StatsDAO {
 		} finally {
 			session.close();
 		}
-		return stat;
+		return stats;
 	}
 
 }
