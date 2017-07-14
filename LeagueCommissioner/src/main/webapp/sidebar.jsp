@@ -6,36 +6,42 @@
 <%@ page import="com.revature.services.FetchLeagueStandingsService, com.revature.beans.*,
 	com.revature.services.StandingsPOJO, java.util.ArrayList" %>
 
-<%! FetchLeagueStandingsService service = new FetchLeagueStandingsService(); %>
+<% try { %>
+	<%! FetchLeagueStandingsService service = new FetchLeagueStandingsService(); %>
+	
+	<%  int leagueId = ((League)session.getAttribute("league")).getLeagueID();
+		int ptsOrPct = ((League)session.getAttribute("league")).getPtsOrPct();
+		ArrayList<StandingsPOJO> standings = service.currentStandings(leagueId, ptsOrPct); %>
+		
+	<h3 style="text-align:center;">Standings</h3>
 
-<%  int leagueId = ((League)session.getAttribute("league")).getLeagueID();
-	int ptsOrPct = ((League)session.getAttribute("league")).getPtsOrPct();
-	ArrayList<StandingsPOJO> standings = service.currentStandings(leagueId, ptsOrPct); %>
-	
-<h3 style="text-align:center;">Standings</h3>
-<table class="sidebar-standings-table">
-	<tr>
-		<th>${ sessionScope.league.getName() }</th>
-		<th<% if (ptsOrPct == 1) { %>
-			style="text-align: right;">Pts				
-		<% } else { %>
-			style="text-align: center;">W</th><th style="text-align: center;">L
-		<% } %></th>
-	</tr>
-	
-	<% for (StandingsPOJO i : standings) { %>
+	<table class="sidebar-standings-table">
 		<tr>
-			<td><%= i.getTeamName() %></td>
-			<td
-			
-			<% if (ptsOrPct == 1) { %>
-				style="text-align: right;"><%= i.getPtsPct() %>
+			<th>${ sessionScope.league.getName() }</th>
+			<th<% if (ptsOrPct == 1) { %>
+				style="text-align: right;">Pts				
 			<% } else { %>
-				style="text-align: center;"><%= i.getWins() %></td><td style="text-align: center;"><%= i.getLosses() %>
-			<% } %>
-			
-			</td>
+				style="text-align: center;">W</th><th style="text-align: center;">L
+			<% } %></th>
 		</tr>
-	<% } %>
-	
-</table>
+		
+		<% for (StandingsPOJO i : standings) { %>
+			<tr>
+				<td><%= i.getTeamName() %></td>
+				<td
+				
+				<% if (ptsOrPct == 1) { %>
+					style="text-align: right;"><%= i.getPtsPct() %>
+				<% } else { %>
+					style="text-align: center;"><%= i.getWins() %></td><td style="text-align: center;"><%= i.getLosses() %>
+				<% } %>
+				
+				</td>
+			</tr>
+		<% } %>
+		
+	</table>
+
+<% } catch (Exception e) { %>
+
+<% } %>

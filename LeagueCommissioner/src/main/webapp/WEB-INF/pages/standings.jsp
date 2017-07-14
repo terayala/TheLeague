@@ -39,7 +39,7 @@
 					<table class="standings-table">
 						<tr>
 							<th class="standings-league-name" style="width:40%;">${ sessionScope.league.getName() }</th>
-							<th class="std-col">GP</th>
+							<th class="std-col hidden-sm-down">GP</th>
 							<th class="std-col">W</th>
 							<% if (ties) { %>
 								<th class="std-col">D</th>
@@ -48,20 +48,20 @@
 							<% if (ot != 0 && pts == 1) { %>
 								<th style="std-col">OTW</th><th style="std-col">OTL</th>
 							<% } %>
-							<th class="std-col">For</th>
-							<th class="std-col">Ag</th>
+							<th class="std-col hidden-sm-down">For</th>
+							<th class="std-col hidden-sm-down">Ag</th>
 							<th class="std-col">Diff.</th>
-							<th class="std-col"><% if (pts == 1) { %>
-								Pts.
+							<th<% if (pts == 1) { %>
+								class="std-col">Pts.
 							<% } else { %>
-								Pct.
+								class="std-col-wide">Pct.
 							<% } %></th>
 						</tr>
 						
 						<% for (StandingsPOJO i : s) { %>
 							<tr>
 								<td><%= i.getTeamName() %></td>
-								<td class="std-col"><%= i.getPlayed() %></td>
+								<td class="std-col hidden-sm-down"><%= i.getPlayed() %></td>
 								<td class="std-col"><%= i.getWins() %></td>
 								<% if (ties) { %>
 									<td class="std-col"><%= i.getDraws() %></td>
@@ -71,13 +71,15 @@
 									<td style="std-col"><%= i.getOtWins() %></td>
 									<td style="std-col"><%= i.getOtLosses() %></td>
 								<% } %>
-								<td class="std-col"><%= i.getGoalsFor() %></td>
-								<td class="std-col"><%= i.getGoalsAllowed() %></td>
+								<td class="std-col hidden-sm-down"><%= i.getGoalsFor() %></td>
+								<td class="std-col hidden-sm-down"><%= i.getGoalsAllowed() %></td>
 								<td class="std-col"><%= i.getGoalDiff() %></td>
-								<td class="std-col"><% if (pts == 1) { %>
-									<%= i.getPtsPct() %>
-								<% } else { %>
-									.
+								<td <% if (pts == 1) { %>
+									class="std-col"><%= i.getPtsPct() %>
+								<% } else {
+									double f = (double)i.getPtsPct() / 1000;
+									String str = String.format("%.3f", f); %>
+									class="std-col-wide"><%= str %>
 								<% } %></td>
 							</tr>
 						<% } %>
