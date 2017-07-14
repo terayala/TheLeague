@@ -53,7 +53,7 @@ public class League {
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="SPORT_ID", referencedColumnName = "SPORT_ID")
 	@Autowired
-	private Sport sport_id;
+	private Sport sport;
 
 	public League() {
 		
@@ -68,7 +68,7 @@ public class League {
 		this.tiePts = tiePts;
 		this.winOTPts = winOTPts;
 		this.lossOTPts = lossOTPts;
-		this.sport_id = sportID;
+		this.sport = sportID;
 	}
 
 	public int getLeagueID() {
@@ -138,19 +138,19 @@ public class League {
 	public void setLossOTPts(int lossOTPts) {
 		this.lossOTPts = lossOTPts;
 	}
-
-	public String getSportID() {
-		return sport_id.getName();
+	
+	public Sport getSport() {
+		return sport;
 	}
 
-	public void setSportID(Sport sportID) {
-		this.sport_id = sportID;
+	public void setSport(Sport sportID) {
+		this.sport = sportID;
 	}
 
 	@Override
 	public String toString() {
 		return "League [leagueID=" + leagueID + ", name=" + name + ", ptsOrPct=" + ptsOrPct + ", tiesAllowed="
 				+ tiesAllowed + ", winPts=" + winPts + ", tiePts=" + tiePts + ", winOTPts=" + winOTPts + ", lossOTPts="
-				+ lossOTPts + ", sportID=" + sport_id + "]";
+				+ lossOTPts + ", sportID=" + sport + "]";
 	}
 }

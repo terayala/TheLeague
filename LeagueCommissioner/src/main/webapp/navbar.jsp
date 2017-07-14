@@ -4,10 +4,11 @@
 			League Commissioner
 		</div>
 		<ul>
-			<li><a href="#">Standings</a></li>
-			<li><a href="#">Schedule</a></li>
-			<li><a href="#">Stats</a></li>
-			<li><a href="#">Logout</a></li>
+			<li id="standings"><a href="http://13.59.241.171:8085/LeagueCommissioner/viewstandings">Standings</a></li>
+			<li id="schedule"><a href="http://13.59.241.171:8085/LeagueCommissioner/viewschedule">Schedule</a></li>
+			<li id="stats"><a href="http://13.59.241.171:8085/LeagueCommissioner/viewstats">Stats</a></li>
+			<li id="createleague"><a href="http://localhost:8085/LeagueCommissioner/createleague">Create League</a></li>
+			<li id="logout"><a href="http://13.59.241.171:8085/LeagueCommissioner/logout">Logout</a></li>
 		</ul>
 	</div>
 </div>
@@ -19,10 +20,11 @@
 			League Commissioner
 		</button>
 		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-			<a class="dropdown-item" href="#">Standings</a>
-			<a class="dropdown-item" href="#">Schedule</a>
-			<a class="dropdown-item" href="#">Stats</a>
-			<a class="dropdown-item" href="#">Logout</a>
+			<a class="dropdown-item" href="http://13.59.241.171:8085/LeagueCommissioner/viewstandings">Standings</a>
+			<a class="dropdown-item" href="http://13.59.241.171:8085/LeagueCommissioner/viewschedule">Schedule</a>
+			<a class="dropdown-item" href="http://13.59.241.171:8085/LeagueCommissioner/stats">Stats</a>
+			<a class="dropdown-item" href="http://13.59.241.171:8085/LeagueCommissioner/createleague">Create League</a>
+			<a class="dropdown-item" href="http://13.59.241.171:8085/LeagueCommissioner/logout">Logout</a>
 		</div>
 	</div>
 </div>
