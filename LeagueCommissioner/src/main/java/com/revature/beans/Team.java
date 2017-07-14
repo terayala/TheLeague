@@ -14,6 +14,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -30,9 +31,11 @@ public class Team {
 	private int teamID;
 	
 	@Column(name = "TEAM_NAME")
+	@NotEmpty(message="name cannot be empty")
 	private String name;
 	
 	@Column(name = "TEAM_NICKNAME")
+	@NotEmpty(message="nickname cannot be empty")
 	private String nickname;
 	
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -41,6 +44,7 @@ public class Team {
 	private League league;
 	
 	@Column(name = "COLOR_PRIMARY")
+	@NotEmpty(message="primary color cannot be empty")
 	private int primaryColor;
 	
 	@Column(name = "COLOR_SECONDARY")

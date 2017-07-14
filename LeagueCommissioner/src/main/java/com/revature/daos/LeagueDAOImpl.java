@@ -12,12 +12,13 @@ import com.revature.util.HibernateUtil;
 public class LeagueDAOImpl implements LeagueDAO {
 
 	@Override
-	public void createLeague(League league) {
+	public Integer createLeague(League league) {
 		Session session = HibernateUtil.getSession();
 		Transaction tx = null;
+		Integer id = null;
 		try {
 			tx = session.beginTransaction();
-			session.save(league);
+			id = (Integer) session.save(league);
 			tx.commit();
 		} catch (HibernateException e) {
 			if(tx != null){
@@ -27,6 +28,7 @@ public class LeagueDAOImpl implements LeagueDAO {
 		} finally {
 			session.close();
 		}
+		return id;
 	}
 
 	@Override
