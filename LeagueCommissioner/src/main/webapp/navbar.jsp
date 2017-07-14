@@ -7,7 +7,7 @@
 			<li id="standings"><a href="http://13.59.241.171:8085/LeagueCommissioner/viewstandings">Standings</a></li>
 			<li id="schedule"><a href="http://13.59.241.171:8085/LeagueCommissioner/viewschedule">Schedule</a></li>
 			<li id="stats"><a href="http://13.59.241.171:8085/LeagueCommissioner/viewstats">Stats</a></li>
-			<li id="createleague"><a href="http://13.59.241.171:8085/LeagueCommissioner/createleague">Create League</a></li>
+			<li id="createleague"><a href="http://localhost:8085/LeagueCommissioner/createleague">Create League</a></li>
 			<li id="logout"><a href="http://13.59.241.171:8085/LeagueCommissioner/logout">Logout</a></li>
 		</ul>
 	</div>

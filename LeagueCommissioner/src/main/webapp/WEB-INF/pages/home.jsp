@@ -71,7 +71,6 @@
 					</c:otherwise>
 				</c:choose>
 			</div>
-			<div class="space"></div>
 			<div class="col-md-3 hidden-md-down sidebar">
 				<div class="sidebar-container">
 					<%@ include file="/sidebar.jsp" %>

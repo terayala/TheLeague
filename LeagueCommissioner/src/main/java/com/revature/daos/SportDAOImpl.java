@@ -1,5 +1,7 @@
 package com.revature.daos;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -62,6 +64,25 @@ public class SportDAOImpl implements SportDAO {
 			session.close();
 		}
 		return sport;
+	}
+
+	@Override
+	public List<Sport> selectAllSports() {
+		List<Sport> sports = null;
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			sports = session.createCriteria(Sport.class).list();
+		} catch(HibernateException e) {
+			if(tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return sports;
 	}
 
 }
