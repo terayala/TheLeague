@@ -73,7 +73,7 @@
 			</div>
 			<div class="col-md-3 hidden-md-down sidebar">
 				<div class="sidebar-container">
-					<%@ include file="/sidebar.jsp" %>
+					<!--<%@ include file="/sidebar.jsp" %>  -->
 				</div>
 			</div>
 		</div>
