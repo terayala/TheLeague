@@ -6,6 +6,8 @@ import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import com.revature.beans.League;
 import com.revature.beans.Team;
 import com.revature.util.HibernateUtil;
 
@@ -67,7 +69,7 @@ public class TeamDAOImpl implements TeamDAO {
 	}
 
 	@Override
-	public List<Team> getAllTeams() {
+	public int getAllTeams() {
 			List<Team> teams = null;
 			Session session = HibernateUtil.getSession();
 			Transaction tx = null;
@@ -75,7 +77,6 @@ public class TeamDAOImpl implements TeamDAO {
 			try{
 				tx = session.beginTransaction();
 				teams = session.createQuery("FROM TEAM").list();
-				
 			}catch(HibernateException e){
 				if(tx!=null){
 					tx.rollback();
@@ -85,7 +86,7 @@ public class TeamDAOImpl implements TeamDAO {
 				session.close();
 			}		
 			
-			return teams;
+			return teams.size();
 		
 	}
 }

@@ -9,6 +9,6 @@ public interface TeamDAO {
 	public void createTeam(Team team);
 	public void updateTeam(Team team);
 	public Team selectTeamById(Integer id);
-	public List<Team> getAllTeams();
+	public int getAllTeams();
 	
 }
