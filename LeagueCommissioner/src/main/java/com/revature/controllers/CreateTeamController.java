@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.revature.beans.League;
 import com.revature.beans.Team;
-import com.revature.beans.User;
 import com.revature.daos.TeamDAO;
 import com.revature.daos.TeamDAOImpl;
 
@@ -30,9 +29,8 @@ public class CreateTeamController {
 		}
 
 		TeamDAO dao = new TeamDAOImpl();
-		team.setLeague((League) session.getAttribute("league"));
+		team.setLeague((League)session.getAttribute("league"));
 		dao.createTeam(team);
-		//session.setAttribute("TeamDAOImpl", dao.getAllTeams());
 		
 		return "createteam";
 	}
@@ -40,7 +38,6 @@ public class CreateTeamController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String getTeamPage(ModelMap modelMap){
-		
 		modelMap.addAttribute("team", teamTemplate);
 		return "createteam";
 	}

@@ -39,7 +39,7 @@
 						    </tr>
 						  </thead>
 						  <tbody>
-						  	<c:forEach items="${ modelMap.allLeagues }" var="league">
+						  	<c:forEach items="${ requestScope.allLeagues }" var="league">
 						  		<tr>
 						  			<td>${ league.getLeagueID() }</td>
 						  			<td>${ league.getName() }</td>

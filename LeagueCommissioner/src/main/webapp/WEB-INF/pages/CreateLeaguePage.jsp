@@ -40,7 +40,7 @@
 				    <div class="col-sm-10"> 
 				     <select name="Sport">
 						<c:forEach items="${ requestScope.sports }" var="sport">
-							<option>${ sport.getName() } </option>
+							<option value="${ sport.getSport_id() }">${ sport.getName() } </option>
 						</c:forEach>
 					</select>
 				    </div>
@@ -65,13 +65,13 @@
 				    </div>
 				  </div>
 				   <div class="form-group">
-				    <label class="control-label col-sm-2" for="winOTPts">Enter points for a OT win: </label>
+				    <label class="control-label col-sm-2" for="winOTPts">Enter points for a OT win (enter 0 points when no overtime is allowed): </label>
 				    <div class="col-sm-10">
 				      <input type="number" class="form-control" name="winOTPts" id="winOTPts">
 				    </div>
 				  </div>
 				  <div class="form-group">
-				    <label class="control-label col-sm-2" for="lossOTPts">Enter points for a OT loss: </label>
+				    <label class="control-label col-sm-2" for="lossOTPts">Enter points for a OT loss (enter 0 points when no overtime is allowed): </label>
 				    <div class="col-sm-10">
 				      <input type="number" class="form-control" name="lossOTPts" id="lossOTPts">
 				    </div>
@@ -79,7 +79,7 @@
 				  <div class="form-group"> 
 				    <div class="col-sm-offset-2 col-sm-10">
 				      <div class="checkbox">
-				        <label><input type="checkbox">Check here if ties are allowed</label>
+				        <label><input type="checkbox" name="tiesAllowed">Check here if ties are allowed</label>
 				      </div>
 				    </div>
 				  </div>
