@@ -44,4 +44,9 @@
 
 <% } catch (Exception e) { %>
 
+	<div class="sidebar-commissioner">
+		<h4 style="text-align:center;">Welcome to League Commissioner</h4>
+		<p>Please select a league from the left to continue.</p>
+	</div>
+
 <% } %>
