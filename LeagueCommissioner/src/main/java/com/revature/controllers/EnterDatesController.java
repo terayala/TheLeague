@@ -3,7 +3,6 @@ package com.revature.controllers;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -12,21 +11,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.revature.beans.League;
 import com.revature.beans.Team;
-import com.revature.beans.User;
 import com.revature.daos.TeamDAO;
 import com.revature.daos.TeamDAOImpl;
 
 @Controller
-@RequestMapping(value = "/createteam")
-public class CreateTeamController {
-	@Autowired
-	Team teamTemplate;
+@RequestMapping(value = "/enterdates")
+public class EnterDatesController {
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String doCreateTeam(@Valid Team team, BindingResult bindingResult, ModelMap modelMap, HttpSession session) {
+	public String doEnterDates(@Valid Team team, BindingResult bindingResult, ModelMap modelMap, HttpSession session) {
 
 		if (bindingResult.hasErrors()) {
-			return "createteam";
+			return "enterdates";
 		}
 
 		TeamDAO dao = new TeamDAOImpl();
@@ -34,16 +30,15 @@ public class CreateTeamController {
 		dao.createTeam(team);
 		//session.setAttribute("TeamDAOImpl", dao.getAllTeams());
 		
-		return "createteam";
+		return "enterdates";
 	}
-	
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String getTeamPage(ModelMap modelMap){
-		
-		modelMap.addAttribute("team", teamTemplate);
-		return "createteam";
+		TeamDAO dao = new TeamDAOImpl();
+		modelMap.addAttribute("count", dao.getAllTeams());
+		return "enterdates";
 	}
 	
-	
+
 }

@@ -1,9 +1,13 @@
 package com.revature.daos;
 
+import java.util.List;
+
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.revature.beans.League;
 import com.revature.beans.Team;
 import com.revature.util.HibernateUtil;
 
@@ -62,5 +66,27 @@ public class TeamDAOImpl implements TeamDAO {
 			session.close();
 		}
 		return team;
+	}
+
+	@Override
+	public int getAllTeams() {
+			List<Team> teams = null;
+			Session session = HibernateUtil.getSession();
+			Transaction tx = null;
+			
+			try{
+				tx = session.beginTransaction();
+				teams = session.createQuery("FROM TEAM").list();
+			}catch(HibernateException e){
+				if(tx!=null){
+					tx.rollback();
+				}
+				e.printStackTrace();
+			}finally{
+				session.close();
+			}		
+			
+			return teams.size();
+		
 	}
 }
