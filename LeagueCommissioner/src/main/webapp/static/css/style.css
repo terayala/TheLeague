@@ -39,6 +39,17 @@ body {
     src: url('../fonts/highschool.ttf');
 }
 
+@font-face {
+    font-family: 'Amaranth';
+    src: url('../fonts/amaranth.otf');
+}
+
+@font-face {
+    font-family: 'Amaranth';
+    src: url('../fonts/amaranth-bold.otf');
+    font-weight: bold;
+}
+
 /* ***************************
 ***** 3.0 NAVIGATION BAR *****
 ****************************** */
@@ -132,5 +143,79 @@ body {
 }
 
 .sidebar-container {
-	padding-right: 30px;
+	padding-right: 20px;
+}
+
+/* ***********************
+***** 5.0 PARAGRAPHS *****
+************************** */
+
+h3 {
+	font-family: "HighSchool";
+}
+
+.page-header {
+	color: #b00a0a;
+	text-shadow: 1px 1px black,
+				 -1px -1px black,
+				 1px -1px black,
+				 -1px 1px black;
+}
+
+/* *******************
+***** 6.0 TABLES *****
+********************** */
+
+.sidebar-standings-table {
+	border: 3px ridge #ccc;
+	width: 100%;
+	margin-bottom: 20px;
+	font-family: "Amaranth";
+}
+
+.sidebar-standings-table tr th, td {
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
+.sidebar-standings-table tr:first-child {
+	background-color: #b00a0a;
+	color: #ddd;
+	font-family: "Amaranth";
+}
+
+.sidebar-standings-table tr:first-child th {
+	font-weight: normal;
+}
+
+.sidebar-standings-table tr:nth-child(2n+3) {
+	background-color: #ccc;
+	color: #333;
+}
+
+.sidebar-standings-table tr:nth-child(even) {
+	background-color: #eee;
+	color: #333;
+}
+
+.standings-container {
+	width: 80%;
+	margin: auto;
+}
+
+.standings-table {
+	border: 5px ridge #b00a0a;
+	width: 100%;
+	margin-bottom: 20px;
+	table-layout: fixed;
+}
+
+.standings-table th, td {
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
+.std-col {
+	width: 5%;
+	text-align: center;
 }

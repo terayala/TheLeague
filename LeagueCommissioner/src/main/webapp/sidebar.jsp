@@ -12,25 +12,26 @@
 	int ptsOrPct = ((League)session.getAttribute("league")).getPtsOrPct();
 	ArrayList<StandingsPOJO> standings = service.currentStandings(leagueId, ptsOrPct); %>
 	
-<table class="sidebar-standings-table>">
+<h3 style="text-align:center;">Standings</h3>
+<table class="sidebar-standings-table">
 	<tr>
 		<th>${ sessionScope.league.getName() }</th>
-		<th><% if (ptsOrPct == 1) { %>
-			Pts				
+		<th<% if (ptsOrPct == 1) { %>
+			style="text-align: right;">Pts				
 		<% } else { %>
-			W</th><th>L
+			style="text-align: center;">W</th><th style="text-align: center;">L
 		<% } %></th>
 	</tr>
 	
 	<% for (StandingsPOJO i : standings) { %>
 		<tr>
 			<td><%= i.getTeamName() %></td>
-			<td>
+			<td
 			
 			<% if (ptsOrPct == 1) { %>
-				<%= i.getPtsPct() %>
+				style="text-align: right;"><%= i.getPtsPct() %>
 			<% } else { %>
-				<%= i.getWins() %></td><td><%= i.getLosses() %>
+				style="text-align: center;"><%= i.getWins() %></td><td style="text-align: center;"><%= i.getLosses() %>
 			<% } %>
 			
 			</td>
