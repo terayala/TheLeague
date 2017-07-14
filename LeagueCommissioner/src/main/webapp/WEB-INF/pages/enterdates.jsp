@@ -29,7 +29,16 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
 	integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
 	crossorigin="anonymous"></script>
-
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+	$(function() {
+		$("#datepicker").datepicker();
+	});
+</script>
 
 </head>
 
@@ -38,27 +47,14 @@
 	<%@ include file="/navbar.jsp"%>
 	<div class="navbar-clear"></div>
 
+
 	<div class="row">
 		<div class="col-md-12 col-lg-9 main-screen">
 
-
-
-			<c:forEach  begin="0" end="${modelMap.count}">
-				<div class="container">
-					<div class="row">
-						<div class='col-sm-6'>
-
-							Game: <input type='text' class="form-control" id='datetimepicker4' />
-
-
-						</div>
-						<script type="text/javascript">
-							$(function() {
-								$('#datetimepicker4').datetimepicker();
-							});
-						</script>
-					</div>
-				</div>
+			<c:forEach begin="0" end="${modelMap.count}">
+				<p>
+					Game: <input type="text" id="datepicker">
+				</p>
 			</c:forEach>
 
 			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
