@@ -45,9 +45,8 @@ body {
 }
 
 @font-face {
-    font-family: 'Amaranth';
-    src: url('../fonts/amaranth-bold.otf');
-    font-weight: bold;
+    font-family: 'Fira Sans';
+    src: url('../fonts/fira-sans.otf');
 }
 
 /* ***************************
@@ -216,6 +215,25 @@ h3 {
 }
 
 .std-col {
-	width: 5%;
+	width: 6%;
 	text-align: center;
+}
+
+.std-col-wide {
+	width: 8%;
+	text-align: center;
+}
+
+.standings-table td {
+	font-family: "Fira Sans";
+	font-size: 1.2em;
+	-webkit-font-smoothing: antialiased;
+}
+
+.standings-table tr:nth-child(odd) {
+	background-color: #ccc;
+}
+
+.standings-table tr:nth-child(even) {
+	background-color: #fff;
 }
