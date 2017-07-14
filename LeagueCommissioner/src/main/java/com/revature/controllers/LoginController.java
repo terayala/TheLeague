@@ -1,7 +1,5 @@
 package com.revature.controllers;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -12,10 +10,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.revature.beans.League;
 import com.revature.beans.User;
-import com.revature.daos.LeagueDAO;
-import com.revature.daos.LeagueDAOImpl;
+import com.revature.services.LeagueService;
 import com.revature.services.UserService;
 
 @Controller
@@ -26,6 +22,9 @@ public class LoginController {
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	LeagueService leagueService;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String getLoginPage(ModelMap modelMap) {
@@ -63,7 +62,7 @@ public class LoginController {
 			session.setAttribute("user", authUser);
 			if(authUser.getRole() == 3) {
 				session.setAttribute("league", null);
-				modelMap.addAttribute("allLeagues", getAllLeagues());
+				modelMap.addAttribute("allLeagues", leagueService.getAllLeagues());
 			} else {
 				session.setAttribute("league", authUser.getTeam().getLeague());
 			}
@@ -72,11 +71,5 @@ public class LoginController {
 			modelMap.addAttribute("errorMessage", "Username and/or password is incorrect");
 			return "login";
 		}
-	}
-	
-	private List<League> getAllLeagues() {
-		LeagueDAO leagueDao = new LeagueDAOImpl();
-		
-		return leagueDao.selectAllLeagues();
 	}
 }
