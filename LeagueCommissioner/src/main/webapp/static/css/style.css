@@ -145,6 +145,94 @@ body {
 	padding-right: 20px;
 }
 
+.login-background {
+	width: 100%;
+	min-height: 100vh;
+	background-size: cover;
+}
+
+.outerbox {
+    display: table;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.login-wrapper {
+	background-color: #ccc;
+	background: -webkit-linear-gradient(left top, red, yellow); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(bottom right, red, yellow); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(bottom right, red, yellow); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(to bottom right, #ccc, #999, #666, #999, #ccc, #ddd, #aaa, #fff, #ccc); /* Standard syntax */
+	border: 4px ridge #b00a0a;
+	border-radius: 10px;
+	padding: 20px;
+}
+
+.login-vertical {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+@media (min-width: 992px) {
+    .login-wrapper {
+        width: 60%;
+        margin: auto;
+    }
+}
+
+@media (max-width: 991px) and (min-width: 768px;) {
+    .login-wrapper {
+    	width: 80%;
+    }
+}
+
+@media (max-width: 767px;) {
+    .login-wrapper {
+    	width: 95%;
+    }
+}
+
+.login-wrapper h1 {
+	font-family: "HighSchool";
+	text-align: center;
+	color: white;
+	font-size: 3em;
+	text-shadow: 2px 2px #b00a0a,
+				 -2px -2px #b00a0a,
+				 2px -2px #b00a0a,
+				 -2px 2px #b00a0a;
+}
+
+.login-wrapper p {
+	font-family: "Fira Sans";
+	font-size: 1.3em;
+	color: #333;
+	text-shadow: 0px 0px 2px white;
+	text-align: center;
+}
+
+.login-button {
+	text-align: center;
+}
+
+.login-button input {
+	font-family: "HighSchool";
+	color: #333;
+	text-shadow: 2px 2px 1px #b00a0a;
+	font-size: 1.4em;
+	border: 2px solid #b00a0a;
+	border-radius: 5px;
+	background-color: white;
+}
+
+.login-button input:active {
+	position: relative;
+	top: 2px;
+	left: 2px;
+	text-shadow: none;
+}
+
 /* ***********************
 ***** 5.0 PARAGRAPHS *****
 ************************** */
@@ -227,7 +315,6 @@ h3 {
 .standings-table td {
 	font-family: "Fira Sans";
 	font-size: 1.2em;
-	-webkit-font-smoothing: antialiased;
 }
 
 .standings-table tr:nth-child(odd) {
