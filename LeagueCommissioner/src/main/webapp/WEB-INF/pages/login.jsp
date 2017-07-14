@@ -25,18 +25,16 @@
 		<div class="login-vertical">
 			<div class="login-wrapper">
 				<h1>League Commissioner</h1>
+				<p>Please Log In</p>
 				<form:form action="login" method="POST" commandName="user">
-					Username: <form:input path="username"/>
-					<form:errors path="username" cssClass="alert alert-danger" element="div"/>
-					<br/>
-					Password: <form:password path="password"/>
-					<form:errors path="password" cssClass="alert alert-danger" element="div"/>
-					<br/>
+					<p>Username: <form:input path="username"/>
+					<form:errors path="username" cssClass="alert alert-danger" element="div"/></p>
+					<p>Password: <form:password path="password"/>
+					<form:errors path="password" cssClass="alert alert-danger" element="div"/></p>
 					<form:hidden path="firstName"/>
 					<form:hidden path="lastName"/>
 					<form:hidden path="email"/>
-					<br/>
-					<input type="submit" value="login">
+					<div class="login-button"><input type="submit" value="login"></div>
 				</form:form>
 			</div>
 		</div>
