@@ -149,7 +149,7 @@ public class StandingsPOJO {
 	public String toString() {
 		return teamName + "  GP:" + played + "  W:" + wins + " D:" + draws
 				+ " L:" + losses + "  OTW:" + otWins + "  OTL:" + otLosses + "  GF:" + goalsFor
-				+ "  GA:" + goalsAllowed + "  GD:" + goalDiff + "  Pts:" + ptsPct;
+				+ "  GA:" + goalsAllowed + "  GD:" + goalDiff + "  Pts/Pct:" + ptsPct;
 	}
 	
 }
