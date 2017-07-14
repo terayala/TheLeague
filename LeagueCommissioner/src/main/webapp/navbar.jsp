@@ -6,7 +6,7 @@
 			League Commissioner
 		</div>
 		<ul>
-			<li id="standings"><a href="http://localhost:8085/LeagueCommissioner/viewstandings">Standings</a></li>
+			<li id="standings"><a href="http://localhost:8085/LeagueCommissioner/standings">Standings</a></li>
 			<li id="schedule"><a href="http://localhost:8085/LeagueCommissioner/viewschedule">Schedule</a></li>
 			<c:choose>
 				
@@ -36,7 +36,7 @@
 			League Commissioner
 		</button>
 		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-			<a class="dropdown-item" href="http://localhost:8085/LeagueCommissioner/viewstandings">Standings</a>
+			<a class="dropdown-item" href="http://localhost:8085/LeagueCommissioner/standings">Standings</a>
 			<a class="dropdown-item" href="http://localhost:8085/LeagueCommissioner/viewschedule">Schedule</a>
 			<c:choose>
 			
