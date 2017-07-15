@@ -2,9 +2,12 @@ package com.revature.services;
 
 import java.util.ArrayList;
 
+import org.springframework.stereotype.Service;
+
 import com.revature.daos.StandingsDAO;
 import com.revature.daos.StandingsDAOImpl;
 
+@Service
 public class FetchLeagueStandingsService {
 
 	public ArrayList<StandingsPOJO> currentStandings(int leagueId, int ptsOrPct) {
