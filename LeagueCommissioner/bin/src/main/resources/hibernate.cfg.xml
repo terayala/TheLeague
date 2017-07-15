@@ -13,6 +13,7 @@
         <property name="hibernate.connection.username">TheLeague</property>
         <property name="hibernate.connection.password">p4ssw0rd</property>
         <property name="hibernate.connection.pool_size">10</property>
+        <property name="hibernate.enable_lazy_load_no_trans">true</property>
 		
 		<!-- CACHE CONFIGURATION -->
 		<property name="net.sf.ehcache.configurationResourceName">/ehcache.xml</property>
@@ -28,6 +29,7 @@
 		<mapping class="com.revature.beans.Team"/>
 		<mapping class="com.revature.beans.Trade"/>
 		<mapping class="com.revature.beans.User"/>
+		<mapping class="com.revature.services.StandingsPOJO"/>
         
     </session-factory>
 </hibernate-configuration>
