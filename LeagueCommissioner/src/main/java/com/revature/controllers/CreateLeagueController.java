@@ -1,5 +1,6 @@
 package com.revature.controllers;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -30,8 +31,9 @@ public class CreateLeagueController {
 	Team teamTemplate;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String getLeagueePage(ModelMap modelMap) {
+	public String getLeaguePage(ModelMap modelMap) {
 		List<Sport> sports = new SportDAOImpl().selectAllSports();
+		Collections.sort(sports);
 		modelMap.addAttribute("sports", sports);
 		return "CreateLeaguePage";
 	}

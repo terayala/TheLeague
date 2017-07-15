@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 @Table(name = "SPORTS")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "myAwesomeCache")
 @Component
-public class Sport {
+public class Sport implements Comparable<Sport> {
 
 	@Id
 	@Column(name = "SPORT_ID")
@@ -55,4 +55,10 @@ public class Sport {
 	public String toString() {
 		return "Sport [sport_id=" + sport_id + ", name=" + name + "]";
 	}
+
+	@Override
+	public int compareTo(Sport s) {
+		return this.name.compareToIgnoreCase(s.getName());
+	}
+	
 }
