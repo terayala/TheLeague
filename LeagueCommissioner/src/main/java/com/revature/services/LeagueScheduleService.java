@@ -4,14 +4,14 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import com.revature.beans.Game;
 import com.revature.beans.Team;
 import com.revature.daos.TeamDAO;
 import com.revature.daos.TeamDAOImpl;
 
-@Service
+@Component
 public class LeagueScheduleService {
 	
 	public LeagueScheduleService() {
@@ -181,6 +181,7 @@ public class LeagueScheduleService {
 					gameEntry.setGameDate(dates.get(round - 1));
 					
 					games.add(gameEntry);
+					System.out.println(gameEntry.getHomeTeam().getName() + " vs. " + gameEntry.getAwayTeam().getName());
 					
 					// This will add the return match
 					gameEntryReturn.setHomeTeam(awayTeam);

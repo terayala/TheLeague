@@ -42,54 +42,114 @@
 				<div class="schedule-container">
 					<table class="schedule-table">
 					
-					<!-- check role for coach, player/commissioner in otherwise -->
-						  <thead>
-						    <tr>
-						      <th>Game Date</th>
-						      <th>Home Team</th>
-						      <th>Away Team</th>						  
-						      <th>Home Score</th>
-						      <th>Away Score</th>
-						    </tr>
-						  </thead>
-						  <c:choose>
-						  	<c:when test="${ sessionScope.user.getRole() == 2 }">
-						  	<tbody>
-						  	<c:forEach items="${ requestScope.allGames }" var="game">
-						  	<!-- check for scores: if yes, display scores; if none, add button to enter scores -->
-						  		<tr>
-						  			<td>${ game.getGameDate() }</td>
-						  			<td>${ game.getHomeTeam().getName() }</td>
-						  			<td>${ game.getAwayTeam().getName() }</td>
-						  		<c:choose>
-						  			<c:when test="${ game.getHomeScore() == null }">
-						  				<td colspan="2"><a href="http://localhost:8085/LeagueCommissioner/enterscores">Enter Scores</a></td>
-						  			</c:when>
-						  			<c:otherwise>
-							  			<td>${ game.getHomeScore() }</td>
-										<td>${ game.getAwayScore() }</td>
-						  			</c:otherwise>
-						  		</c:choose>	
-						  		</tr>					  		
-						  	</c:forEach>
-						  </tbody>
-						  </c:when>
-						  <c:otherwise>
-						  	<tbody>
-						  	<c:forEach items="${ requestScope.allGames }" var="game">
-						  		<tr>
-						  			<td>${ game.getGameDate() }</td>
-						  			<td>${ game.getHomeTeam().getName() }</td>
-						  			<td>${ game.getAwayTeam().getName() }</td>
-						  			<td>${ game.getHomeScore() }</td>
-									<td>${ game.getAwayScore() }</td>
-						  		</tr>					  		
-						  	</c:forEach>
-						  </tbody>
-						  </c:otherwise>
-						  </c:choose>
+						<!-- Will show a different table for commissioners than for coaches or players -->
+						
+						<!-- Header row -->
+						<c:choose>
+							<c:when test="${ sessionScope.user.getRole() == 3 }">
+								<tr>
+									<th class="sched-date">Date</th>
+									<th class="sched-time">Time</th>
+									<th class="sched-team">Home</th>
+									<th class="sched-score"></th>
+									<th style="text-align:right" class="sched-team">Visitor</th>
+								</tr>
+							</c:when>
+							<c:otherwise>
+								<tr>
+									<th class="sched-date">Date</th>
+									<th class="sched-time">Time</th>
+									<th class="sched-opponent">Opponent</th>
+									<th class="sched-team-score" style="text-align:right;">Score</th>
+								</tr>
+							</c:otherwise>
+						</c:choose>
+						
+						<!-- Main body of table -->
+						<c:forEach items="${ requestScope.allGames }" var="game">
+							<tr>
+								<td><fmt:parseDate pattern="MMM-dd-yyyy k:m:s" value="${ game.getGameDate() }" var="date" />
+									<span class="hidden-sm-down"><fmt:formatDate pattern="MMM. d, yyyy" value="${ date }"/></span>
+									<span class="hidden-md-up"><fmt:formatDate pattern="MMM. d" value="${ date }"/></span>
+								</td>
+								<td>
+									<span class="hidden-sm-down"><fmt:formatDate pattern="h:mm a" value="${ date }"/></span>
+									<span class="hidden-md-up"><fmt:formatDate pattern="h:mm" value="${ date }"/></span>
+								</td>
+							
+								<c:choose>
+									<c:when test="${ sessionScope.user.getRole() == 3 }">
+										<td
+											<c:if test="${ game.getHomeScore() > game.getAwayScore() }">
+												style="font-weight:bold;"
+											</c:if>
+											>${ game.getHomeTeam().getName() }</td>
+										<td style="text-align:center;">${ game.getHomeScore() }:${ game.getAwayScore() }</td>
+							  			<td style="text-align:right;
+							  				<c:if test="${ game.getHomeScore() < game.getAwayScore() }">
+												font-weight:bold;
+											</c:if>
+							  			">${ game.getAwayTeam().getName() }</td>
+									</c:when>
+									<c:otherwise>
+										<td>
+											<c:choose>
+												<c:when test="${ game.getHomeTeam().getName().equals(sessionScope.user.team.getName()) }">
+													<strong>${ game.getAwayTeam().getName() }</strong>
+												</c:when>
+												<c:otherwise>
+													@ ${ game.getHomeTeam().getName() }
+												</c:otherwise>
+											</c:choose>
+										</td>
+										
+										<td style="text-align:right;">
+											<c:if test="${ game.getHomeScore() == null && sessionScope.user.getRole() == 2 }">
+								  				<a href="http://localhost:8085/LeagueCommissioner/enterscores">Enter Scores</a></td>
+								  			</c:if>
+								  			<c:if test="${ game.getHomeScore() != null }">
+								  				<c:choose>
+								  					<c:when test="${ game.getHomeTeam().getName().equals(sessionScope.user.team.getName()) }">
+								  						<c:choose>
+								  							<c:when test="${ game.getHomeScore() > game.getAwayScore() }">
+								  								W
+								  							</c:when>
+								  							<c:when test="${ game.getHomeScore() < game.getAwayScore() }">
+								  								L
+								  							</c:when>
+								  							<c:otherwise>T</c:otherwise>
+								  						</c:choose>
+								  						<c:if test="${ game.getIsOvertime() }">
+								  							(OT)
+								  						</c:if>
+								  						${ game.getHomeScore() } - ${ game.getAwayScore() }
+								  					</c:when>
+								  					<c:otherwise>
+								  						<c:choose>
+								  							<c:when test="${ game.getHomeScore() < game.getAwayScore() }">
+								  								W
+								  							</c:when>
+								  							<c:when test="${ game.getHomeScore() > game.getAwayScore() }">
+								  								L
+								  							</c:when>
+								  							<c:otherwise>T</c:otherwise>
+								  						</c:choose>
+								  						<c:if test="${ game.getIsOvertime() }">
+								  							(OT)
+								  						</c:if>
+								  						${ game.getAwayScore() } - ${ game.getHomeScore() }
+								  					</c:otherwise>
+								  				</c:choose>
+								  			</c:if>
+										</td>
+									</c:otherwise>
+								</c:choose>
+							</tr>
+						</c:forEach>
+					
 					</table>
 				</div>
+					
 			</div>
 			
 			<div class="col-md-3 hidden-md-down sidebar">
