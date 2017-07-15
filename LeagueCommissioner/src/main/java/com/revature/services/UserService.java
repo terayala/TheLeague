@@ -1,12 +1,12 @@
 package com.revature.services;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.revature.beans.User;
 import com.revature.daos.UserDAOImpl;
 import com.revature.daos.UserDAO;
 
-@Component
+@Service
 public class UserService {
 	public User auth(User user) {
 		User authUser = null;

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>             <!-- ROOT TAG -->
+    <session-factory>                <!-- configuration for the session factory -->
+
+        <property name="show_sql">true</property>
+        <property name="hibernate.hbm2ddl.auto">update</property> <!-- Specify ddl approach -->
+        
+        <!-- Local config -->		
+		<property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@leaguerds.cf8ynfank5yy.us-east-2.rds.amazonaws.com:1521:orcl</property>
+        <property name="hibernate.connection.username">TheLeague</property>
+        <property name="hibernate.connection.password">p4ssw0rd</property>
+        <property name="hibernate.connection.pool_size">10</property>
+		
+		<!-- CACHE CONFIGURATION -->
+		<property name="net.sf.ehcache.configurationResourceName">/ehcache.xml</property>
+		<property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+		<property name="hibernate.cache.use_second_level_cache">true</property>
+		<property name="hibernate.cache.use_query_cache">true</property>
+		
+		<!-- ANNOTATED MAPPING CLASSES -->
+		<mapping class="com.revature.beans.Game"/>
+		<mapping class="com.revature.beans.League"/>
+		<mapping class="com.revature.beans.Sport"/>
+		<mapping class="com.revature.beans.Stats"/>
+		<mapping class="com.revature.beans.Team"/>
+		<mapping class="com.revature.beans.Trade"/>
+		<mapping class="com.revature.beans.User"/>
+        
+    </session-factory>
+</hibernate-configuration>

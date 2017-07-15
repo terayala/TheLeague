@@ -1,5 +1,7 @@
 package com.revature.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -10,7 +12,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.revature.beans.League;
+import com.revature.beans.Team;
 import com.revature.beans.User;
+import com.revature.daos.TeamDAOImpl;
 import com.revature.daos.UserDAO;
 import com.revature.daos.UserDAOImpl;
 
@@ -22,7 +27,12 @@ public class CreateUserController {
 	User tempUser;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public String getHomePage(ModelMap modelMap) {
+	public String getHomePage(ModelMap modelMap, HttpSession session) {
+		User user = (User)session.getAttribute("user");
+		if(user.getRole() == 3) {
+			List<Team> teams = new TeamDAOImpl().selectTeamsByLeague(((League)session.getAttribute("league")).getLeagueID());
+			modelMap.addAttribute("teams", teams);
+		}
 		modelMap.addAttribute("user", tempUser);
 		return "CreateUserPage";
 	}
@@ -35,7 +45,6 @@ public class CreateUserController {
 		
 		UserDAO dao =  new UserDAOImpl();
 		user.setActive(1);
-
 		if(((User)session.getAttribute("user")).getRole()==2){
 			user.setRole(1);
 			user.setTeam(((User)session.getAttribute("user")).getTeam());
@@ -43,8 +52,6 @@ public class CreateUserController {
 		else {
 			user.setRole(2);
 		}
-		
-		user.setActive(1);
 		dao.createUser(user);
 		
 		return "home";
