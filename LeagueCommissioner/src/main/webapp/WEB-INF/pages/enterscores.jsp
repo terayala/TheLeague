@@ -42,7 +42,7 @@
 					Away Score: <input type="text" name="away">	 
 					<br>
 					<c:forEach items="${ requestScope.allPlayers }" var="player">
-						Player #${ player.getUniform() }: <input type="text" name="${ palyer.getUserID() }"> 
+						Player #${ player.getUniform() }: <input type="text" name="${ player.getUsername() }"> 
 						<br>
 					</c:forEach>
 					<button type="submit" class="btn btn-default" value="POST">Submit Scores</button>
