@@ -31,7 +31,7 @@ public class ViewScheduleController {
 	public String getViewSchedule(ModelMap modelMap, HttpSession session) {
 		List<Game> list = service.getGames((User)session.getAttribute("user"), (League)session.getAttribute("league"));
 		modelMap.addAttribute("allGames", list);
-		return "ViewSchedulePage";
+		return "ViewSchedulePage2";
 	}
 	
 }
