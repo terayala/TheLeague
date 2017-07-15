@@ -82,16 +82,16 @@ public class Game {
 		this.gameID = gameID;
 	}
 
-	public int getHomeTeam() {
-		return homeTeam.getTeamID();
+	public Team getHomeTeam() {
+		return homeTeam;
 	}
 
 	public void setHomeTeam(Team homeTeam) {
 		this.homeTeam = homeTeam;
 	}
 
-	public int getAwayTeam() {
-		return awayTeam.getTeamID();
+	public Team getAwayTeam() {
+		return awayTeam;
 	}
 
 	public void setAwayTeam(Team awayTeam) {
