@@ -36,15 +36,18 @@ public class User {
 	private Team team;
 	
 	@Column(name = "FIRST_NAME")
+	@NotEmpty(message="Username cannot be empty")
 	private String firstName;
 	
 	@Column(name = "LAST_NAME")
+	@NotEmpty(message="Username cannot be empty")
 	private String lastName;
 	
 	@Column(name = "ROLE")
 	private int role;
 	
 	@Column(name = "EMAIL")
+	@NotEmpty(message="Username cannot be empty")
 	private String email;
 	
 	@Column(name = "USERNAME")
