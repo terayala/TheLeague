@@ -33,10 +33,13 @@ public class EnterDatesController {
 		return "enterdates";
 	}
 	
+
 	@RequestMapping(method = RequestMethod.GET)
 	public String getEnterDatesPage(ModelMap modelMap){
 		TeamDAO dao = new TeamDAOImpl();
 		modelMap.addAttribute("count", dao.getAllTeams());
+
+		
 		return "enterdates";
 	}
 	

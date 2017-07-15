@@ -2,22 +2,34 @@ package com.revature.daos;
 
 import java.util.List;
 
-
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Projections;
 
-import com.revature.beans.League;
 import com.revature.beans.Team;
 import com.revature.util.HibernateUtil;
 
 public class TeamDAOImpl implements TeamDAO {
-
+int count=0;
 	@Override
 	public void createTeam(Team team) {
+		count++;
+		System.out.println("count************: " + count);
 		Session session= HibernateUtil.getSession();
+		
+		
+		Criteria cr = session.createCriteria(TeamDAOImpl.class);
+
+		// To get total row count.
+		//cr.setProjection(Projections.rowCount());
 		Transaction tx = null;
 		try {
+	        cr.setProjection(Projections.rowCount());
+	         List rowCount = cr.list();
+
+	         System.out.println("Total Count: " + rowCount.size());
 			tx = session.beginTransaction();
 			
 			session.save(team);
@@ -28,7 +40,7 @@ public class TeamDAOImpl implements TeamDAO {
 			}
 			e.printStackTrace();
 		} finally {
-			System.out.println(team.getNickname());
+
 			session.close();
 		}
 	}
