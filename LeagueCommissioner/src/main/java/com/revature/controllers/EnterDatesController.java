@@ -28,13 +28,13 @@ public class EnterDatesController {
 		TeamDAO dao = new TeamDAOImpl();
 		team.setLeague((League) session.getAttribute("league"));
 		dao.createTeam(team);
-		//session.setAttribute("TeamDAOImpl", dao.getAllTeams());
+		//session.setAttribute("TeamDAOImpl", dao.getAllTeams());//
 		
 		return "enterdates";
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public String getTeamPage(ModelMap modelMap){
+	public String getEnterDatesPage(ModelMap modelMap){
 		TeamDAO dao = new TeamDAOImpl();
 		modelMap.addAttribute("count", dao.getAllTeams());
 		return "enterdates";
