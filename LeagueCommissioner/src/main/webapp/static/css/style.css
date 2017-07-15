@@ -10,9 +10,11 @@
 	2.0		FONTS
 	3.0		NAVIGATION BAR
 	4.0		BODY CONTAINERS
+	  4.1	MAIN SCREEN
+	  4.2	LOGIN SCREEN
+	  4.3	LEAGUE CREATION
 	5.0		PARAGRAPHS
 	6.0		TABLES
-	7.0		BUTTONS
 */
 
 /* ********************
@@ -47,6 +49,12 @@ body {
 @font-face {
     font-family: 'Fira Sans';
     src: url('../fonts/fira-sans.otf');
+}
+
+@font-face {
+    font-family: 'Fira Sans';
+    src: url('../fonts/fira-sans-italic.otf');
+    font-style: italic;
 }
 
 /* ***************************
@@ -124,6 +132,8 @@ body {
 ***** 4.0 BODY CONTAINERS *****
 ******************************* */
 
+/*********** 4.1 MAIN SCREEN ***********/
+
 .main-screen {
 	padding-top: 20px;
 	background-color: #ccc;
@@ -144,6 +154,8 @@ body {
 .sidebar-container {
 	padding-right: 20px;
 }
+
+/*********** 4.2 LOGIN SCREEN ***********/
 
 .login-background {
 	width: 100%;
@@ -231,6 +243,64 @@ body {
 	top: 2px;
 	left: 2px;
 	text-shadow: none;
+}
+
+/*********** 4.3 LEAGUE CREATION ***********/
+
+.create-league-container {
+	margin-left: 20px;
+	border: 4px ridge #b00a0a;
+	border-radius: 15px;
+	background-color: #ccc;
+	padding: 15px;
+	font-family: "Fira Sans";
+	font-size: 1.1em;
+}
+
+@media (max-width: 991px) {
+    .create-league-container {
+    	margin-right: 20px;
+    }
+}
+
+.create-league-container h1 {
+	font-family: "HighSchool";
+	color: #b00a0a;
+	text-shadow: 2px 2px white,
+				 -2px -2px white,
+				 2px -2px white,
+				 -2px 2px white;
+	text-align: center;
+}
+
+.create-league-container h5 {
+	text-align: center;
+	font-size: 1.3em;
+}
+
+.create-league-submit {
+	text-align: center;
+}
+
+.create-league-submit button {
+	font-family: "HighSchool";
+	color: white;
+	text-shadow: 2px 2px 1px black;
+	font-size: 1.2em;
+	background-color: #b00a0a;
+	border: 3px outset white;
+}
+
+.create-league-submit button:hover {
+	background-color: #b00a0a;
+	background: -webkit-radial-gradient(#e7b5b5 5%, #bf3a3a 45%, #b00a0a 70%);
+	background: -o-radial-gradient(#e7b5b5 5%, #bf3a3a 45%, #b00a0a 70%);
+	background: -moz-radial-gradient(#e7b5b5 5%, #bf3a3a 45%, #b00a0a 70%);
+	background: radial-gradient(#e7b5b5 5%, #bf3a3a 45%, #b00a0a 70%); 
+}
+
+.create-league-submit button:active {
+	border: 3px inset white;
 }
 
 /* ***********************

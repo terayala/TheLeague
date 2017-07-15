@@ -26,68 +26,94 @@
 		
 		<div class="row">
 			<div class="col-md-12 col-lg-9 main-screen">
-				<h1>Create A League</h1>
-				<hr>
-				<form class="form-horizontal" action="createleague" method="post">
-				  <div class="form-group">
-				    <label class="control-label col-sm-2" for="name">League Name:</label>
-				    <div class="col-sm-10">
-				      <input type="text" class="form-control" name="Name" id="name">
-				    </div>
-				  </div>
-				  <div class="form-group">
-				    <label class="control-label col-sm-2" for="sports">Select Sport:</label>
-				    <div class="col-sm-10"> 
-				     <select name="Sport">
-						<c:forEach items="${ requestScope.sports }" var="sport">
-							<option value="${ sport.getSport_id() }">${ sport.getName() } </option>
-						</c:forEach>
-					</select>
-				    </div>
-				  </div>
-				  <div class="form-group">
-				    <label class="control-label col-sm-2" for="ptsOrPct">Select By Points or By Percentage:</label>
-				      <div class="col-sm-10">
-				  		<input type="radio" name="ptsOrPct" value="1">By Points<br>
-						<input type="radio" name="ptsOrPct" value="2">By Percentage
-				     </div>
-				   </div>
-				   <div class="form-group">
-				    <label class="control-label col-sm-2" for="winPts">Enter points for a win: </label>
-				    <div class="col-sm-10">
-				      <input type="number" class="form-control" name="winPts" id="winPts">
-				    </div>
-				  </div>
-				  <div class="form-group">
-				    <label class="control-label col-sm-2" for="tiePts">Enter points for a tie: </label>
-				    <div class="col-sm-10">
-				      <input type="number" class="form-control" name="tiePts" id="tiePts">
-				    </div>
-				  </div>
-				   <div class="form-group">
-				    <label class="control-label col-sm-2" for="winOTPts">Enter points for a OT win (enter 0 points when no overtime is allowed): </label>
-				    <div class="col-sm-10">
-				      <input type="number" class="form-control" name="winOTPts" id="winOTPts">
-				    </div>
-				  </div>
-				  <div class="form-group">
-				    <label class="control-label col-sm-2" for="lossOTPts">Enter points for a OT loss (enter 0 points when no overtime is allowed): </label>
-				    <div class="col-sm-10">
-				      <input type="number" class="form-control" name="lossOTPts" id="lossOTPts">
-				    </div>
-				  </div>
-				  <div class="form-group"> 
-				    <div class="col-sm-offset-2 col-sm-10">
-				      <div class="checkbox">
-				        <label><input type="checkbox" name="tiesAllowed">Check here if ties are allowed</label>
-				      </div>
-				    </div>
-				  </div>
-				   <div class="col-sm-offset-2 col-sm-10">
-				     <button type="submit" class="btn btn-default" value="POST">Submit</button>
-				   </div>
-				</form>
+			
+				<div class="create-league-container">
+			
+					<h1>Create New League</h1>
+					<hr>
+					<form class="form-horizontal" action="createleague" method="post">
+					
+						<!-- This is where the user will enter the league name -->
+						<div class="form-group row">
+							<label class="control-label col-sm-2" for="name">League Name:</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" name="Name" id="name">
+							</div>
+						</div>
+					  
+						<div class="row">
+							<div class="form-group col-md-6">
+								<div class="row">
+									<label class="control-label col-sm-4" for="sports">Select Sport:</label>
+									<div class="col-sm-8"> 
+										<select name="Sport">
+										<c:forEach items="${ requestScope.sports }" var="sport">
+											<option value="${ sport.getSport_id() }">${ sport.getName() } </option>
+										</c:forEach>
+										</select>
+									</div>
+								</div>
+								<div class="row">
+									<div class="checkbox">
+					        			<label>
+					        				<input type="checkbox" name="tiesAllowed"
+					        				style="margin-left:15px;">Are Draws/Ties Allowed?
+					        				Check if yes
+					        			</label>
+					      			</div>
+								</div>
+							</div>
+							<div class="form-group col-md-6">
+								<div class="row">
+									<label class="control-label col-sm-6">
+										Will the standings be sorted by points or by win percentage?
+									</label>
+									<div class="col-sm-6">
+								  		<input type="radio" name="ptsOrPct" value="1">Points<br>
+										<input type="radio" name="ptsOrPct" value="2">Percentage
+								    </div>
+							    </div>
+						    </div>
+						</div>
+						
+						<h5>The following is used only if the standings are sorted by points</h5>
+						<h5><em>NOTE: If your league does not have overtime, enter "0" for number of
+						points per overtime win or loss.</em></h5>					
+						<div class="row">
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label" for="winPts">Points Per Win:</label>
+									<input type="number" class="form-control" name="winPts" id="winPts">
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label" for="tiePts">Points Per Tie/Draw:</label>
+									<input type="number" class="form-control" name="tiePts" id="tiePts">
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label" for="winOTPts">Points Per OT Win</label>
+									<input type="number" class="form-control" name="winOTPts" id="winOTPts">
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label" for="lossOTPts">Points Per OT Loss</label>
+									<input type="number" class="form-control" name="lossOTPts" id="lossOTPts">
+								</div>
+							</div>
+						</div>
+					  
+						<div class="create-league-submit">
+							<button type="submit" class="btn btn-default" value="POST">Create League</button>
+						</div>
+						
+					</form>
+					</div>
 				</div>
+				
 			<div class="col-md-3 hidden-md-down sidebar">
 				<div class="sidebar-container">
 					<%@ include file="/sidebar.jsp" %>
