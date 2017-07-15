@@ -1,10 +1,12 @@
 package com.revature.daos;
 
+import java.util.List;
+
 import com.revature.beans.Stats;
 
 public interface StatsDAO {
 
 	public void createStat(Stats stats);
 	public void updateStat(Stats stats);
-	public Stats selectStatById(Integer id);
+	public List<Stats> selectStatsByPlayerId(Integer playerId);
 }

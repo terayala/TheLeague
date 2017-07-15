@@ -1,10 +1,14 @@
 package com.revature.daos;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 import com.revature.beans.Stats;
+import com.revature.beans.User;
 import com.revature.util.HibernateUtil;
 
 public class StatsDAOImpl implements StatsDAO {
@@ -45,22 +49,16 @@ public class StatsDAOImpl implements StatsDAO {
 	}
 
 	@Override
-	public Stats selectStatById(Integer id) {
-		Stats stat = null;
+	public List<Stats> selectStatsByPlayerId(Integer playerId) {
+		List<Stats> stats = null;
 		Session session = HibernateUtil.getSession();
-		Transaction tx = null;
-		try {
-			tx = session.beginTransaction();
-			stat = (Stats) session.get(Stats.class, id);
-		} catch(HibernateException e) {
-			if(tx != null) {
-				tx.rollback();
-			}
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-		return stat;
+		UserDAO userDao = new UserDAOImpl();
+		User user = userDao.selectUserById(playerId);
+		stats = session.createCriteria(Stats.class)
+										.add(Restrictions.eq("player.userID", playerId))
+										.list();
+		session.close();
+		return stats;
 	}
 
 }
