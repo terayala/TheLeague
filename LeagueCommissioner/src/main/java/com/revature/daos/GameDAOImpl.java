@@ -21,7 +21,7 @@ public class GameDAOImpl implements GameDAO {
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			games = ((Criteria) session.createCriteria(Game.class)).add(Restrictions.ilike("GAME_DATE", date)).list();
+			games = ((Criteria) session.createCriteria(Game.class)).add(Restrictions.ilike("gameDate", date)).list();
 		} catch (Exception e) {
 			if(tx != null){
 				tx.rollback();
@@ -38,8 +38,8 @@ public class GameDAOImpl implements GameDAO {
 		List<Game> list = null;
 		Session session = HibernateUtil.getSession();
 		Transaction tran = null;
-		Criterion crit1 = Restrictions.ilike("HOME_TEAM", teamID);
-		Criterion crit2 = Restrictions.ilike("AWAY_TEAM", teamID);
+		Criterion crit1 = Restrictions.eq("homeTeam.teamID", teamID);
+		Criterion crit2 = Restrictions.eq("awayTeam.teamID", teamID);
 		try {
 			tran = session.beginTransaction();
 			list = ((Criteria) session.createCriteria(Game.class)).add(Restrictions.or(crit1, crit2)).list();
