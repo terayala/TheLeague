@@ -2,12 +2,12 @@ package com.revature.daos;
 
 import java.util.List;
 
-
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
-import com.revature.beans.League;
 import com.revature.beans.Team;
 import com.revature.util.HibernateUtil;
 
@@ -90,5 +90,24 @@ public class TeamDAOImpl implements TeamDAO {
 			
 			return teams.size();
 		
+	}
+
+	@Override
+	public List<Team> selectTeamsByLeague(Integer leagueId) {
+		List<Team> teams = null;
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			teams = ((Criteria)session.createCriteria(Team.class)).add(Restrictions.eq("league.leagueID", leagueId)).list();
+		} catch(HibernateException e) {
+			if(tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}		
+		return teams;
 	}
 }
