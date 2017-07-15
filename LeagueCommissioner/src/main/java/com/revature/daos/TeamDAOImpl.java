@@ -7,7 +7,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
-
 import com.revature.beans.Team;
 import com.revature.util.HibernateUtil;
 
@@ -15,20 +14,23 @@ public class TeamDAOImpl implements TeamDAO {
 
 	@Override
 	public void createTeam(Team team) {
-		Session session= HibernateUtil.getSession();
+
+		Session session = HibernateUtil.getSession();
+		Criteria cr = session.createCriteria(TeamDAOImpl.class);
+
 		Transaction tx = null;
 		try {
+
 			tx = session.beginTransaction();
-			
 			session.save(team);
 			tx.commit();
 		} catch (HibernateException e) {
-			if(tx != null){
+			if (tx != null) {
 				tx.rollback();
 			}
 			e.printStackTrace();
 		} finally {
-			System.out.println(team.getNickname());
+
 			session.close();
 		}
 	}
@@ -36,13 +38,13 @@ public class TeamDAOImpl implements TeamDAO {
 	@Override
 	public void updateTeam(Team team) {
 		Session session = HibernateUtil.getSession();
-		Transaction tx = null;		
+		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
 			session.update(team);
 			tx.commit();
 		} catch (HibernateException e) {
-			if(tx != null) {
+			if (tx != null) {
 				tx.rollback();
 			}
 			e.printStackTrace();
@@ -59,8 +61,8 @@ public class TeamDAOImpl implements TeamDAO {
 		try {
 			tx = session.beginTransaction();
 			team = (Team) session.get(Team.class, id);
-		} catch(HibernateException e) {
-			if(tx != null) {
+		} catch (HibernateException e) {
+			if (tx != null) {
 				tx.rollback();
 			}
 			e.printStackTrace();
@@ -72,24 +74,24 @@ public class TeamDAOImpl implements TeamDAO {
 
 	@Override
 	public int getAllTeams() {
-			List<Team> teams = null;
-			Session session = HibernateUtil.getSession();
-			Transaction tx = null;
-			
-			try{
-				tx = session.beginTransaction();
-				teams = session.createQuery("FROM TEAM").list();
-			}catch(HibernateException e){
-				if(tx!=null){
-					tx.rollback();
-				}
-				e.printStackTrace();
-			}finally{
-				session.close();
-			}		
-			
-			return teams.size();
-		
+		List<Team> teams = null;
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;
+
+		try {
+			tx = session.beginTransaction();
+			teams = session.createQuery("FROM TEAM").list();
+		} catch (HibernateException e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
+		return teams.size();
+
 	}
 
 	@Override
@@ -99,15 +101,15 @@ public class TeamDAOImpl implements TeamDAO {
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			teams = ((Criteria)session.createCriteria(Team.class)).add(Restrictions.eq("league.leagueID", leagueId)).list();
-		} catch(HibernateException e) {
-			if(tx != null) {
+			teams = ((Criteria) session.createCriteria(Team.class)).add(Restrictions.eq("league.leagueID", leagueId)).list();
+		} catch (HibernateException e) {
+			if (tx != null) {
 				tx.rollback();
 			}
 			e.printStackTrace();
 		} finally {
 			session.close();
-		}		
+		}
 		return teams;
 	}
 }

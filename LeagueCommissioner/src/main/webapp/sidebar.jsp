@@ -13,7 +13,7 @@
 		int ptsOrPct = ((League)session.getAttribute("league")).getPtsOrPct();
 		ArrayList<StandingsPOJO> standings = service.currentStandings(leagueId, ptsOrPct); %>
 		
-	<h3 style="text-align:center;">Standings</h3>
+	<h3 style="text-align:center;" class="sidebar-header">Standings</h3>
 
 	<table class="sidebar-standings-table">
 		<tr>

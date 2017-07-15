@@ -53,7 +53,7 @@
 			</form>
 
 			<!-- clicking submit button should generate a form for teams to input dates for each set of games -->
-			<form:form action="enterdates">
+			<form:form action="enterdates" method="get">
 				<input type="submit" value="Enter Dates" />
 			</form:form>
 
