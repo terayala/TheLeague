@@ -1,6 +1,6 @@
 package com.revature.daos;
 
-import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -11,17 +11,21 @@ import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 
 import com.revature.beans.Game;
+import com.revature.beans.Team;
 import com.revature.util.HibernateUtil;
 
 public class GameDAOImpl implements GameDAO {
 
-	public List<Game> getScheduleByDate(Timestamp date) {
-		List<Game> games = null;
+	public List<Game> getScheduleByLeague(List<Team> teams) {
+		List<Game> games = new ArrayList<Game>();
 		Session session= HibernateUtil.getSession();
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			games = ((Criteria) session.createCriteria(Game.class)).add(Restrictions.ilike("gameDate", date)).list();
+			for (Team t : teams) {
+				List<Game> tempList = ((Criteria)session.createCriteria(Game.class)).add(Restrictions.eq("homeTeam.teamID", t.getTeamID())).list();
+				games.addAll( tempList );
+			}
 		} catch (Exception e) {
 			if(tx != null){
 				tx.rollback();

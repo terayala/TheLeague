@@ -6,7 +6,11 @@ import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+<<<<<<< HEAD
 import org.hibernate.criterion.Projections;
+=======
+import org.hibernate.criterion.Restrictions;
+>>>>>>> branch 'master' of https://github.com/terayala/TheLeague.git
 
 import com.revature.beans.Team;
 import com.revature.util.HibernateUtil;
@@ -102,5 +106,24 @@ int count=0;
 			
 			return teams.size();
 		
+	}
+
+	@Override
+	public List<Team> selectTeamsByLeague(Integer leagueId) {
+		List<Team> teams = null;
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			teams = ((Criteria)session.createCriteria(Team.class)).add(Restrictions.eq("league.leagueID", leagueId)).list();
+		} catch(HibernateException e) {
+			if(tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}		
+		return teams;
 	}
 }

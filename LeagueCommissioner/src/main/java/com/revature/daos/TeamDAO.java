@@ -10,5 +10,5 @@ public interface TeamDAO {
 	public void updateTeam(Team team);
 	public Team selectTeamById(Integer id);
 	public int getAllTeams();
-	
+	public List<Team> selectTeamsByLeague(Integer leagueId);
 }
