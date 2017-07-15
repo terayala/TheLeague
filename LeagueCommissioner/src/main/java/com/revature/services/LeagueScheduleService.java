@@ -4,11 +4,14 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import org.springframework.stereotype.Service;
+
 import com.revature.beans.Game;
 import com.revature.beans.Team;
 import com.revature.daos.TeamDAO;
 import com.revature.daos.TeamDAOImpl;
 
+@Service
 public class LeagueScheduleService {
 	
 	public LeagueScheduleService() {
