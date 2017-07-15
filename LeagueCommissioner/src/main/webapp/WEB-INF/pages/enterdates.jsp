@@ -36,7 +36,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
 	$(function() {
-		$("#datepicker").datepicker();
+		$(".datepicker").datepicker({ minDate: 0 });
 	});
 </script>
 
@@ -51,9 +51,9 @@
 	<div class="row">
 		<div class="col-md-12 col-lg-9 main-screen">
 
-			<c:forEach begin="0" end="${modelMap.count}">
+			<c:forEach var="i" begin="1" end="${requestScope.count}">
 				<p>
-					Game: <input type="text" id="datepicker">
+					Game <c:out value="${i}"/>: <input type="text" class="datepicker">
 				</p>
 			</c:forEach>
 
