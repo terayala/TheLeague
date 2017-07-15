@@ -17,6 +17,8 @@ import com.revature.beans.League;
 import com.revature.beans.User;
 import com.revature.daos.GameDAO;
 import com.revature.daos.GameDAOImpl;
+import com.revature.daos.UserDAO;
+import com.revature.daos.UserDAOImpl;
 import com.revature.services.SchedulePageService;
 
 @Controller
@@ -31,6 +33,9 @@ public class EnterScoresController {
 		GameDAO dao = new GameDAOImpl();
 		Game game = dao.selectGameById(Integer.parseInt((String)gameMap.get("gameId")));
 		modelMap.addAttribute("game", game);
+		UserDAO userDAO = new UserDAOImpl();
+		List<User> list = userDAO.selectUsersByTeam(((User)session.getAttribute("user")).getTeam().getTeamID());
+		modelMap.addAttribute("allPlayers", list);
 		return "enterscores";
 	}
 	
