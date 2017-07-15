@@ -11,17 +11,16 @@
 			<c:choose>
 				
 				<c:when test="${ sessionScope.user.getRole() == 3}">
-					<li><a href="http://localhost:8085/LeagueCommissioner/viewstats">Stats</a></li>
 					<li><a href="http://localhost:8085/LeagueCommissioner/createleague">Create League</a></li>
 				</c:when>
 				
 				<c:when test="${ sessionScope.user.getRole() == 2}">
-					<li><a href="http://localhost:8085/LeagueCommissioner/viewstats">Stats</a></li>
+					<li><a href="http://localhost:8085/LeagueCommissioner/viewStats">Stats</a></li>
 					<li><a href="http://localhost:8085/LeagueCommissioner/createuserpage">Create Player</a></li>
 				</c:when>
 				
 				<c:when test="${ sessionScope.user.getRole() == 1}">
-					<li><a href="http://localhost:8085/LeagueCommissioner/playergamestats">Stats</a></li>
+					<li><a href="http://localhost:8085/LeagueCommissioner/viewStats">Stats</a></li>
 				</c:when>
 			</c:choose>
 			<li id="logout"><a href="http://localhost:8085/LeagueCommissioner/logout">Logout</a></li>
@@ -51,7 +50,7 @@
 				</c:when>
 				
 				<c:when test="${ sessionScope.user.getRole() == 1}">
-					<a class="dropdown-item" href="http://localhost:8085/LeagueCommissioner/playergamestats">Stats</a>
+					<a class="dropdown-item" href="http://localhost:8085/LeagueCommissioner/viewStats">Stats</a>
 				</c:when>
 			</c:choose>
 			<a class="dropdown-item" href="http://localhost:8085/LeagueCommissioner/logout">Logout</a>
