@@ -43,7 +43,6 @@ public class EnterScoresController {
 		dao.updateGame(game);
 		List<Game> list = service.getGames((User)session.getAttribute("user"), (League)session.getAttribute("league"));
 		modelMap.addAttribute("allGames", list);
-		
 		return "ViewSchedulePage";
 	}
 

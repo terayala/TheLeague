@@ -62,9 +62,7 @@
 						  			<td>${ game.getAwayTeam().getName() }</td>
 						  		<c:choose>
 						  			<c:when test="${ game.getHomeScore() == null }">
-						  				<td><a class="btn btn-default" 
-								  			href="http://localhost:8085/LeagueCommissioner/enterscores?gameId=${ game.getGameID() }">
-								  			Enter Scores</a></td>
+						  			
 						  			</c:when>
 						  			<c:otherwise>
 							  			<td>${ game.getHomeScore() }</td>
