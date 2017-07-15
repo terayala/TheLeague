@@ -27,7 +27,21 @@
 		
 		<div class="row">
 			<div class="col-md-12 col-lg-9 main-screen">
-				<table class="table table-hover">
+			
+				<h3 class="schedule-header">Schedule for
+					<c:choose>
+						<c:when test="${ sessionScope.user.getRole() == 3 }">
+							${ sessionScope.league.getName() }
+						</c:when>
+						<c:otherwise>
+							${ sessionScope.user.team.getName() }
+						</c:otherwise>
+					</c:choose>
+				</h3>
+			
+				<div class="schedule-container">
+					<table class="schedule-table">
+					
 					<!-- check role for coach, player/commissioner in otherwise -->
 						  <thead>
 						    <tr>
@@ -49,9 +63,7 @@
 						  			<td>${ game.getAwayTeam().getName() }</td>
 						  		<c:choose>
 						  			<c:when test="${ game.getHomeScore() == null }">
-						  				word
-						  				<td><a class="btn btn-default" 
-								  			href="http://localhost:8085/LeagueCommissioner/enterscores">Enter Scores</a></td>
+						  				<td colspan="2"><a href="http://localhost:8085/LeagueCommissioner/enterscores">Enter Scores</a></td>
 						  			</c:when>
 						  			<c:otherwise>
 							  			<td>${ game.getHomeScore() }</td>
@@ -76,8 +88,9 @@
 						  </tbody>
 						  </c:otherwise>
 						  </c:choose>
-						</table>
-					</div>
+					</table>
+				</div>
+			</div>
 			
 			<div class="col-md-3 hidden-md-down sidebar">
 				<div class="sidebar-container">
