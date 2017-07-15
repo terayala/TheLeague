@@ -29,13 +29,19 @@
 			<div class="col-md-12 col-lg-9 main-screen">
 				<h1>Enter the final scores</h1>
 				<hr>
-				<form action="enterscores" method="POST">
-				`	<input name="id" readonly="readonly" value="${ requestScope.game.getGameID() }">
-					Home Score: <input type="number" name="home">
+				<form action="enterscores" method="post">
+					Game ${ requestScope.game.getGameID() }
+					<input type="hidden" name="id" value="${ requestScope.game.getGameID() }">
 					<br>
-					Away Score: <input type="number" name="away">	 
+					Home Team: ${ requestScope.game.getHomeTeam().getName() }
 					<br>
-					<input type="submit" value="Submit Scores">
+					Home Score: <input type="text" name="home">
+					<br>
+					Away Team: ${ requestScope.game.getAwayTeam().getName() }
+					<br>
+					Away Score: <input type="text" name="away">	 
+					<br>
+					<button type="submit" class="btn btn-default" value="POST">Submit Scores</button>
 				</form>
 			</div>
 			
