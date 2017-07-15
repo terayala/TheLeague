@@ -8,5 +8,5 @@ public interface StatsDAO {
 
 	public void createStat(Stats stats);
 	public void updateStat(Stats stats);
-	public List<Stats> selectStatsByPlayerId(int playerId);
+	public List<Stats> selectStatsByPlayerId(Integer playerId);
 }
