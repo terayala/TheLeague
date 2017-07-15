@@ -3,10 +3,12 @@ package com.revature.controllers;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -16,7 +18,7 @@ import com.revature.daos.StatsDAO;
 import com.revature.daos.StatsDAOImpl;
 
 @Controller
-@RequestMapping(value = "/playerGameStats")
+@RequestMapping(value = "/playergamestats")
 public class PlayerGameStatsController {
 	
 	@Autowired
@@ -35,6 +37,15 @@ public class PlayerGameStatsController {
 		
 		modelMap.addAttribute("stats", stats);
 		
-		return "playerGameStats";
+		return "playergamestats";
+	}
+	
+	@RequestMapping(method = RequestMethod.POST)
+	public String doPlayerGameStats(@Valid User user, 
+								BindingResult bindingResult, 
+								ModelMap modelMap, 
+								HttpSession session) {
+		
+		return "playergamestats";
 	}
 }
