@@ -10,9 +10,13 @@
 	2.0		FONTS
 	3.0		NAVIGATION BAR
 	4.0		BODY CONTAINERS
+	  4.1	MAIN SCREEN
+	  4.2	LOGIN SCREEN
+	  4.3	LEAGUE CREATION
 	5.0		PARAGRAPHS
 	6.0		TABLES
-	7.0		BUTTONS
+	  6.1	STANDINGS TABLE
+	  6.2	SCHEDULE TABLE
 */
 
 /* ********************
@@ -39,10 +43,38 @@ body {
     src: url('../fonts/highschool.ttf');
 }
 
+@font-face {
+    font-family: 'Amaranth';
+    src: url('../fonts/amaranth.otf');
+}
+
+@font-face {
+    font-family: 'Fira Sans';
+    src: url('../fonts/fira-sans.otf');
+}
+
+@font-face {
+    font-family: 'Fira Sans';
+    src: url('../fonts/fira-sans-italic.otf');
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Fira Sans';
+    src: url('../fonts/fira-sans-bold.otf');
+    font-weight: bold;
+}
+
 /* ***************************
 ***** 3.0 NAVIGATION BAR *****
 ****************************** */
 .header {
+	background-color: #b00a0a;
+	width: 100%;
+	height: 40px;
+}
+
+.header-small {
 	background-color: #b00a0a;
 	width: 100%;
 	height: 40px;
@@ -108,6 +140,8 @@ body {
 ***** 4.0 BODY CONTAINERS *****
 ******************************* */
 
+/*********** 4.1 MAIN SCREEN ***********/
+
 .main-screen {
 	padding-top: 20px;
 	background-color: #ccc;
@@ -126,5 +160,338 @@ body {
 }
 
 .sidebar-container {
-	padding-right: 30px;
+	padding-right: 20px;
+}
+
+/*********** 4.2 LOGIN SCREEN ***********/
+
+.login-background {
+	width: 100%;
+	min-height: 100vh;
+	background-size: cover;
+}
+
+.outerbox {
+    display: table;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.login-wrapper {
+	background-color: #ccc;
+	background: -webkit-linear-gradient(left top, red, yellow); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(bottom right, red, yellow); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(bottom right, red, yellow); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(to bottom right, #ccc, #999, #666, #999, #ccc, #ddd, #aaa, #fff, #ccc); /* Standard syntax */
+	border: 4px ridge #b00a0a;
+	border-radius: 10px;
+	padding: 20px;
+}
+
+.login-vertical {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+@media (min-width: 992px) {
+    .login-wrapper {
+        width: 60%;
+        margin: auto;
+    }
+}
+
+@media (max-width: 991px) and (min-width: 768px;) {
+    .login-wrapper {
+    	width: 80%;
+    }
+}
+
+@media (max-width: 767px;) {
+    .login-wrapper {
+    	width: 95%;
+    }
+}
+
+.login-wrapper h1 {
+	font-family: "HighSchool";
+	text-align: center;
+	color: white;
+	font-size: 3em;
+	text-shadow: 2px 2px #b00a0a,
+				 -2px -2px #b00a0a,
+				 2px -2px #b00a0a,
+				 -2px 2px #b00a0a;
+}
+
+.login-wrapper p {
+	font-family: "Fira Sans";
+	font-size: 1.3em;
+	color: #333;
+	text-shadow: 0px 0px 2px white;
+	text-align: center;
+}
+
+.login-button {
+	text-align: center;
+}
+
+.login-button input {
+	font-family: "HighSchool";
+	color: #333;
+	text-shadow: 2px 2px 1px #b00a0a;
+	font-size: 1.4em;
+	border: 2px solid #b00a0a;
+	border-radius: 5px;
+	background-color: white;
+}
+
+.login-button input:active {
+	position: relative;
+	top: 2px;
+	left: 2px;
+	text-shadow: none;
+}
+
+/*********** 4.3 LEAGUE CREATION ***********/
+
+.create-league-container {
+	margin-left: 20px;
+	border: 4px ridge #b00a0a;
+	border-radius: 15px;
+	background-color: #ccc;
+	padding: 15px;
+	font-family: "Fira Sans";
+	font-size: 1.1em;
+}
+
+@media (max-width: 991px) {
+    .create-league-container {
+    	margin-right: 20px;
+    }
+}
+
+.create-league-container h1 {
+	font-family: "HighSchool";
+	color: #b00a0a;
+	text-shadow: 2px 2px white,
+				 -2px -2px white,
+				 2px -2px white,
+				 -2px 2px white;
+	text-align: center;
+}
+
+.create-league-container h5 {
+	text-align: center;
+	font-size: 1.3em;
+}
+
+.create-league-submit {
+	text-align: center;
+}
+
+.create-league-submit button {
+	font-family: "HighSchool";
+	color: white;
+	text-shadow: 2px 2px 1px black;
+	font-size: 1.2em;
+	background-color: #b00a0a;
+	border: 3px outset white;
+}
+
+.create-league-submit button:hover {
+	background-color: #b00a0a;
+	background: -webkit-radial-gradient(#e7b5b5 5%, #bf3a3a 45%, #b00a0a 70%);
+	background: -o-radial-gradient(#e7b5b5 5%, #bf3a3a 45%, #b00a0a 70%);
+	background: -moz-radial-gradient(#e7b5b5 5%, #bf3a3a 45%, #b00a0a 70%);
+	background: radial-gradient(#e7b5b5 5%, #bf3a3a 45%, #b00a0a 70%); 
+}
+
+.create-league-submit button:active {
+	border: 3px inset white;
+}
+
+/* ***********************
+***** 5.0 PARAGRAPHS *****
+************************** */
+
+h3 {
+	font-family: "HighSchool";
+}
+
+.page-header {
+	color: #b00a0a;
+	text-shadow: 1px 1px white,
+				 -1px -1px white,
+				 1px -1px white,
+				 -1px 1px white;
+}
+
+.sidebar-header {
+	color: white;
+	font-family: "HighSchool";
+	text-shadow: 1px 1px black,
+				 -1px -1px black,
+				 1px -1px black,
+				 -1px 1px black;
+}
+
+.sidebar-commissioner h4 {
+	font-family: "HighSchool";
+	text-shadow: 1px 1px black,
+				 -1px -1px black,
+				 1px -1px black,
+				 -1px 1px black;
+	text-align: center;
+}
+
+.sidebar-commissioner p {
+	font-family: "Amaranth";
+	font-size: 1.2em;
+	text-shadow: 2px 2px 1px #333;
+	color: #ccc;
+}
+
+/* *******************
+***** 6.0 TABLES *****
+********************** */
+
+/*********** 6.1 STANDINGS TABLE ***********/
+
+.sidebar-standings-table {
+	border: 3px ridge #ccc;
+	width: 100%;
+	margin-bottom: 20px;
+	font-family: "Amaranth";
+}
+
+.sidebar-standings-table tr th, td {
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
+.sidebar-standings-table tr:first-child {
+	background-color: #b00a0a;
+	color: #ddd;
+	font-family: "Amaranth";
+}
+
+.sidebar-standings-table tr:first-child th {
+	font-weight: normal;
+}
+
+.sidebar-standings-table tr:nth-child(2n+3) {
+	background-color: #ccc;
+	color: #333;
+}
+
+.sidebar-standings-table tr:nth-child(even) {
+	background-color: #eee;
+	color: #333;
+}
+
+.standings-container {
+	width: 80%;
+	margin: auto;
+}
+
+.standings-table {
+	border: 5px ridge #b00a0a;
+	width: 100%;
+	margin-bottom: 20px;
+	table-layout: fixed;
+}
+
+.standings-table th, td {
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
+.std-col {
+	width: 6%;
+	text-align: center;
+}
+
+.std-col-wide {
+	width: 8%;
+	text-align: center;
+}
+
+.standings-table td {
+	font-family: "Fira Sans";
+	font-size: 1.2em;
+}
+
+.standings-table tr:nth-child(odd) {
+	background-color: #ccc;
+}
+
+.standings-table tr:nth-child(even) {
+	background-color: #fff;
+}
+
+/*********** 6.2 SCHEDULE TABLE ***********/
+
+.schedule-header {
+	text-align: center;
+	font-family: "HighSchool";
+	color: #b00a0a;
+	text-shadow: 1px 1px white,
+				 -1px -1px white,
+				 1px -1px white,
+				 -1px 1px white;
+}
+
+.schedule-container {
+	margin-left: 20px;
+}
+
+@media (max-width: 991px) {
+    .schedule-container {
+    	margin-right: 20px;
+    }
+}
+
+.schedule-table {
+	width: 100%;
+	border: 4px ridge #b00a0a;
+	margin-bottom: 20px;
+}
+
+.schedule-table th, td {
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
+.schedule-table td {
+	font-family: "Fira Sans";
+	font-size: 1.1em;
+}
+
+.sched-date {
+	width: 16%;
+}
+
+.sched-time {
+	width: 12%;
+}
+
+.sched-team {
+	width: 31%;
+}
+
+.sched-score {
+	width: 10%
+}
+
+.sched-opponent {
+	width: 52%;
+}
+
+.sched-team-score {
+	width: 20%;
+}
+
+.schedule-table tbody tr:nth-child(even) {
+	background-color: white;
 }

@@ -43,12 +43,11 @@
 				<c:when test="${ sessionScope.user.getRole() == 3}">
 					<a class="dropdown-item" href="http://13.59.241.171:8085/LeagueCommissioner/stats">Stats</a>
 					<a class="dropdown-item" href="http://13.59.241.171:8085/LeagueCommissioner/createleague">Create League</a>
-					<a class="dropdown-item" href="http://13.59.241.171:8085/LeagueCommissioner/createuser">Register Coach</a>
 				</c:when>
 				
 				<c:when test="${ sessionScope.user.getRole() == 2}">
 					<a class="dropdown-item" href="http://13.59.241.171:8085/LeagueCommissioner/stats">Stats</a>
-					<a class="dropdown-item" href="http://13.59.241.171:8085/LeagueCommissioner/createuser">Register Player</a>
+					<a class="dropdown-item" href="http://13.59.241.171:8085/LeagueCommissioner/createuserpage">Create Player</a>
 				</c:when>
 				
 				<c:when test="${ sessionScope.user.getRole() == 1}">
