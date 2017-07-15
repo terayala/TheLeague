@@ -18,7 +18,7 @@ import com.revature.daos.StatsDAO;
 import com.revature.daos.StatsDAOImpl;
 
 @Controller
-@RequestMapping(value = "/playergamestats")
+@RequestMapping(value = "/viewStats")
 public class PlayerGameStatsController {
 	
 	@Autowired
@@ -34,10 +34,9 @@ public class PlayerGameStatsController {
 		StatsDAO statsDao = new StatsDAOImpl();
 		
 		List<Stats> stats = statsDao.selectStatsByPlayerId(user.getUserID());
-		
 		modelMap.addAttribute("stats", stats);
 		
-		return "playergamestats";
+		return "viewStats";
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
@@ -46,6 +45,6 @@ public class PlayerGameStatsController {
 								ModelMap modelMap, 
 								HttpSession session) {
 		
-		return "playergamestats";
+		return "viewStats";
 	}
 }
