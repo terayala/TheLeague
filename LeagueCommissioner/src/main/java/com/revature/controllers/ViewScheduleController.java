@@ -22,11 +22,6 @@ import com.revature.daos.TeamDAOImpl;
 @RequestMapping(path="/viewschedule")
 public class ViewScheduleController {
 
-	/*
-	 * if commissioner, just show all schedules - with approve scores
-	 * if coach, enter scores on games with no scores (all games in league)
-	 * if player show regular table with games of their team
-	 */
 	@RequestMapping(method= RequestMethod.GET)
 	public String getViewSchedule(ModelMap modelMap, HttpSession session) {
 		User user = (User) session.getAttribute("user");

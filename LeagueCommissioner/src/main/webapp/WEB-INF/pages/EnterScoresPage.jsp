@@ -17,6 +17,7 @@
 		<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
 </head>
 	
 	<body>
@@ -26,57 +27,17 @@
 		
 		<div class="row">
 			<div class="col-md-12 col-lg-9 main-screen">
-				<table class="table table-hover">
-					<!-- check role for coach, player/commissioner in otherwise -->
-						  <thead>
-						    <tr>
-						      <th>Game Date</th>
-						      <th>Home Team</th>
-						      <th>Away Team</th>						  
-						      <th>Home Score</th>
-						      <th>Away Score</th>
-						    </tr>
-						  </thead>
-						  <c:choose>
-						  	<c:when test="${ sessionScope.user.getRole() == 2 }">
-						  	<tbody>
-						  	<c:forEach items="${ requestScope.allGames }" var="game">
-						  	<!-- check for scores: if yes, display scores; if none, add button to enter scores -->
-						  		<tr>
-						  			<td>${ game.getGameDate() }</td>
-						  			<td>${ game.getHomeTeam().getName() }</td>
-						  			<td>${ game.getAwayTeam().getName() }</td>
-						  		<c:choose>
-						  			<c:when test="${ game.getHomeScore() == null }">
-						  				<td><a class="btn btn-default" 
-								  			href="http://localhost:8085/LeagueCommissioner/enterscores?gameId=${ game.getGameID() }">
-								  			Enter Scores</a></td>
-						  			</c:when>
-						  			<c:otherwise>
-							  			<td>${ game.getHomeScore() }</td>
-										<td>${ game.getAwayScore() }</td>
-						  			</c:otherwise>
-						  		</c:choose>	
-						  		</tr>					  		
-						  	</c:forEach>
-						  </tbody>
-						  </c:when>
-						  <c:otherwise>
-						  	<tbody>
-						  	<c:forEach items="${ requestScope.allGames }" var="game">
-						  		<tr>
-						  			<td>${ game.getGameDate() }</td>
-						  			<td>${ game.getHomeTeam().getName() }</td>
-						  			<td>${ game.getAwayTeam().getName() }</td>
-						  			<td>${ game.getHomeScore() }</td>
-									<td>${ game.getAwayScore() }</td>
-						  		</tr>					  		
-						  	</c:forEach>
-						  </tbody>
-						  </c:otherwise>
-						  </c:choose>
-						</table>
-					</div>
+				<h1>Enter the final scores</h1>
+				<hr>
+				<form action="enterscores" method="POST">
+				`	<input name="id" readonly="readonly" value="${ requestScope.game.getGameID() }">
+					Home Score: <input type="number" name="home">
+					<br>
+					Away Score: <input type="number" name="away">	 
+					<br>
+					<input type="submit" value="Submit Scores">
+				</form>
+			</div>
 			
 			<div class="col-md-3 hidden-md-down sidebar">
 				<div class="sidebar-container">
