@@ -1,16 +1,21 @@
 package com.revature.main;
 
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-import com.revature.services.FetchLeagueStandingsService;
-import com.revature.services.StandingsPOJO;
+import com.revature.beans.Game;
+import com.revature.daos.GameDAO;
+import com.revature.daos.GameDAOImpl;
+import com.revature.services.LeagueScheduleService;
 
 public class DriverJohn {
 
 	// The code below is for testing only
 	public static void main(String[] args) {
 		
-		FetchLeagueStandingsService f = new FetchLeagueStandingsService();
+		/*FetchLeagueStandingsService f = new FetchLeagueStandingsService();
 		
 		ArrayList<StandingsPOJO> standings = new ArrayList<StandingsPOJO>();
 		
@@ -18,16 +23,16 @@ public class DriverJohn {
 		
 		for(int i=0; i < standings.size(); i++) {
 			System.out.println(standings.get(i));
-		}
+		}*/
 		
-		/*ArrayList<Integer> teams = new ArrayList<Integer>();
+		ArrayList<Integer> teams = new ArrayList<Integer>();
 		ArrayList<Timestamp> dates = new ArrayList<Timestamp>();
 		ArrayList<Game> games = new ArrayList<Game>();
 		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 		
 		GameDAO makeGame = new GameDAOImpl();
 		
-		for (int i = 16; i < 32; i++) {
+		for (int i = 16; i < 31; i++) {
 			teams.add(i);
 		}
 		
@@ -72,13 +77,12 @@ public class DriverJohn {
 		int numTeams = teams.size();
 		int numGames = numTeams * numTeams - numTeams;
 		
-		for (int i = 0; i < numGames; i++) {
+		/*for (int i = 0; i < numGames; i++) {
 			makeGame.createGame(games.get(i));
-<<<<<<< HEAD
-		}
-=======
 		}*/
+
+		}
 		
 //>>>>>>> branch 'master' of https://github.com/terayala/TheLeague.git
-	}
+	
 }

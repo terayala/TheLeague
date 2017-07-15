@@ -59,6 +59,12 @@ body {
     font-style: italic;
 }
 
+@font-face {
+    font-family: 'Fira Sans';
+    src: url('../fonts/fira-sans-bold.otf');
+    font-weight: bold;
+}
+
 /* ***************************
 ***** 3.0 NAVIGATION BAR *****
 ****************************** */
@@ -449,9 +455,43 @@ h3 {
 .schedule-table {
 	width: 100%;
 	border: 4px ridge #b00a0a;
+	margin-bottom: 20px;
 }
 
 .schedule-table th, td {
 	padding-left: 4px;
 	padding-right: 4px;
+}
+
+.schedule-table td {
+	font-family: "Fira Sans";
+	font-size: 1.1em;
+}
+
+.sched-date {
+	width: 16%;
+}
+
+.sched-time {
+	width: 12%;
+}
+
+.sched-team {
+	width: 31%;
+}
+
+.sched-score {
+	width: 10%
+}
+
+.sched-opponent {
+	width: 52%;
+}
+
+.sched-team-score {
+	width: 20%;
+}
+
+.schedule-table tbody tr:nth-child(even) {
+	background-color: white;
 }
