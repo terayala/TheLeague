@@ -12,11 +12,12 @@
 				
 				<c:when test="${ sessionScope.user.getRole() == 3}">
 					<li><a href="http://localhost:8085/LeagueCommissioner/createleague">Create League</a></li>
+					<li><a href="http://localhost:8085/LeagueCommissioner/createuser">Register Coach</a></li>
 				</c:when>
 				
 				<c:when test="${ sessionScope.user.getRole() == 2}">
 					<li><a href="http://localhost:8085/LeagueCommissioner/viewStats">Stats</a></li>
-					<li><a href="http://localhost:8085/LeagueCommissioner/createuserpage">Create Player</a></li>
+					<li><a href="http://localhost:8085/LeagueCommissioner/createuser">Register Player</a></li>
 				</c:when>
 				
 				<c:when test="${ sessionScope.user.getRole() == 1}">
