@@ -1,5 +1,6 @@
 package com.revature.daos;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -52,11 +53,23 @@ public class StatsDAOImpl implements StatsDAO {
 	public List<Stats> selectStatsByPlayerId(Integer playerId) {
 		List<Stats> stats = null;
 		Session session = HibernateUtil.getSession();
-		UserDAO userDao = new UserDAOImpl();
-		User user = userDao.selectUserById(playerId);
 		stats = session.createCriteria(Stats.class)
-										.add(Restrictions.eq("player.userID", playerId))
-										.list();
+				.add(Restrictions.eq("player.userID", playerId))
+				.list();
+		session.close();
+		return stats;
+	}
+
+	@Override
+	public List<List<Stats>> selectStatsListByPlayers(List<User> users) {
+		List<List<Stats>> stats = new ArrayList<>();
+		Session session = HibernateUtil.getSession();
+		for(User user : users) {
+			List<Stats> temp = session.createCriteria(Stats.class)
+					.add(Restrictions.eq("player.userID", user.getUserID()))
+					.list();
+			stats.add(temp);
+		}
 		session.close();
 		return stats;
 	}

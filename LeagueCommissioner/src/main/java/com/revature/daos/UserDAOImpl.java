@@ -1,10 +1,14 @@
 package com.revature.daos;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
+import com.revature.beans.Stats;
 import com.revature.beans.User;
 import com.revature.util.HibernateUtil;
 
@@ -78,5 +82,16 @@ public class UserDAOImpl implements UserDAO {
 		session.close();
 
 		return user;
+	}
+
+	@Override
+	public List<User> selectUsersByTeam(Integer id) {
+		List<User> users = null;
+		Session session = HibernateUtil.getSession();
+		users = session.createCriteria(User.class)
+				.add(Restrictions.eq("team.teamID", id))
+				.list();
+		session.close();
+		return users;
 	}
 }
