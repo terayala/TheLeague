@@ -1,14 +1,15 @@
 package com.revature.controllers;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.revature.beans.League;
 import com.revature.beans.Team;
@@ -22,15 +23,23 @@ public class CreateTeamController {
 	Team teamTemplate;
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String doCreateTeam(@Valid Team team, BindingResult bindingResult, ModelMap modelMap, HttpSession session) {
+	public String doCreateTeam(@RequestParam Map<String, String> teamMap, ModelMap modelMap, HttpSession session) {
+	
+		teamTemplate.setName((String)teamMap.get("teamName"));
+		teamTemplate.setNickname((String)teamMap.get("nickname"));
+		
+		String primaryColorString=((String)teamMap.get("primaryColor"));
+		String secondaryColorString= ((String)teamMap.get("secondaryColor"));
 
-		if (bindingResult.hasErrors()) {
-			return "createteam";
-		}
+		Integer primaryColorInt=Integer.decode(primaryColorString);
+		Integer secondaryColorInt=Integer.decode(secondaryColorString);
+		
+		teamTemplate.setPrimaryColor(primaryColorInt);
+		teamTemplate.setSecondaryColor(secondaryColorInt);
 
 		TeamDAO dao = new TeamDAOImpl();
-		team.setLeague((League)session.getAttribute("league"));
-		dao.createTeam(team);
+		teamTemplate.setLeague((League)session.getAttribute("league"));
+		dao.createTeam(teamTemplate);
 		
 		return "createteam";
 	}

@@ -19,6 +19,7 @@ public class TeamDAOImpl implements TeamDAO {
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
+			
 			session.save(team);
 			tx.commit();
 		} catch (HibernateException e) {
@@ -27,6 +28,7 @@ public class TeamDAOImpl implements TeamDAO {
 			}
 			e.printStackTrace();
 		} finally {
+			System.out.println(team.getNickname());
 			session.close();
 		}
 	}

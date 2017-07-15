@@ -44,7 +44,7 @@ public class Team {
 	private League league;
 	
 	@Column(name = "COLOR_PRIMARY")
-	@NotEmpty(message="primary color cannot be empty")
+	
 	private int primaryColor;
 	
 	@Column(name = "COLOR_SECONDARY")

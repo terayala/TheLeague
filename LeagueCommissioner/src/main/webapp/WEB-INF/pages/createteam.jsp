@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1" import="com.revature.beans.Team"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -42,20 +42,22 @@
 			<!-- Add another team button submits form and resets for next -->
 			<!--  Finish teams button -->
 
-			<form:form action="createteam" method="POST" commandName="team">
+			<form action="createteam" method="POST">
 
-	Team Name: <form:input path="name" />
-	Nickname: <form:input path="nickname" />
-	Primary Color:  <input type="color" name="favcolor" value="#ffffff">
+				Team Name: <input type="text" name="teamName" />
+				Nickname: <input type="text" name="nickname" />
+			    Primary Color:  <input type="color" name="primaryColor" value="#ffffff">
+			    Secondary Color:  <input type="color" name="secondaryColor" value="#ffffff">
 				<input type="submit" value="Add Team">
-			</form:form>
+			
+			</form>
 
 			<!-- clicking submit button should generate a form for teams to input dates for each set of games -->
 			<form:form action="enterdates">
 				<input type="submit" value="Enter Dates" />
 			</form:form>
 
-
+		
 			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 				Maecenas ultricies euismod eros, id imperdiet est congue non.
 				Suspendisse bibendum enim tortor, quis gravida quam malesuada et.
