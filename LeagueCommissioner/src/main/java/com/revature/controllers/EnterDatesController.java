@@ -1,5 +1,7 @@
 package com.revature.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -25,18 +27,22 @@ public class EnterDatesController {
 			return "enterdates";
 		}
 
-		TeamDAO dao = new TeamDAOImpl();
-		team.setLeague((League) session.getAttribute("league"));
-		dao.createTeam(team);
-		//session.setAttribute("TeamDAOImpl", dao.getAllTeams());//
 		
 		return "enterdates";
 	}
 	
+
 	@RequestMapping(method = RequestMethod.GET)
-	public String getEnterDatesPage(ModelMap modelMap){
+	public String getEnterDatesPage(ModelMap modelMap, HttpSession session){
 		TeamDAO dao = new TeamDAOImpl();
-		modelMap.addAttribute("count", dao.getAllTeams());
+		
+		
+		List<Team> teams= dao.selectTeamsByLeague(((League) session.getAttribute("league")).getLeagueID());
+		
+		
+		modelMap.addAttribute("count", teams.size());
+		
+
 		return "enterdates";
 	}
 	
