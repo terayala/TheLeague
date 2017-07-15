@@ -38,16 +38,18 @@
 						      <th>Away Score</th>
 						    </tr>
 						  </thead>
-						  <c:choose><c:when test="${ sessionScope.user.getRole() == 2 }">
-						  <tbody>
+						  <c:choose>
+						  	<c:when test="${ sessionScope.user.getRole() == 2 }">
+						  	<tbody>
 						  	<c:forEach items="${ requestScope.allGames }" var="game">
 						  	<!-- check for scores: if yes, display scores; if none, add button to enter scores -->
 						  		<tr>
 						  			<td>${ game.getGameDate() }</td>
-						  			<td>${ game.getHomeTeam() }</td>
-						  			<td>${ game.getAwayTeam() }</td>
+						  			<td>${ game.getHomeTeam().getName() }</td>
+						  			<td>${ game.getAwayTeam().getName() }</td>
 						  		<c:choose>
 						  			<c:when test="${ game.getHomeScore() == null }">
+						  				word
 						  				<td><a class="btn btn-default" 
 								  			href="http://localhost:8085/LeagueCommissioner/enterscores">Enter Scores</a></td>
 						  			</c:when>

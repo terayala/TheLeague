@@ -2,13 +2,14 @@ package com.revature.main;
 
 import java.util.List;
 
-import com.revature.beans.Game;
-import com.revature.daos.GameDAO;
-import com.revature.daos.GameDAOImpl;
+import com.revature.beans.Team;
+import com.revature.daos.TeamDAO;
+import com.revature.daos.TeamDAOImpl;
 
 public class DriverTeresa {
 
 	public static void main(String[] args) {			
-		GameDAO dao = new GameDAOImpl();
+		TeamDAO dao = new TeamDAOImpl();
+		List<Team> list = dao.selectTeamsByLeague(1);
 	}
 }
