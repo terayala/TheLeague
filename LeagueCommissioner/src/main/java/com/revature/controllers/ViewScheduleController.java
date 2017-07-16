@@ -1,5 +1,6 @@
 package com.revature.controllers;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -12,12 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.revature.beans.Game;
 import com.revature.beans.League;
-import com.revature.beans.Team;
 import com.revature.beans.User;
-import com.revature.daos.GameDAO;
-import com.revature.daos.GameDAOImpl;
-import com.revature.daos.TeamDAO;
-import com.revature.daos.TeamDAOImpl;
 import com.revature.services.SchedulePageService;
 
 @Component
@@ -30,8 +26,9 @@ public class ViewScheduleController {
 	@RequestMapping(method= RequestMethod.GET)
 	public String getViewSchedule(ModelMap modelMap, HttpSession session) {
 		List<Game> list = service.getGames((User)session.getAttribute("user"), (League)session.getAttribute("league"));
+		Collections.sort(list);
 		modelMap.addAttribute("allGames", list);
-		return "ViewSchedulePage2";
+		return "ViewSchedulePage";
 	}
 	
 }

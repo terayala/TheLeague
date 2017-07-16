@@ -55,7 +55,7 @@ public class EnterScoresController {
 		}
 		List<Game> gameList = service.getGames((User)session.getAttribute("user"), (League)session.getAttribute("league"));
 		modelMap.addAttribute("allGames", gameList);
-		return "ViewSchedulePage2";
+		return "ViewSchedulePage";
 	}
 
 }
