@@ -4,10 +4,13 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
@@ -23,6 +26,8 @@ import org.springframework.stereotype.Component;
 public class Stats {
 	@Id
 	@Column(name="STATS_PK")
+	@SequenceGenerator(name = "STATSPK_SEQ", sequenceName = "STATSPK_SEQ")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "STATSPK_SEQ")
 	private int STATS_PK;
 	
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
