@@ -33,7 +33,7 @@
 					<p>
 						<b>Or, you could just press this neat little button:</b>
 					</p>
-					<a href="http://13.59.241.171:8085/LeagueCommissioner/login"
+					<a href="http://13.58.132.64:8085/LeagueCommissioner/login"
 						class="btn btn-danger btn-large"><i
 						class="icon-share icon-white"></i> Take Me Home</a>
 				</div>
