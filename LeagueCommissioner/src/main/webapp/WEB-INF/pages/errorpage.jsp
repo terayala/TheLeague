@@ -21,7 +21,8 @@
 			<div class="span12">
 				<div class="hero-unit center">
 					<h1>
-						Permission Denied
+						Page Not Found <small><font face="Tahoma" color="red">Error
+								404</font></small>
 					</h1>
 					<hr>
 					<p>
