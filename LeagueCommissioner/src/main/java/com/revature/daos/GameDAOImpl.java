@@ -91,7 +91,7 @@ public class GameDAOImpl implements GameDAO {
 			e.printStackTrace();
 		} finally {
 			session.close();
-		}		
+		}
 	}
 
 	@Override
@@ -111,5 +111,22 @@ public class GameDAOImpl implements GameDAO {
 			session.close();
 		}
 		return game;
+	}
+	
+	public void deleteGame(Game game) {
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			session.delete(game);
+			tx.commit();
+		} catch (HibernateException e) {
+			if(tx != null){
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
 	}
 }
