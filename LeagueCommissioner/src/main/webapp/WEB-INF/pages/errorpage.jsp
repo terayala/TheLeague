@@ -21,25 +21,18 @@
 			<div class="span12">
 				<div class="hero-unit center">
 					<h1>
-						Page Not Found <small><font face="Tahoma" color="red">Error
-								404</font></small>
+						Permission Denied
 					</h1>
-					<br />
+					<hr>
 					<p>
-						The page you requested could not be found, either contact your
-						webmaster or try again. Use your browser's <b>Back</b> button to
-						navigate to the page you have previously come from
+						<b>PLEASE LOG BACK IN</b>
 					</p>
-					<p>
-						<b>Or, you could just press this neat little button:</b>
-					</p>
-					<a href="http://13.59.241.171:8085/LeagueCommissioner/login"
+					<a href="http://13.58.132.64:8085/LeagueCommissioner/logout"
 						class="btn btn-danger btn-large"><i
-						class="icon-share icon-white"></i> Take Me Home</a>
+						class="icon-share icon-white"></i> Login</a>
 				</div>
 				<br /> <br />
 				<p></p>
-				<!-- By ConnerT HTML & CSS Enthusiast -->
 			</div>
 		</div>
 	</div>

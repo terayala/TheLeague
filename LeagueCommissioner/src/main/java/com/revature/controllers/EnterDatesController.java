@@ -31,57 +31,59 @@ import com.revature.services.SchedulePageService;
 public class EnterDatesController {
 
 	@Autowired
-	LeagueScheduleService ls_service;
-	
+	LeagueScheduleService ls_service;	
 	
 	@Autowired
 	SchedulePageService sp_service;
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public String getEnterDatesPage(ModelMap modelMap, HttpSession session) {
+		if (session == null) {
+			return "index";
+		} else if (((User)session.getAttribute("user")).getRole() != 3) {
+			return "errorpage";
+		} else {
+			TeamDAO dao = new TeamDAOImpl();
+			List<Team> teams = dao.selectTeamsByLeague(((League) session.getAttribute("league")).getLeagueID());
+			if(teams.size()%2==0){
+				modelMap.addAttribute("count", teams.size()*2-2);
+			}
+			else{
+				modelMap.addAttribute("count", teams.size()*2);
+			}
+			return "enterdates";
+		}
+	}
 
 	@RequestMapping(method = RequestMethod.POST)
 	public String doEnterDates(@RequestParam Map<String, String> dateMap, ModelMap modelMap, HttpSession session) {
-		ArrayList<Game> games = new ArrayList<>();
-		ArrayList<Integer> teams = new ArrayList<>();
-		ArrayList<Timestamp> dates = new ArrayList<>();
-		GameDAO gameDAO = new GameDAOImpl();
-		TeamDAO dao= new TeamDAOImpl();
-		
-		 
-		for (Map.Entry<String, String> entry : dateMap.entrySet()) {
-			String str = entry.getValue();
-			dates.add(Timestamp.valueOf(str));
+		if (session == null) {
+			return "inex";
+		} else {
+			ArrayList<Game> games = new ArrayList<>();
+			ArrayList<Integer> teams = new ArrayList<>();
+			ArrayList<Timestamp> dates = new ArrayList<>();
+			GameDAO gameDAO = new GameDAOImpl();
+			TeamDAO dao= new TeamDAOImpl();
+			
+			for (Map.Entry<String, String> entry : dateMap.entrySet()) {
+				String str = entry.getValue();
+				dates.add(Timestamp.valueOf(str));
+			}
+			List<Team> teamList = dao.selectTeamsByLeague(((League)session.getAttribute("league")).getLeagueID());
+			for(Team i: teamList){
+				teams.add(i.getTeamID());
+	
+			}
+			games= ls_service.MakeSchedule(teams, dates);
+			for(int i=0; i< games.size(); i++) {
+				gameDAO.createGame(games.get(i));
+			}
+			
+			List<Game> list = sp_service.getGames((User)session.getAttribute("user"), (League)session.getAttribute("league"));
+			modelMap.addAttribute("allGames", list);
+			return "ViewSchedulePage";
 		}
-		
-		List<Team> teamList = dao.selectTeamsByLeague(((League)session.getAttribute("league")).getLeagueID());
-		for(Team i: teamList){
-			teams.add(i.getTeamID());
-
-		}
-
-		games= ls_service.MakeSchedule(teams, dates);
-		for(int i=0; i< games.size(); i++) {
-			gameDAO.createGame(games.get(i));
-		}
-		
-		List<Game> list = sp_service.getGames((User)session.getAttribute("user"), (League)session.getAttribute("league"));
-		
-		
-		modelMap.addAttribute("allGames", list);
-		return "ViewSchedulePage";
-	}
-
-	@RequestMapping(method = RequestMethod.GET)
-	public String getEnterDatesPage(ModelMap modelMap, HttpSession session) {
-		TeamDAO dao = new TeamDAOImpl();
-
-		List<Team> teams = dao.selectTeamsByLeague(((League) session.getAttribute("league")).getLeagueID());
-		
-		if(teams.size()%2==0){
-			modelMap.addAttribute("count", teams.size()*2-2);
-		}
-		else{
-			modelMap.addAttribute("count", teams.size()*2);
-		}
-		return "enterdates";
 	}
 
 }
