@@ -41,6 +41,12 @@ public class Stats {
 	public Stats() {
 		
 	}
+	
+	public Stats(Game game, User user, Integer points) {
+		this.game = game;
+		this.player = user;
+		this.pointsScored = points;
+	}
 
 	public int getSTATS_PK() {
 		return STATS_PK;

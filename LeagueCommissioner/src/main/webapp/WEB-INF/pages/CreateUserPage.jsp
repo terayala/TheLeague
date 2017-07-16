@@ -6,41 +6,47 @@
 <%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
 <div class="createUser">
 		<c:choose>
-		<c:when test="${ user.getRole() == 3 }">
+		<c:when test="${ sessionScope.user.getRole() == 3 }">
 			<h1>Register A Coach</h1>
 			<hr>
-			<form:form action="createUser" method="POST" commandName="user">
-				First Name: <form:input path="firstName"/>
+			<form action="createuser" method="POST">
+				First Name: <input type="text" name="firstName"/>
 				<br>
-				Last Name: <form:input path="lastName"/>
+				Last Name: <input type="text" name="lastName"/>
 				<br>
-				Email: <form:input path="email"/>
+				Email: <input type="email" name="email"/>
 				<br>
-				Username: <form:input path="username"/>
+				Username: <input type="text" name="username"/>
 				<br>
-				Temporary Password: <form:input path="password"/> 
+				Temporary Password: <input type="text" name="password"/> 
 				<br>
-				<input type="submit" value="createuser">
-			</form:form>
+				Team: <select name="team">
+						<c:forEach items="${ requestScope.teams }" var="team">
+							<option value="${ team.getTeamID() }">${ team.getName() } </option>
+						</c:forEach>
+					</select>
+				<br>
+				<input type="submit" value="Register">
+			</form>
 		</c:when>
 		<c:otherwise>
 			<h1>Register A Player</h1>
 			<hr>
-			<form:form action="createUser" method="POST" commandName="user">
-				First Name: <form:input path="firstName"/>
+			<form action="createuser" method="POST">
+				First Name: <input type="text" name="firstName"/>
 				<br>
-				Last Name: <form:input path="lastName"/>
+				Last Name: <input type="text" name="lastName"/>
 				<br>
-				Email: <form:input path="email"/>
+				Email: <input type="text" name="email"/>
 				<br>
-				Username: <form:input path="username"/>
+				Username: <input type="text" name="username"/>
 				<br>
-				Temporary Password: <form:input path="password"/> 
+				Temporary Password: <input type="text" name="password"/> 
 				<br>
-				Uniform Number: <form:input path="uniform"/>
+				Uniform Number: <input type="text" name="uniform"/>
 				<br>
-				<input type="submit" value="createuser">
-			</form:form>
+				<input type="submit" value="Register">
+			</form>
 		</c:otherwise>
 	</c:choose>
 </div>

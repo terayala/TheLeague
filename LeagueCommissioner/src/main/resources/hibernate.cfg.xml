@@ -29,6 +29,7 @@
 		<mapping class="com.revature.beans.Team"/>
 		<mapping class="com.revature.beans.Trade"/>
 		<mapping class="com.revature.beans.User"/>
+		<mapping class="com.revature.services.StandingsPOJO"/>
         
     </session-factory>
 </hibernate-configuration>
