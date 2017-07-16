@@ -36,20 +36,26 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<script src="https://cdn.jsdelivr.net/jquery.ui.timepicker.addon/1.4.5/jquery-ui-timepicker-addon.min.js"></script>
-<script src="https://cdn.jsdelivr.net/jquery.ui.timepicker.addon/1.4.5/jquery-ui-timepicker-addon.min.css"></script>
-<script src="https://cdn.jsdelivr.net/jquery.ui.timepicker.addon/1.4.5/jquery-ui-sliderAccess.js"></script>
-<script src="https://cdn.jsdelivr.net/jquery.ui.timepicker.addon/1.4.5/jquery-ui-timepicker-addon.css"></script>
-<script src="https://cdn.jsdelivr.net/jquery.ui.timepicker.addon/1.4.5/jquery-ui-timepicker-addon.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/jquery.ui.timepicker.addon/1.4.5/jquery-ui-timepicker-addon.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/jquery.ui.timepicker.addon/1.4.5/jquery-ui-timepicker-addon.min.css"></script>
+<script
+	src="https://cdn.jsdelivr.net/jquery.ui.timepicker.addon/1.4.5/jquery-ui-sliderAccess.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/jquery.ui.timepicker.addon/1.4.5/jquery-ui-timepicker-addon.css"></script>
+<script
+	src="https://cdn.jsdelivr.net/jquery.ui.timepicker.addon/1.4.5/jquery-ui-timepicker-addon.js"></script>
 
 <script>
 	$(function() {
 		$('.slider_example_4').datetimepicker({
-			controlType: 'select',
-			timeFormat: 'H:mm',
-			minDate: 0
+			controlType : 'select',
+			timeFormat : 'H:mm:ss',
+			dateFormat: "yy-mm-dd",
+			minDate : 0
 		});
-		
+
 	});
 </script>
 
@@ -63,16 +69,17 @@
 
 	<div class="row">
 		<div class="col-md-12 col-lg-9 main-screen">
-
-			<c:forEach var="i" begin="1" end="${requestScope.count}">
-				<p>
-					Game <c:out value="${i}"/>: <input type="text" class="slider_example_4" placeholder="Enter Date" name="${i}">
-				</p>
-			</c:forEach>
-			
-			<form:form action="viewleagueschedule">
+			<form action="enterdates" method="post">
+				<c:forEach var="i" begin="1" end="${(requestScope.count)}">
+					<p>
+						Game
+						<c:out value="${i}" />
+						: <input type="text" class="slider_example_4"
+							placeholder="Enter Date" name="${i}">
+					</p>
+				</c:forEach>
 				<input type="submit" value="View Schedule" />
-			</form:form>
+			</form>
 
 			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 				Maecenas ultricies euismod eros, id imperdiet est congue non.

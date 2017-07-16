@@ -18,6 +18,8 @@ import com.revature.beans.Game;
 import com.revature.beans.League;
 import com.revature.beans.Team;
 import com.revature.beans.User;
+import com.revature.daos.GameDAO;
+import com.revature.daos.GameDAOImpl;
 import com.revature.daos.TeamDAO;
 import com.revature.daos.TeamDAOImpl;
 import com.revature.services.LeagueScheduleService;
@@ -37,9 +39,10 @@ public class EnterDatesController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public String doEnterDates(@RequestParam Map<String, String> dateMap, ModelMap modelMap, HttpSession session) {
-
+		ArrayList<Game> games = new ArrayList<>();
 		ArrayList<Integer> teams = new ArrayList<>();
 		ArrayList<Timestamp> dates = new ArrayList<>();
+		GameDAO gameDAO = new GameDAOImpl();
 		TeamDAO dao= new TeamDAOImpl();
 		
 		 
@@ -49,14 +52,19 @@ public class EnterDatesController {
 		}
 		
 		List<Team> teamList = dao.selectTeamsByLeague(((League)session.getAttribute("league")).getLeagueID());
-
 		for(Team i: teamList){
 			teams.add(i.getTeamID());
+
 		}
 
-		ls_service.MakeSchedule(teams, dates);
+		games= ls_service.MakeSchedule(teams, dates);
+		for(int i=0; i< games.size(); i++) {
+			gameDAO.createGame(games.get(i));
+		}
 		
 		List<Game> list = sp_service.getGames((User)session.getAttribute("user"), (League)session.getAttribute("league"));
+		
+		
 		modelMap.addAttribute("allGames", list);
 		return "ViewSchedulePage";
 	}
@@ -66,7 +74,13 @@ public class EnterDatesController {
 		TeamDAO dao = new TeamDAOImpl();
 
 		List<Team> teams = dao.selectTeamsByLeague(((League) session.getAttribute("league")).getLeagueID());
-		modelMap.addAttribute("count", teams.size());
+		
+		if(teams.size()%2==0){
+			modelMap.addAttribute("count", teams.size()*2-2);
+		}
+		else{
+			modelMap.addAttribute("count", teams.size()*2);
+		}
 		return "enterdates";
 	}
 
