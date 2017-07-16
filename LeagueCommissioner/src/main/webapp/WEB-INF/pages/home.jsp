@@ -44,7 +44,7 @@
 						  			<td>${ league.getLeagueID() }</td>
 						  			<td>${ league.getName() }</td>
 						  			<td>${ league.getSport().getName() }</td>
-						  			<td><a class="btn btn-default" href="http://13.59.241.171:8085/LeagueCommissioner/home?leagueId=${ league.getLeagueID() }">Select League</a></td>
+						  			<td><a class="btn btn-default" href="http://13.58.132.64:8085/LeagueCommissioner/home?leagueId=${ league.getLeagueID() }">Select League</a></td>
 						  		</tr>
 						  	</c:forEach>
 						  </tbody>
