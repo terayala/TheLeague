@@ -27,11 +27,11 @@
 					<br />
 					<p>
 						The page you requested could not be found, either contact your
-						webmaster or try again. Use your browsers <b>Back</b> button to
-						navigate to the page you have prevously come from
+						webmaster or try again. Use your browser's <b>Back</b> button to
+						navigate to the page you have previously come from
 					</p>
 					<p>
-						<b>Or you could just press this neat little button:</b>
+						<b>Or, you could just press this neat little button:</b>
 					</p>
 					<a href="http://13.59.241.171:8085/LeagueCommissioner/login"
 						class="btn btn-danger btn-large"><i
