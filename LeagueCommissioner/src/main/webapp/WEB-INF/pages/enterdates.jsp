@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"
 	import="com.revature.daos.TeamDAO, com.revature.daos.TeamDAOImpl, com.revature.beans.Team, java.lang.*, java.util.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -34,9 +35,21 @@
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script src="https://cdn.jsdelivr.net/jquery.ui.timepicker.addon/1.4.5/jquery-ui-timepicker-addon.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.ui.timepicker.addon/1.4.5/jquery-ui-timepicker-addon.min.css"></script>
+<script src="https://cdn.jsdelivr.net/jquery.ui.timepicker.addon/1.4.5/jquery-ui-sliderAccess.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.ui.timepicker.addon/1.4.5/jquery-ui-timepicker-addon.css"></script>
+<script src="https://cdn.jsdelivr.net/jquery.ui.timepicker.addon/1.4.5/jquery-ui-timepicker-addon.js"></script>
+
 <script>
 	$(function() {
-		$(".datepicker").datepicker({ minDate: 0 });
+		$('.slider_example_4').datetimepicker({
+			controlType: 'select',
+			timeFormat: 'H:mm',
+			minDate: 0
+		});
+		
 	});
 </script>
 
@@ -53,9 +66,13 @@
 
 			<c:forEach var="i" begin="1" end="${requestScope.count}">
 				<p>
-					Game <c:out value="${i}"/>: <input type="text" class="datepicker">
+					Game <c:out value="${i}"/>: <input type="text" class="slider_example_4" placeholder="Enter Date" name="${i}">
 				</p>
 			</c:forEach>
+			
+			<form:form action="viewleagueschedule">
+				<input type="submit" value="View Schedule" />
+			</form:form>
 
 			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 				Maecenas ultricies euismod eros, id imperdiet est congue non.
