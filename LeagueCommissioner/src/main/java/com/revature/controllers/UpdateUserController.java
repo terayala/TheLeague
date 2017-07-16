@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.revature.beans.User;
 import com.revature.daos.UserDAO;
 import com.revature.daos.UserDAOImpl;
-import com.revature.logger.LoggerClass;
 import com.revature.services.PasswordService;
 
 @Controller
@@ -32,7 +31,7 @@ public class UpdateUserController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String getUser(ModelMap modelMap, HttpSession session) {
 		if (session == null) {
-			return "errorpage";
+			return "index";
 		} else {
 			return "ViewUserPage";
 		}
@@ -41,7 +40,7 @@ public class UpdateUserController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String doCreateUser(@RequestParam Map<String, Object> userMap, ModelMap modelMap, HttpSession session) {
 		if (session == null) {
-			return "errorpage";
+			return "index";
 		} else {
 			UserDAO dao = new UserDAOImpl();
 			User user = dao.selectUserByUsername(((User)session.getAttribute("user")).getUsername());

@@ -35,11 +35,30 @@ public class EnterDatesController {
 	
 	@Autowired
 	SchedulePageService sp_service;
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public String getEnterDatesPage(ModelMap modelMap, HttpSession session) {
+		if (session == null) {
+			return "index";
+		} else if (((User)session.getAttribute("user")).getRole() != 3) {
+			return "errorpage";
+		} else {
+			TeamDAO dao = new TeamDAOImpl();
+			List<Team> teams = dao.selectTeamsByLeague(((League) session.getAttribute("league")).getLeagueID());
+			if(teams.size()%2==0){
+				modelMap.addAttribute("count", teams.size()*2-2);
+			}
+			else{
+				modelMap.addAttribute("count", teams.size()*2);
+			}
+			return "enterdates";
+		}
+	}
 
 	@RequestMapping(method = RequestMethod.POST)
 	public String doEnterDates(@RequestParam Map<String, String> dateMap, ModelMap modelMap, HttpSession session) {
 		if (session == null) {
-			return "errorpage";
+			return "inex";
 		} else {
 			ArrayList<Game> games = new ArrayList<>();
 			ArrayList<Integer> teams = new ArrayList<>();
@@ -64,23 +83,6 @@ public class EnterDatesController {
 			List<Game> list = sp_service.getGames((User)session.getAttribute("user"), (League)session.getAttribute("league"));
 			modelMap.addAttribute("allGames", list);
 			return "ViewSchedulePage";
-		}
-	}
-
-	@RequestMapping(method = RequestMethod.GET)
-	public String getEnterDatesPage(ModelMap modelMap, HttpSession session) {
-		if (session == null) {
-			return "errorpage";
-		} else {
-			TeamDAO dao = new TeamDAOImpl();
-			List<Team> teams = dao.selectTeamsByLeague(((League) session.getAttribute("league")).getLeagueID());
-			if(teams.size()%2==0){
-				modelMap.addAttribute("count", teams.size()*2-2);
-			}
-			else{
-				modelMap.addAttribute("count", teams.size()*2);
-			}
-			return "enterdates";
 		}
 	}
 

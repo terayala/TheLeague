@@ -26,7 +26,7 @@ public class ViewScheduleController {
 	@RequestMapping(method= RequestMethod.GET)
 	public String getViewSchedule(ModelMap modelMap, HttpSession session) {
 		if (session == null) {
-			return "errorpage";
+			return "index";
 		} else {
 			List<Game> list = service.getGames((User)session.getAttribute("user"), (League)session.getAttribute("league"));
 			Collections.sort(list);

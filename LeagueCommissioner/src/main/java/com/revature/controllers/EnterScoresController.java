@@ -34,6 +34,8 @@ public class EnterScoresController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String getScoresPage(@RequestParam Map<String, String> gameMap, ModelMap modelMap, HttpSession session) {
 		if (session == null) {
+			return "index";
+		} else if (((User)session.getAttribute("user")).getRole() != 2) {
 			return "errorpage";
 		} else {
 			GameDAO gameDAO = new GameDAOImpl();
@@ -49,7 +51,7 @@ public class EnterScoresController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String enterScores(@RequestParam Map<String, Object> scoresMap, ModelMap modelMap, HttpSession session) {
 		if (session == null) {
-			return "errorpage";
+			return "index";
 		} else {
 			StatsDAO statDAO = new StatsDAOImpl(); UserDAO userDAO = new UserDAOImpl(); GameDAO gameDAO = new GameDAOImpl();
 			Game game = gameDAO.selectGameById(Integer.parseInt((String)scoresMap.get("id")));

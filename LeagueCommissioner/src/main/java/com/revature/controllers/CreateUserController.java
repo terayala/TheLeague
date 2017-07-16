@@ -24,6 +24,8 @@ public class CreateUserController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String getHomePage(ModelMap modelMap, HttpSession session) {
 		if (session == null) {
+			return "index";
+		} else if (((User)session.getAttribute("user")).getRole() == 1) {
 			return "errorpage";
 		} else {
 			User user = (User)session.getAttribute("user");
@@ -38,7 +40,7 @@ public class CreateUserController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String doCreateUser(@RequestParam Map<String, Object> userMap, ModelMap modelMap, HttpSession session) {
 		if (session == null) {
-			return "errorpage";
+			return "index";
 		} else {
 			UserDAO dao =  new UserDAOImpl();
 			String fname = (String) userMap.get("firstName");

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.revature.beans.League;
 import com.revature.beans.Team;
+import com.revature.beans.User;
 import com.revature.daos.TeamDAO;
 import com.revature.daos.TeamDAOImpl;
 
@@ -26,6 +27,8 @@ public class CreateTeamController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String getTeamPage(ModelMap modelMap, HttpSession session){
 		if (session == null) {
+			return "index";
+		} else if (((User)session.getAttribute("user")).getRole() != 3) {
 			return "errorpage";
 		} else {
 			modelMap.addAttribute("team", teamTemplate);
@@ -36,7 +39,7 @@ public class CreateTeamController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String doCreateTeam(@RequestParam Map<String, String> teamMap, ModelMap modelMap, HttpSession session) {
 		if (session == null) {
-			return "errorpage";
+			return "index";
 		} else {
 			teamTemplate.setName((String)teamMap.get("teamName"));
 			teamTemplate.setNickname((String)teamMap.get("nickname"));

@@ -20,7 +20,7 @@ public class HomeController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String getHomePage(@RequestParam Map<String, String> homeMap, ModelMap modelMap, HttpSession session) {
 		if (session == null) {
-			return "errorpage";
+			return "index";
 		} else {
 			League league = new LeagueDAOImpl().selectLeagueById( Integer.parseInt(homeMap.get("leagueId")) );
 			session.setAttribute("league", league);

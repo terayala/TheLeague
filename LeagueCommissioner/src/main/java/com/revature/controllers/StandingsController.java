@@ -13,7 +13,7 @@ public class StandingsController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String getHomePage(ModelMap modelMap, HttpSession session) {
 		if (session == null) {
-			return "errorpage";
+			return "index";
 		} else {
 			return "standings";
 		}
