@@ -62,15 +62,17 @@ public class PlayerGameStatsController {
 			int i = 0;
 			List<String> allTemp = new ArrayList<>();
 			for (List<Stats> stats2 : statsStats) {
-				aggNum = 0;
-				allTemp = new ArrayList<>();
-				for (Stats s : stats2) {
-					aggNum += s.getPointsScored();
+				if((i) < aggTable.size()) {
+					aggNum = 0;
+					allTemp = new ArrayList<>();
+					for (Stats s : stats2) {
+						aggNum += s.getPointsScored();
+					}
+					allTemp = aggTable.get(i);
+					allTemp.add(String.valueOf(aggNum));
+					aggTable.set(i, allTemp);
+					i++;
 				}
-				allTemp = aggTable.get(i);
-				allTemp.add(String.valueOf(aggNum));
-				aggTable.set(i, allTemp);
-				i++;
 			}
 		}
 
