@@ -8,7 +8,6 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
-import com.revature.beans.Stats;
 import com.revature.beans.User;
 import com.revature.util.HibernateUtil;
 
