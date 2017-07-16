@@ -27,7 +27,7 @@
 					<p>
 						<b>PLEASE LOG BACK IN</b>
 					</p>
-					<a href="http://13.59.241.171:8085/LeagueCommissioner/logout"
+					<a href="http://13.58.132.64:8085/LeagueCommissioner/logout"
 						class="btn btn-danger btn-large"><i
 						class="icon-share icon-white"></i> Login</a>
 				</div>
