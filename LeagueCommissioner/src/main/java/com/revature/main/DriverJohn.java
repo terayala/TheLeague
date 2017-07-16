@@ -78,11 +78,9 @@ public class DriverJohn {
 		int numGames = numTeams * numTeams - numTeams;
 		
 		for (int i = 0; i < numGames; i++) {
-			//makeGame.createGame(games.get(i));
+			makeGame.createGame(games.get(i));
 		}
 
-		}
+	}
 		
-//>>>>>>> branch 'master' of https://github.com/terayala/TheLeague.git
-	
 }
