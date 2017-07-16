@@ -33,29 +33,37 @@ public class EnterScoresController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String getScoresPage(@RequestParam Map<String, String> gameMap, ModelMap modelMap, HttpSession session) {
-		GameDAO gameDAO = new GameDAOImpl();
-		Game game = gameDAO.selectGameById(Integer.parseInt((String)gameMap.get("gameId")));
-		modelMap.addAttribute("game", game);
-		UserDAO userDAO = new UserDAOImpl();
-		List<User> list = userDAO.selectUsersByTeam(((User)session.getAttribute("user")).getTeam().getTeamID());
-		modelMap.addAttribute("allPlayers", list);
-		return "enterscores";
+		if (session == null) {
+			return "errorpage";
+		} else {
+			GameDAO gameDAO = new GameDAOImpl();
+			Game game = gameDAO.selectGameById(Integer.parseInt((String)gameMap.get("gameId")));
+			modelMap.addAttribute("game", game);
+			UserDAO userDAO = new UserDAOImpl();
+			List<User> list = userDAO.selectUsersByTeam(((User)session.getAttribute("user")).getTeam().getTeamID());
+			modelMap.addAttribute("allPlayers", list);
+			return "enterscores";
+		}
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public String enterScores(@RequestParam Map<String, Object> scoresMap, ModelMap modelMap, HttpSession session) {
-		StatsDAO statDAO = new StatsDAOImpl(); UserDAO userDAO = new UserDAOImpl(); GameDAO gameDAO = new GameDAOImpl();
-		Game game = gameDAO.selectGameById(Integer.parseInt((String)scoresMap.get("id")));
-		game.setHomeScore(Integer.parseInt((String)scoresMap.get("home")));
-		game.setAwayScore(Integer.parseInt((String)scoresMap.get("away")));
-		gameDAO.updateGame(game);
-		List<User> list = userDAO.selectUsersByTeam(((User)session.getAttribute("user")).getTeam().getTeamID());
-		for (User u : list) {
-			statDAO.createStat(new Stats(game, u, Integer.parseInt((String)scoresMap.get(u.getUsername()))));
+		if (session == null) {
+			return "errorpage";
+		} else {
+			StatsDAO statDAO = new StatsDAOImpl(); UserDAO userDAO = new UserDAOImpl(); GameDAO gameDAO = new GameDAOImpl();
+			Game game = gameDAO.selectGameById(Integer.parseInt((String)scoresMap.get("id")));
+			game.setHomeScore(Integer.parseInt((String)scoresMap.get("home")));
+			game.setAwayScore(Integer.parseInt((String)scoresMap.get("away")));
+			gameDAO.updateGame(game);
+			List<User> list = userDAO.selectUsersByTeam(((User)session.getAttribute("user")).getTeam().getTeamID());
+			for (User u : list) {
+				statDAO.createStat(new Stats(game, u, Integer.parseInt((String)scoresMap.get(u.getUsername()))));
+			}
+			List<Game> gameList = service.getGames((User)session.getAttribute("user"), (League)session.getAttribute("league"));
+			modelMap.addAttribute("allGames", gameList);
+			return "ViewSchedulePage";
 		}
-		List<Game> gameList = service.getGames((User)session.getAttribute("user"), (League)session.getAttribute("league"));
-		modelMap.addAttribute("allGames", gameList);
-		return "ViewSchedulePage";
 	}
 
 }
