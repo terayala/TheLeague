@@ -1,50 +1,73 @@
 package com.revature.controllers;
 
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.revature.beans.Game;
 import com.revature.beans.League;
 import com.revature.beans.Team;
+import com.revature.beans.User;
 import com.revature.daos.TeamDAO;
 import com.revature.daos.TeamDAOImpl;
+import com.revature.services.LeagueScheduleService;
+import com.revature.services.SchedulePageService;
 
 @Controller
 @RequestMapping(value = "/enterdates")
-public class EnterDatesController {
-	
-	@RequestMapping(method = RequestMethod.POST)
-	public String doEnterDates(@Valid Team team, BindingResult bindingResult, ModelMap modelMap, HttpSession session) {
 
-		if (bindingResult.hasErrors()) {
-			return "enterdates";
+public class EnterDatesController {
+
+	@Autowired
+	LeagueScheduleService ls_service;
+	
+	
+	@Autowired
+	SchedulePageService sp_service;
+
+	@RequestMapping(method = RequestMethod.POST)
+	public String doEnterDates(@RequestParam Map<String, String> dateMap, ModelMap modelMap, HttpSession session) {
+
+		ArrayList<Integer> teams = new ArrayList<>();
+		ArrayList<Timestamp> dates = new ArrayList<>();
+		TeamDAO dao= new TeamDAOImpl();
+		
+		 
+		for (Map.Entry<String, String> entry : dateMap.entrySet()) {
+			String str = entry.getValue();
+			dates.add(Timestamp.valueOf(str));
+		}
+		
+		List<Team> teamList = dao.selectTeamsByLeague(((League)session.getAttribute("league")).getLeagueID());
+
+		for(Team i: teamList){
+			teams.add(i.getTeamID());
 		}
 
+		ls_service.MakeSchedule(teams, dates);
 		
-		return "enterdates";
+		List<Game> list = sp_service.getGames((User)session.getAttribute("user"), (League)session.getAttribute("league"));
+		modelMap.addAttribute("allGames", list);
+		return "ViewSchedulePage";
 	}
-	
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String getEnterDatesPage(ModelMap modelMap, HttpSession session){
+	public String getEnterDatesPage(ModelMap modelMap, HttpSession session) {
 		TeamDAO dao = new TeamDAOImpl();
-		
-		
-		List<Team> teams= dao.selectTeamsByLeague(((League) session.getAttribute("league")).getLeagueID());
-		
-		
-		modelMap.addAttribute("count", teams.size());
-		
 
+		List<Team> teams = dao.selectTeamsByLeague(((League) session.getAttribute("league")).getLeagueID());
+		modelMap.addAttribute("count", teams.size());
 		return "enterdates";
 	}
-	
 
 }
