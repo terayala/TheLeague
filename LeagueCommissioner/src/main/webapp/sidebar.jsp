@@ -60,9 +60,9 @@
 
 <div class="sidebar-nav-items">
 	<c:if test="${ sessionScope.user.getRole() == 2}">
-		<p><a href="http://13.59.241.171:8085/LeagueCommissioner/createuser">Register New Player</a></p>
+		<p><a href="http://localhost:8085/LeagueCommissioner/createuser">Register New Player</a></p>
 	</c:if>
 	
-	<p><a href="http://13.59.241.171:8085/LeagueCommissioner/updateuser">Update Personal Info</a></p>
+	<p><a href="http://localhost:8085/LeagueCommissioner/updateuser">Update Personal Info</a></p>
 </div>
 			
