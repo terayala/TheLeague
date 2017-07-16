@@ -159,7 +159,6 @@ public class LeagueScheduleService {
 			// by looping one less than the number of times 
 			for (int round = 1; round < numberOfTeams; round++) {
 				
-				System.out.println("Round " + round);
 				// The following loop will create one round of games
 				for (int looper = 0; looper < loopRows; looper++) {
 					
@@ -181,7 +180,6 @@ public class LeagueScheduleService {
 					gameEntry.setGameDate(dates.get(round - 1));
 					
 					games.add(gameEntry);
-					System.out.println(gameEntry.getHomeTeam().getName() + " vs. " + gameEntry.getAwayTeam().getName());
 					
 					// This will add the return match
 					gameEntryReturn.setHomeTeam(awayTeam);
@@ -196,15 +194,26 @@ public class LeagueScheduleService {
 				freeze = schedLoop[0][1];
 				for (int i = 1; i < numberOfTeams - 1; i++) {
 					int xCoord = Math.floorDiv(i, loopRows);
-					int yCoord = i - xCoord * loopRows;
+					int yCoord, yCoord2;
+					if (xCoord == 0) {
+						yCoord = i;
+					} else {
+						yCoord = (numberOfTeams) - (i + 1);
+					}
 					
 					int xCoord2 = Math.floorDiv(i + 1, loopRows);
-					int yCoord2 = (i + 1) - xCoord2 * loopRows;
+					if (xCoord2 == 0 && i < (numberOfTeams - 1)) {
+						yCoord2 = i + 1;
+					} else if (i == ((numberOfTeams / 2) - 1)) {
+						yCoord2 = i;
+					} else {
+						yCoord2 = (numberOfTeams) - (i + 2);
+					}
 					
 					schedLoop[xCoord][yCoord] = schedLoop[xCoord2][yCoord2];
 					
 				}
-				schedLoop[1][loopRows - 1] = freeze;
+				schedLoop[1][0] = freeze;
 				
 			}
 			
