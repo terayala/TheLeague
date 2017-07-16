@@ -21,13 +21,17 @@
 			<div class="span12">
 				<div class="hero-unit center">
 					<h1>
-						Permission Denied
+						Page Not Found <small><font face="Tahoma" color="red">Error
+								404</font></small>
 					</h1>
 					<hr>
 					<p>
 						<b>PLEASE LOG BACK IN</b>
 					</p>
-					<a href="http://13.59.241.171:8085/LeagueCommissioner/logout"
+					<p>
+						<b>Or, you could just press this neat little button:</b>
+					</p>
+					<a href="http://13.58.132.64:8085/LeagueCommissioner/login"
 						class="btn btn-danger btn-large"><i
 						class="icon-share icon-white"></i> Login</a>
 				</div>
