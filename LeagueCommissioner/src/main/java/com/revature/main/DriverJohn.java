@@ -79,8 +79,6 @@ public class DriverJohn {
 		
 		for (int i = 0; i < numGames; i++) {
 			//makeGame.createGame(games.get(i));
-			if (games.get(i).getHomeTeam().getName().equals("Utah Jazz")) {
-			System.out.println(games.get(i).getHomeTeam().getName() + " vs. " + games.get(i).getAwayTeam().getName());}
 		}
 
 		}

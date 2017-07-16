@@ -174,7 +174,7 @@ public class LeagueScheduleService {
 						awayTeam = teamAssignment.get(schedLoop[0][looper]);
 					}
 					
-					// This will add the match
+					// This will add the match 
 					gameEntry.setHomeTeam(homeTeam);
 					gameEntry.setAwayTeam(awayTeam);
 					gameEntry.setGameDate(dates.get(round - 1));
