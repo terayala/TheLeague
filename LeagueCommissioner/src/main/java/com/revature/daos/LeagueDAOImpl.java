@@ -87,4 +87,22 @@ public class LeagueDAOImpl implements LeagueDAO {
 		return list;
 	}
 
+	public void deleteLeague(League league) {
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;
+		Integer id = null;
+		try {
+			tx = session.beginTransaction();
+			session.delete(league);
+			tx.commit();
+		} catch (HibernateException e) {
+			if(tx != null){
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+	}
+	
 }
