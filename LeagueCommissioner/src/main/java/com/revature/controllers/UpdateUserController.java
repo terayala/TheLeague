@@ -1,9 +1,12 @@
 package com.revature.controllers;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,11 +17,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.revature.beans.User;
 import com.revature.daos.UserDAO;
 import com.revature.daos.UserDAOImpl;
+import com.revature.logger.LoggerClass;
 import com.revature.services.PasswordService;
 
 @Controller
 @RequestMapping(value = "/updateuser")
 public class UpdateUserController {
+	
+	final static Logger logger = Logger.getLogger(UpdateUserController.class);
 	
 	@Autowired
 	PasswordService service;
@@ -46,6 +52,9 @@ public class UpdateUserController {
 		} else {
 			dao.updateUser(user);
 		}
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss"); 
+		logger.trace( user.getUsername() + " update at " + sdf.format(new Date(System.currentTimeMillis())));
 		session.setAttribute("user", user);
 		return "home";
 	}
