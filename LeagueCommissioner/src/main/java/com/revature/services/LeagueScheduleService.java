@@ -119,23 +119,35 @@ public class LeagueScheduleService {
 					gameEntryReturn.setGameDate(dates.get(round + (numberOfTeams - 1)));
 					
 					games.add(gameEntryReturn);
+				
+				}
 					
 					// The following will rotate the teams in the loop
 					freeze = schedLoop[0][0];
 					for (int i = 0; i < numberOfTeams - 1; i++) {
 						int xCoord = Math.floorDiv(i, loopRows);
-						int yCoord = i - xCoord * loopRows;
+						int yCoord, yCoord2;
+						if (xCoord == 0) {
+							yCoord = i;
+						} else {
+							yCoord = (numberOfTeams) - (i + 1);
+						}
 						
 						int xCoord2 = Math.floorDiv(i + 1, loopRows);
-						int yCoord2 = (i + 1) - xCoord2 * loopRows;
-						
+						if (xCoord2 == 0 && i < (numberOfTeams - 1)) {
+							yCoord2 = i + 1;
+						} else if (i == ((numberOfTeams / 2) - 1)) {
+							yCoord2 = i - 1;
+						} else {
+							yCoord2 = (numberOfTeams) - (i + 2);
+						}						
 						schedLoop[xCoord][yCoord] = schedLoop[xCoord2][yCoord2];
 						
 					}
-					schedLoop[1][loopRows - 2] = freeze;
-					
+					schedLoop[1][0] = freeze;
+										
 				}
-			}
+			
 			
 			// This is the end of the code used if the number of teams is odd
 			/////////////////////////////////////////////////////////////////

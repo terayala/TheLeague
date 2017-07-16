@@ -32,7 +32,7 @@ public class DriverJohn {
 		
 		GameDAO makeGame = new GameDAOImpl();
 		
-		for (int i = 16; i < 32; i++) {
+		for (int i = 16; i < 31; i++) {
 			teams.add(i);
 		}
 		
