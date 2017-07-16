@@ -7,7 +7,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>League Commissioner</title>
+		<title>View Stats</title>
 		
 		<link rel="icon" type="image/png" href="/LeagueCommissioner/static/img/BasketBall.png">
 		<link rel="stylesheet" type="text/css" href="/LeagueCommissioner/static/css/style.css">
@@ -17,36 +17,39 @@
 		<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-
 </head>
-	
 	<body>
-		
 		<%@ include file="/navbar.jsp" %>
 		<div class="navbar-clear"></div>
 		
 		<div class="row">
 			<div class="col-md-12 col-lg-9 main-screen">
-				<h1>Enter the final scores</h1>
-				<hr>
-				<form action="enterscores" method="post">
-					Game ${ requestScope.game.getGameID() }
-					<input type="hidden" name="id" value="${ requestScope.game.getGameID() }">
-					<br>
-					Home Team: ${ requestScope.game.getHomeTeam().getName() }
-					<br>
-					Home Score: <input type="text" name="home">
-					<br>
-					Away Team: ${ requestScope.game.getAwayTeam().getName() }
-					<br>
-					Away Score: <input type="text" name="away">	 
-					<br>
-					<c:forEach items="${ requestScope.allPlayers }" var="player">
-						Player #${ player.getUniform() }: <input type="text" name="${ player.getUsername() }"> 
-						<br>
-					</c:forEach>
-					<button type="submit" class="btn btn-default" value="POST">Submit Scores</button>
-				</form>
+				<c:choose>
+					<c:when test="${not empty stats}">
+					<h3>${ sessionScope.user.getFirstName() }&nbsp;${ sessionScope.user.getLastName() }'s Game Stats</h3>
+					    <table>
+					    	<thead>
+					    		<tr>
+					    			<th>Home Team</th>
+					    			<th>Away Team</th>
+					    			<th>Points Scored</th>
+					    		</tr>
+					    	</thead>
+					    	<tbody>
+						        <c:forEach var="s" items="${stats}">
+						            <tr>
+						                <td>${s.getGame().getHomeTeam().getName()}</td>
+						                <td>${s.getGame().getAwayTeam().getName()}</td>
+						                <td>${s.getPointsScored()}</td> 
+						            </tr>
+						        </c:forEach>
+							</tbody>
+					    </table>
+					</c:when>
+					<c:otherwise>
+						<h3>${ sessionScope.user.getFirstName() }&nbsp;${ sessionScope.user.getLastName() } Has NO Stats. Bummer.</h3>
+					</c:otherwise>
+				</c:choose>
 			</div>
 			
 			<div class="col-md-3 hidden-md-down sidebar">
@@ -55,7 +58,5 @@
 				</div>
 			</div>
 		</div>
-	
 	</body>
-	
-</html>
+</html>		                

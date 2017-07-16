@@ -105,7 +105,7 @@
 										
 										<td style="text-align:right;">
 											<c:if test="${ game.getHomeScore() == null && sessionScope.user.getRole() == 2 }">
-								  				<a href="http://localhost:8085/LeagueCommissioner/enterscores?gameId=${ game.getGameID() }">Enter Scores</a></td>
+								  				<a href="http://localhost:8085/LeagueCommissioner/enterscores">Enter Scores</a></td>
 								  			</c:if>
 								  			<c:if test="${ game.getHomeScore() != null }">
 								  				<c:choose>

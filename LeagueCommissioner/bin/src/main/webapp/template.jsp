@@ -27,26 +27,7 @@
 		
 		<div class="row">
 			<div class="col-md-12 col-lg-9 main-screen">
-				<h1>Enter the final scores</h1>
-				<hr>
-				<form action="enterscores" method="post">
-					Game ${ requestScope.game.getGameID() }
-					<input type="hidden" name="id" value="${ requestScope.game.getGameID() }">
-					<br>
-					Home Team: ${ requestScope.game.getHomeTeam().getName() }
-					<br>
-					Home Score: <input type="text" name="home">
-					<br>
-					Away Team: ${ requestScope.game.getAwayTeam().getName() }
-					<br>
-					Away Score: <input type="text" name="away">	 
-					<br>
-					<c:forEach items="${ requestScope.allPlayers }" var="player">
-						Player #${ player.getUniform() }: <input type="text" name="${ player.getUsername() }"> 
-						<br>
-					</c:forEach>
-					<button type="submit" class="btn btn-default" value="POST">Submit Scores</button>
-				</form>
+				<!-- insert specific view items here -->
 			</div>
 			
 			<div class="col-md-3 hidden-md-down sidebar">

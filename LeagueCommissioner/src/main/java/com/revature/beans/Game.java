@@ -3,6 +3,7 @@ package com.revature.beans;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -25,7 +26,7 @@ import org.springframework.stereotype.Component;
 @Table(name = "GAMES")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "myAwesomeCache")
 @Component
-public class Game {
+public class Game implements Comparable<Game> {
 	
 	@Id
 	@Column(name = "GAME_ID")
@@ -102,6 +103,10 @@ public class Game {
 		DateFormat dateFormat = new SimpleDateFormat("MMM-dd-yyyy HH:mm:ss");
 		return dateFormat.format(gameDate);
 	}
+	
+	public Timestamp getGameTime() {
+		return gameDate;
+	}
 
 	public void setGameDate(Timestamp gameDate) {
 		this.gameDate = gameDate;
@@ -177,5 +182,10 @@ public class Game {
 				+ gameDate + ", homeScore=" + homeScore + ", awayScore=" + awayScore + ", isOvertime=" + isOvertime
 				+ ", homeApproved=" + homeApproved + ", awayApproved=" + awayApproved + ", commissionerApproved="
 				+ commissionerApproved + "]";
+	}
+
+	@Override
+	public int compareTo(Game g) {
+		return this.gameDate.compareTo(g.getGameTime());
 	}	
 }

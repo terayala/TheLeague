@@ -21,6 +21,7 @@ public class StatsDAOImpl implements StatsDAO {
 		try {
 			tx = session.beginTransaction();
 			session.save(stats);
+			tx.commit();
 		} catch (HibernateException e) {
 			if(tx != null){
 				tx.rollback();

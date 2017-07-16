@@ -36,18 +36,18 @@ public class User {
 	private Team team;
 	
 	@Column(name = "FIRST_NAME")
-	@NotEmpty(message="first name cannot be empty")
+	@NotEmpty(message="Username cannot be empty")
 	private String firstName;
 	
 	@Column(name = "LAST_NAME")
-	@NotEmpty(message="last name cannot be empty")
+	@NotEmpty(message="Username cannot be empty")
 	private String lastName;
 	
 	@Column(name = "ROLE")
 	private int role;
 	
 	@Column(name = "EMAIL")
-	@NotEmpty(message="email cannot be empty")
+	@NotEmpty(message="Username cannot be empty")
 	private String email;
 	
 	@Column(name = "USERNAME")
@@ -78,6 +78,17 @@ public class User {
 		this.username = username;
 		this.password = password;
 		this.uniform = uniform;
+		this.active = active;
+	}
+	
+	public User(Team team, String firstName, String lastName, int role, String email, String username, String password, int active) {
+		this.team = team;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.role = role;
+		this.email = email;
+		this.username = username;
+		this.password = password;
 		this.active = active;
 	}
 
