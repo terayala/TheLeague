@@ -42,6 +42,13 @@
 		
 	</table>
 
+<% } catch (NumberFormatException e) { %>
+
+	<div class="sidebar-commissioner">
+		<h4 style="text-align:center;">Welcome to League Commissioner</h4>
+		<p>Welcome to the new season! Good luck!</p>
+	</div>
+
 <% } catch (Exception e) { %>
 
 	<div class="sidebar-commissioner">
@@ -50,3 +57,12 @@
 	</div>
 
 <% } %>
+
+<div class="sidebar-nav-items">
+	<c:if test="${ sessionScope.user.getRole() == 2}">
+		<p><a href="http://13.59.241.171:8085/LeagueCommissioner/createuser">Register New Player</a></p>
+	</c:if>
+	
+	<p><a href="http://13.59.241.171:8085/LeagueCommissioner/updateuser">Update Personal Info</a></p>
+</div>
+			

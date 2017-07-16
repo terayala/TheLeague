@@ -17,14 +17,12 @@
 				
 				<c:when test="${ sessionScope.user.getRole() == 2}">
 					<li><a href="http://13.59.241.171:8085/LeagueCommissioner/viewStats">Stats</a></li>
-					<li><a href="http://13.59.241.171:8085/LeagueCommissioner/createuser">Register Player</a></li>
 				</c:when>
 				
 				<c:when test="${ sessionScope.user.getRole() == 1}">
 					<li><a href="http://13.59.241.171:8085/LeagueCommissioner/viewStats">Stats</a></li>
 				</c:when>
 			</c:choose>
-			<li><a href="http://13.59.241.171:8085/LeagueCommissioner/updateuser">Update Account</a></li>
 			<li id="logout"><a href="http://13.59.241.171:8085/LeagueCommissioner/logout">Logout</a></li>
 		</ul>
 	</div>
