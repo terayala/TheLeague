@@ -82,7 +82,7 @@
 					<hr>
 				
 					<div class="row">
-						<button type="submit" class="btn btn-default" value="POST" style="margin:auto;">Submit Score</button>
+						<button href="http://13.58.132.64:8085/LeagueCommissioner/enterscores" type="submit" class="btn btn-default" value="POST" style="margin:auto;">Submit Score</button>
 					</div>
 					
 				</div>
