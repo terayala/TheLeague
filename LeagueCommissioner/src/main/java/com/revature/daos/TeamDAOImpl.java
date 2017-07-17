@@ -114,4 +114,25 @@ public class TeamDAOImpl implements TeamDAO {
 		}
 		return teams;
 	}
+	
+	public void deleteTeam(Team team) {
+
+		Session session = HibernateUtil.getSession();
+
+		Transaction tx = null;
+		try {
+
+			tx = session.beginTransaction();
+			session.delete(team);
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+
+			session.close();
+		}
+	}
 }

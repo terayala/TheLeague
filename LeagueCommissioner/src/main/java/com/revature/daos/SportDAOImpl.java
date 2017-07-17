@@ -26,7 +26,7 @@ public class SportDAOImpl implements SportDAO {
 			e.printStackTrace();
 		} finally {
 			session.close();
-		}		
+		}
 	}
 
 	@Override
@@ -85,4 +85,21 @@ public class SportDAOImpl implements SportDAO {
 		return sports;
 	}
 
+	public void deleteSport(Sport sport) {
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			session.delete(sport);
+			tx.commit();
+		} catch (HibernateException e) {
+			if(tx != null){
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+	}
+	
 }

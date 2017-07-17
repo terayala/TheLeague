@@ -27,26 +27,66 @@
 		
 		<div class="row">
 			<div class="col-md-12 col-lg-9 main-screen">
-				<h1>Enter the final scores</h1>
-				<hr>
-				<form action="enterscores" method="post">
-					Game ${ requestScope.game.getGameID() }
-					<input type="hidden" name="id" value="${ requestScope.game.getGameID() }">
-					<br>
-					Home Team: ${ requestScope.game.getHomeTeam().getName() }
-					<br>
-					Home Score: <input type="text" name="home">
-					<br>
-					Away Team: ${ requestScope.game.getAwayTeam().getName() }
-					<br>
-					Away Score: <input type="text" name="away">	 
-					<br>
-					<c:forEach items="${ requestScope.allPlayers }" var="player">
-						Player #${ player.getUniform() }: <input type="text" name="${ player.getUsername() }"> 
-						<br>
-					</c:forEach>
-					<button type="submit" class="btn btn-default" value="POST">Submit Scores</button>
-				</form>
+				
+				<div class="enter-score-container">
+				
+					<h3>Enter Results of Game</h3>
+					<hr>
+					
+					<div class="row">
+						<div class="col-6">
+							<div class="enter-home-team">${ requestScope.game.getHomeTeam().getName() }</div>
+							<div class="enter-home-score"><input type="text" name="home"></div>
+						</div>
+						
+						<div class="col-6">
+							<div class="enter-away-score"><input type="text" name="away"></div>
+							<div class="enter-away-team">${ requestScope.game.getAwayTeam().getName() }</div>
+						</div>
+					</div>
+					
+					<div style="clear:both;"></div>
+					
+					<hr>
+					
+					<div class="row">
+						<div class="col-6">
+							<c:forEach items="${ requestScope.homePlayers }" var="player">
+								<div class="row">
+								<div class="col-12">
+								<c:if test="${ player.getRole() == 1 }">
+									${ player.getUniform() } - ${ player.getFirstName() } ${ player.getLastName() }
+									<input type="text" class="player-goals" style="float:right;"
+									name="${ player.getUsername() }" placeholder="#${ player.getUniform() }"> 
+									<div class="clear:both;"></div>
+								</c:if>
+								</div></div>
+							</c:forEach>
+						</div>
+						
+						<div class="col-6">
+							<c:forEach items="${ requestScope.awayPlayers }" var="player">
+								<div class="row">
+								<div class="col-12 away-players">
+								<c:if test="${ player.getRole() == 1 }">
+									<input type="text" class="player-goals" style="float:left;"
+									name="${ player.getUsername() }" placeholder="#${ player.getUniform() }">
+									${ player.getFirstName() } ${ player.getLastName() } - ${ player.getUniform() }
+									<div class="clear:both;"></div>
+								</c:if>
+								</div></div>
+							</c:forEach>
+						</div>
+					</div>
+					
+					<hr>
+				
+					<div class="row">
+						<button type="submit" class="btn btn-default" value="POST" style="margin:auto;">Submit Score</button>
+					</div>
+					
+				</div>
+				
 			</div>
 			
 			<div class="col-md-3 hidden-md-down sidebar">
