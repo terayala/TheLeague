@@ -52,19 +52,20 @@
 					</c:when>
 					<c:otherwise>
 						<!-- regular home page with descriptions depending on user's role -->
-						<p>WELCOME, ${ sessionScope.user.getFirstName() } ${ sessionScope.user.getLastName() }</p>
+						<h1>WELCOME, ${ sessionScope.user.getFirstName() } ${ sessionScope.user.getLastName() }</h1>
+						<hr>
 						<c:choose>
 							<c:when test="${ sessionScope.user.getRole() == 1}">
 							<!-- player home page view -->
-								<p>PLAYER PAGE</p>
+								<p>PLAYER HOME PAGE</p>
 							</c:when>
 							<c:when test="${ sessionScope.user.getRole() == 2 }">
 							<!-- coach home page view -->
-								<p>COACH PAGE</p>
+								<p>COACH HOME PAGE</p>
 							</c:when>
 							<c:otherwise>
 							<!-- commissioner home page view -->
-								<p>COMMISSIONER PAGE</p>
+								<p>COMMISSIONER HOME PAGE</p>
 							</c:otherwise>
 						</c:choose>
 					</c:otherwise>
