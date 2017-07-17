@@ -42,8 +42,10 @@ public class EnterScoresController {
 			Game game = gameDAO.selectGameById(Integer.parseInt((String)gameMap.get("gameId")));
 			modelMap.addAttribute("game", game);
 			UserDAO userDAO = new UserDAOImpl();
-			List<User> list = userDAO.selectUsersByTeam(((User)session.getAttribute("user")).getTeam().getTeamID());
-			modelMap.addAttribute("allPlayers", list);
+			List<User> homeList = userDAO.selectUsersByTeam(game.getHomeTeam().getTeamID());
+			List<User> awayList = userDAO.selectUsersByTeam(game.getAwayTeam().getTeamID());
+			modelMap.addAttribute("homePlayers", homeList);
+			modelMap.addAttribute("awayPlayers", awayList);
 			return "enterscores";
 		}
 	}
